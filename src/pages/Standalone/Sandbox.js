@@ -13,44 +13,24 @@ export default function (props) {
     api = `http://192.168.3.121:8080${api}`;
   }
 
-<<<<<<< HEAD
-  const [ data ] = useTokenRequest({api});
-=======
   const [data] = useTokenRequest({ api });
->>>>>>> 9613a87 (logs)
 
   const newData = []
   data.map((item, index) => {
     // if(item.indexOf('.jar') > -1){
-<<<<<<< HEAD
-      const newItem = {}
-      newItem.id = index + 1;
-      newItem.value = item;
-      newData.push(newItem)
-=======
     const newItem = {}
     newItem.id = index + 1;
     newItem.value = item;
     newData.push(newItem)
->>>>>>> 9613a87 (logs)
     // }
   })
 
   const dataX = []
-<<<<<<< HEAD
-  dataX.push({items:newData})
-  
-  return (
-        data.length > 0 ? (
-          <StandaloneContainer {...props} data={dataX}/>
-        ):<></>
-=======
   dataX.push({ items: newData })
 
   return (
     data.length > 0 ? (
       <StandaloneContainer {...props} data={dataX} />
     ) : <></>
->>>>>>> 9613a87 (logs)
   )
 }

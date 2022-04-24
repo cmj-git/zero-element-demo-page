@@ -1,77 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-import StandalonePage from '@/pages/Standalone'
-import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
-import { history } from 'umi';
-import { AutoLayout } from 'zero-element-boot';
-import userListLayoutJson from './userList/layout'
-import layout from './userList/layout';
-
-import { Page } from 'zero-element-boot/lib/components/cart'
-
-export default function index (props) {
-
-  // let api = 'http://192.168.3.170:8084/dev/logs';
-
-  // // if (process.env.NODE_ENV === 'development') {
-  // //   api = `http://192.168.3.121:8080${api}`;
-  // // }
-  // const requestData = {
-  //   pattern: 'access.log',
-  //   filter: 'WARN',
-  //   logNumber: "10"
-  // }
-  // const [data] = useTokenRequest({ api, requestData });
-
-  // const newData = []
-  // data.map((item, index) => {
-  //   // if(item.indexOf('.jar') > -1){
-  //   const newItem = {}
-  //   newItem.id = index + 1;
-  //   newItem.value = item;
-  //   newData.push(newItem)
-  //   // }
-  // })
-
-  // const dataX = []
-  // dataX.push({ items: newData })
-
-  // return (
-  //   data.length > 0 ? (
-  //     <StandalonePage {...props} data={dataX} />
-  //   ) : <></>
-  // )
-
-
-
-  let api = '/api/userData';
-
-  const [data] = useTokenRequest({ api });
-
-  const config = {
-    items: data.length > 0 ? data : [],
-    // layout: userListLayoutJson,
-    layout: layout
-  };
-
-  const onJarItemClick = (item) => {
-    console.log('item === ', item),
-
-      history.push('/list');
-
-
-
-
-  }
-
-
-  return <Page>
-    <Page width='800px'>
-      <AutoLayout {...config} onItemClick={onJarItemClick} />
-    </Page>
-  </Page>
-=======
 import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } from "@chakra-ui/react";
 // import { AutoLayout } from '@/components';
@@ -227,5 +153,4 @@ export default function index (props) {
   //     </ChakraProvider></Page >
   // )
 
->>>>>>> 9613a87 (logs)
 }

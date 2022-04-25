@@ -3,3 +3,5 @@ package-lock.json
 yarn.lock
 src/.umi
 dist
+yarn-error.log
+dist.zip

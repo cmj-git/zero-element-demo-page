@@ -13,11 +13,13 @@ const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
 
-  let api = 'https://www.metagugu.net/dev/logs/json';
 
-  // if (process.env.NODE_ENV === 'development') {
-  //   api = `http://192.168.3.121:8080${api}`;
-  // }
+  if (process.env.NODE_ENV == 'development') {
+    setEndpoint('https://www.metagugu.net');
+  }
+  let api = '/dev/logs/json';
+
+
   const requestData = {
     // pattern: 'access.log',
     // filter: 'WARN',

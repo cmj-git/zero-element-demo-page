@@ -20,10 +20,10 @@ module.exports = {
     xname: 'Cart',
     props: {
       // padding: '16px',
-      margin: '0',
-      corner: 0,
-      linewidth: '0',
-      padding: '10px 25px',
+      margin: '0',//边距
+      corner: 0,//圆角
+      linewidth: '0',//边框线框
+      padding: '10px 25px',//内距
       isOnHover: false
     }
   },

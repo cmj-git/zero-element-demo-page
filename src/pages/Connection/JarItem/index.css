@@ -3,5 +3,5 @@
   cursor: pointer;
 }
 .textColor:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }

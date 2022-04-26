@@ -28,11 +28,11 @@ export default function Index (props) {
   const localLayoutJson = layout;
 
   // let api = '/dev/dependency/decompile/json';
-  let api = 'https://www.metagugu.net/dev/logs/json';
+  let api = '/dev/logs/json';
 
-  // if (process.env.NODE_ENV === 'development') {
-  //   api = `http://192.168.3.121:8080${api}`;
-  // }
+  if (process.env.NODE_ENV === 'development') {
+    api = `${api}`;
+  }
 
   if (layoutJsonPath) {
     layoutData = { path: layoutJsonPath };
@@ -102,9 +102,17 @@ export default function Index (props) {
 
 
 
+
+
+
+
   //搜索按钮--获取返回的数据
   function anniu (body) {
-    let url = 'https://www.metagugu.net/dev/logs/json'
+    let url = '/dev/logs/json';
+
+    if (process.env.NODE_ENV === 'development') {
+      url = `${url}`;
+    }
     promiseAjax(url, { ...body })
       .then(responseData => {
         {

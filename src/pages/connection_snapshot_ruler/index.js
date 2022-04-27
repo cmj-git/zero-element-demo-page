@@ -28,7 +28,7 @@ export default function Index (props) {
   const localLayoutJson = layout;
 
   // let api = '/dev/dependency/decompile/json';
-  let api = '/dev/connection';
+  let api = '/dev/logs/json';
 
   if (process.env.NODE_ENV === 'development') {
     api = `${api}`;
@@ -110,7 +110,7 @@ export default function Index (props) {
   function anniu (body) {
     let url = '/dev/logs/json';
 
-    if (process.env.NODE_ENV === '/dev/connection') {
+    if (process.env.NODE_ENV === 'development') {
       url = `${url}`;
     }
     promiseAjax(url, { ...body })

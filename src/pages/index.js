@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } from "@chakra-ui/react";
 // import { AutoLayout } from '@/components';
-import DevLogsPage from '@/pages/dev'
+// import DevLogsPage from '@/pages/dev'
+import ConnectionPage from '@/pages/Connection'
+
 import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
 // import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
@@ -15,9 +17,9 @@ export default function index (props) {
 
 
   if (process.env.NODE_ENV == 'development') {
-    setEndpoint('https://www.metagugu.net');
+    setEndpoint('http://192.168.3.75:8080');
   }
-  let api = '/dev/logs/json';
+  let api = '/dev/connection';
 
 
   const requestData = {
@@ -43,7 +45,7 @@ export default function index (props) {
   return (
     data.length > 0 ?
       (
-        <DevLogsPage {...props} data={dataX} />
+        <ConnectionPage {...props} data={dataX} />
       ) : <></>
   )
   // --------------------------------------------------------------------------------------------------------------------------------------------------------

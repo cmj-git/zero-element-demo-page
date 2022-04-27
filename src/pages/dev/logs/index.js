@@ -120,6 +120,8 @@ export default function Index (props) {
           setIsLoading(false)
         }
       })
+    document.getElementById("shangxiawen").value = "";
+    document.getElementById("rizhicontent").value = "";
   }
   //搜索方法
   function seach () {
@@ -200,11 +202,11 @@ export default function Index (props) {
             <div style={{ minWidth: '800px', width: '100%', lineHeight: '60px', backgroundColor: '#ffffff', padding: '20px 10px 10px 25px' }}>
 
               <div style={{ left: '60%', width: '200px', top: '100px', height: '40px' }}>
-                <Input placeholder='输入上下文数量' onChange={(N) => setupDown(N.target.value)} width='150px' />
+                <Input id='shangxiawen' placeholder='输入上下文数量' onChange={(N) => setupDown(N.target.value)} width='150px' />
               </div>
 
               <div style={{ position: 'absolute', left: '180px', top: '54px' }}>
-                <Input placeholder='请输入您想要的日志内容' onChange={(e) => setSearchContent(e.target.value)} width='300px' /></div>
+                <Input id='rizhicontent' placeholder='请输入您想要的日志内容' onChange={(e) => setSearchContent(e.target.value)} width='300px' /></div>
 
               <div style={{ position: 'absolute', left: '486px', top: '52px' }}>
                 <Button colorScheme='teal' onClick={() => seach()} >搜索</Button>

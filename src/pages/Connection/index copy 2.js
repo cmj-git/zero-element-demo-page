@@ -97,28 +97,9 @@ export default function Index (props) {
     upDown = N
   }
 
-  //获取所有表
-  function getconnection () {
-    let api = '/dev/connection';
 
-    setIsShowList(false)
-    setIsLoading(true)
-    promiseAjax(api)
-      .then(responseData => {
-        if (responseData && responseData.code === 200) {
-          let respData = responseData.data;
-          setDetail(respData);
-          setIsShowData(true)
 
-        } else {
-          setIsShowList(true)
-          setIsShowData(false)
-        }
-        setIsLoading(false)
-      })
-  }
-
-  //显示所有保存的数据库快照文件//下载数据库快照
+  //显示数据库快照文件
   function snapshot () {
     let api = '/dev/connection/snapshot';
 
@@ -142,46 +123,9 @@ export default function Index (props) {
 
 
 
-  //获取规则
+  //获取命名规则
   function getruler () {
-
-    let api = '/dev/connection/snapshot/rulers/mings';
-
-    setIsShowList(false)
-    setIsLoading(true)
-    promiseAjax(api)
-      .then(responseData => {
-        if (responseData && responseData.code === 200) {
-          let respData = responseData.data;
-          setDetail(respData);
-          setIsShowData(true)
-
-        } else {
-          setIsShowList(true)
-          setIsShowData(false)
-        }
-        setIsLoading(false)
-      })
-
-    // changeInput()
-  }
-
-
-  // 改变规则输入框状态
-  var ruleE = ''
-  const changeInput = async (e) => {
-    ruleE = 1
-    if (ruleE == 1) {
-      document.getElementById('updataRule').disabled = true
-      document.getElementById('updataRule').innerText = '123'
-    }
-
-  }
-
-
-  //根据规则(ruler)保存数据库快照到本地
-  function LocalruleStorage () {
-    let api = '/dev/connection/snapshot?ruler=mings';
+    let api = '/dev/connection/snapshot/rulers';
 
     setIsShowList(false)
     setIsLoading(true)
@@ -199,6 +143,7 @@ export default function Index (props) {
         setIsLoading(false)
       })
   }
+
 
 
 
@@ -286,13 +231,13 @@ export default function Index (props) {
 
   }
 
-  //返回首页
-  // function goBack () {
-  //   setIsShowList(true)
-  //   setIsShowData(false)
-  //   setCurrentItemName('')
 
-  // }
+  function goBack () {
+    setIsShowList(true)
+    setIsShowData(false)
+    setCurrentItemName('')
+
+  }
 
 
   return (
@@ -302,7 +247,7 @@ export default function Index (props) {
           <VStack spacing='3px'>
             <div style={{ minWidth: '800px', width: '100%', height: '20px', lineHeight: '60px', backgroundColor: '#ffffff', padding: '20px 10px 10px 25px' }}>
               <Stack direction={['column', 'row']} w="100%" spacing='10px'>
-                {/* <Button h="35px" colorScheme='blue' onClick={() => goBack()}>首页</Button> */}
+                <Button h="35px" colorScheme='blue' onClick={() => goBack()}>首页</Button>
                 {currentItemName ? (
                   <Button h="35px" colorScheme='blue' onClick={() => getDetailFetch(currentItemName, 1)}>{currentItemName}</Button>
                 ) : <></>}
@@ -311,20 +256,41 @@ export default function Index (props) {
 
 
 
-            <div> <Tabs variant='soft-rounded' colorScheme='green' >
+            <Tabs variant='soft-rounded' colorScheme='green'>
               <TabList style={{ position: 'absolute', left: '30% ' }}>
-                <Tab onClick={() => getconnection()}>显示所有表</Tab>
-                <Tab onClick={() => getruler()}>获取/更新规则</Tab>
-
-                <Tab onClick={() => LocalruleStorage()}>保存数据库快照到本地</Tab>
-                <Tab onClick={() => snapshot()}>获取/下载数据库快照</Tab>
+                <Tab>获取命名规则</Tab>
+                <Tab>显示数据库快照</Tab>
                 <Tab>snapshot文件</Tab>
-                <Tab>规则的配置详情</Tab>
+                <Tab>命名规则的配置详情</Tab>
               </TabList>
-
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
             </Tabs>
-            </div>
-            <Input id='updataRule' onBlur={() => changeInput(1)} placeholder='' disabled={false} width={'100px'} />
+
+
+            <div style={{ minWidth: '800px', width: '100%', lineHeight: '60px', backgroundColor: '#ffffff', padding: '20px 10px 10px 25px' }}>
+
+              <div style={{ left: '60%', width: '200px', top: '100px', height: '40px', marginTop: '20px' }}>
+                <Button colorScheme='teal' onClick={() => getruler()}></Button>
+              </div>
+
+              <div style={{ position: 'absolute', left: '180px', top: '54px', marginTop: '20px' }}>
+                <Button colorScheme='teal' onClick={() => snapshot()}></Button>
+              </div>
+
+              {/* 数据库内容 点击下载 */}
+              <div style={{ position: 'absolute', left: '380px', top: '54px', marginTop: '20px' }}>
+                <Input id='rizhicontent' placeholder='请输入想要下载的数据库内容' width='260px' /></div>
+              <div style={{ position: 'absolute', left: '650px', top: '52px', marginTop: '20px' }}>
+                <Button id='instant' colorScheme='teal' onClick={() => downFile()}>下载数据库快照</Button>
+              </div> </div>
+
 
 
 
@@ -336,7 +302,7 @@ export default function Index (props) {
 
 
             {/* <Select placeholder='medium size' size='md' /> */}
-            <div style={{ minWidth: '800px', marginTop: '80px' }}>   {
+            <div style={{ minWidth: '800px' }}>   {
               isShowList ? (
                 <AutoLayout {...config} onItemClick={onJarItemClick}>
                   {/* <StandaloneBody  onItemClick={onJarItemClick}/> */}

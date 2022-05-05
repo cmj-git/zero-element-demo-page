@@ -46,9 +46,9 @@ module.exports = {
   navigation: {
     model: {
       api: {
-        createAPI: '/api/v/navigation/navigations',
-        getAPI: '/api/v/navigation/navigations/(id)',
-        updateAPI: '/api/v/navigation/navigations/(id)',
+        createAPI: '/api/c/navigation/navigations',
+        getAPI: '/api/c/navigation/navigations/(id)',
+        updateAPI: '/api/c/navigation/navigations/(id)',
         deleteAPI: ''
       },
       fields: [{

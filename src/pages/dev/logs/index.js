@@ -85,22 +85,24 @@ export default function Index (props) {
       })
 
   }
-  // console.log(statenum);
+
   var searchData = ''
   // var upDown =''
   //搜索输入框
-  const setSearchContent = async (e,) => {
+  const setSearchContent = async (e) => {
     searchData = e
   }
 
+  //上下文文本框
   var upDown = ''
-  const setupDown = (N) => {
-    upDown = N
+  const setupDown = (n) => {
+    upDown = n
   }
 
 
   //搜索按钮--获取返回的数据
   function anniu (body) {
+
     let url = '/dev/logs/json';
 
     if (process.env.NODE_ENV === 'development') {
@@ -120,15 +122,20 @@ export default function Index (props) {
           setIsLoading(false)
         }
       })
-    document.getElementById("shangxiawen").value = "";
-    document.getElementById("rizhicontent").value = "";
+    //得到焦点
+    setTimeout(() => {
+      document.getElementById('shangxiawen').focus()
+      document.getElementById('rizhicontent').focus()
+
+    }, 1000);
+
   }
   //搜索方法
   function seach () {
     const body = {
       pattern: currentItemName,
       filter: searchData,
-      N: upDown
+      n: upDown
     }
     anniu(body)
 
@@ -202,11 +209,11 @@ export default function Index (props) {
             <div style={{ minWidth: '800px', width: '100%', lineHeight: '60px', backgroundColor: '#ffffff', padding: '20px 10px 10px 25px' }}>
 
               <div style={{ left: '60%', width: '200px', top: '100px', height: '40px' }}>
-                <Input id='shangxiawen' placeholder='输入上下文数量' onChange={(N) => setupDown(N.target.value)} width='150px' />
+                <Input id='shangxiawen' tabindex="1" placeholder='输入上下文数量' onBlur={(n) => setupDown(n.target.value)} width='150px' />
               </div>
 
               <div style={{ position: 'absolute', left: '180px', top: '54px' }}>
-                <Input id='rizhicontent' placeholder='请输入您想要的日志内容' onChange={(e) => setSearchContent(e.target.value)} width='300px' /></div>
+                <Input id='rizhicontent' placeholder='请输入您想要的日志内容' onBlur={(e) => setSearchContent(e.target.value)} width='300px' /></div>
 
               <div style={{ position: 'absolute', left: '486px', top: '52px' }}>
                 <Button colorScheme='teal' onClick={() => seach()} >搜索</Button>

@@ -3,12 +3,11 @@ import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } 
 // import { AutoLayout } from '@/components';
 // import Logs from '@/pages/dev/logs'
 import ConnectionPage from '@/pages/Connection'
-
 import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
-// import { history } from 'umi';
+import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
 // const promiseAjax = require('@/components/utils/request');
-import layout from './userList/layout'
+import layout from './nagation/layout'
 // import layout from './Standalone/layout';
 import { Page } from 'zero-element-boot/lib/components/cart'
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
@@ -86,10 +85,14 @@ export default function index (props) {
     });
   }
 
+  //
   const onUserItemClick = (item) => {
     const id = item.id;
     console.log('id = ', id)
-    alert(`选择的用户id为: ${id}`)
+    // alert(`选择的用户id为: ${id}`)
+    //点击跳转页面
+    history.push(item.path);
+    console.log(item.path);
   }
 
   //回调函数

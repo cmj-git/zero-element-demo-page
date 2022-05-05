@@ -71,9 +71,18 @@ module.exports = {
         label: '描述',
         field: 'desc',
         type: 'input',
-        height: '15px',
+        // height: '25px',
         required: {
           placeholder: '描述属性'
+        }
+      }
+        ,
+      {
+        label: '链接',
+        field: 'path',
+        type: 'input',
+        required: {
+          placeholder: '链接'
         }
       }
       ]

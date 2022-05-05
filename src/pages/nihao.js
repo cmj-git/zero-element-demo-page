@@ -1,10 +1,10 @@
 import React from 'react';
-import ConnectionPage from '@/pages/Connection'
+import Logs from '@/pages/dev/logs'
 
 export default function list () {
 
   return <div>
-    <ConnectionPage>1</ConnectionPage>
+    <Logs></Logs>
   </div>
 
 }

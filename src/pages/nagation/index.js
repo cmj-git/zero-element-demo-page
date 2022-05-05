@@ -13,17 +13,6 @@ const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 // import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
 
-  //connection
-  // if (process.env.NODE_ENV == 'development') {
-  //   setEndpoint('http://demo.smallsaas.cn:8087');
-  // }
-
-  // return (
-
-  //   <ConnectionPage {...props} />
-
-  // )
-  // --------------------------------------------------------------------------------------------------------------------------------------------------------
   const { } = props;
 
   const [listData, setListData] = useState([])
@@ -87,8 +76,16 @@ export default function index (props) {
     console.log('id = ', id)
     // alert(`选择的用户id为: ${id}`)
     //点击跳转页面
-    history.push(item.path);
-    console.log(item.path);
+    if (item.path.indexOf('http') != -1) {
+      window.location.replace(item.path)
+      let url = window.location.href
+      console.log(window.location.href);
+      history.push(url);
+
+    } else {
+      history.push(item.path);
+    }
+
   }
 
   //回调函数

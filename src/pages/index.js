@@ -29,7 +29,7 @@ export default function index (props) {
   // --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  // connection
+  // Nagation
   if (process.env.NODE_ENV == 'development') {
     setEndpoint('http://app1.console.smallsaas.cn:8001');
     // setToken('')

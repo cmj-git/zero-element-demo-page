@@ -49,7 +49,7 @@ module.exports = {
         createAPI: '/api/c/navigation/navigations',
         getAPI: '/api/c/navigation/navigations/(id)',
         updateAPI: '/api/c/navigation/navigations/(id)',
-        deleteAPI: ''
+        deleteAPI: '/api/c/navigation/navigations/(id)'
       },
       fields: [{
         label: '标题',
@@ -82,7 +82,7 @@ module.exports = {
         field: 'path',
         type: 'input',
         required: {
-          placeholder: '链接'
+          placeholder: '请输入本地链接/第三方以https开头'
         }
       }
       ]

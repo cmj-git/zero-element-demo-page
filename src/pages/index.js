@@ -16,9 +16,9 @@ const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
 
-  //connection
+  // connection
   // if (process.env.NODE_ENV == 'development') {
-  //   setEndpoint('http://demo.smallsaas.cn:8087');
+  //   setEndpoint('http://demo.smallsaas.cn:8001');
   // }
 
   // return (

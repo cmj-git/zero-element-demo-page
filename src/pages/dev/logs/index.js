@@ -42,7 +42,8 @@ export default function Index (props) {
 
   const config = {
     items: data.length > 0 ? data : [],
-    layout: layoutData
+    layout: layoutData,
+
   };
 
   const onJarItemClick = (item) => {
@@ -74,6 +75,7 @@ export default function Index (props) {
       .then(responseData => {
         if (responseData && responseData.code === 200) {
           let respData = responseData.data;
+          console.log(typeof (respData));
           setDetail(respData);
           setIsShowData(true)
 

@@ -82,7 +82,7 @@ module.exports = {
         field: 'path',
         type: 'input',
         required: {
-          placeholder: '请输入本地链接/第三方以https开头'
+          placeholder: '请输入本地链接/第三方以http开头'
         }
       }
       ]

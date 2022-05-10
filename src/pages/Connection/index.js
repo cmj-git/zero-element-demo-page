@@ -252,7 +252,7 @@ export default function Index (props) {
 
   //新建规则，更新规则 
   function updataName () {
-    anniu(content)
+    anniu(content, condata)
 
   }
   //文本信息
@@ -260,27 +260,28 @@ export default function Index (props) {
   const setcontent = (n) => {
     content = n
   }
-  var conData = ''
+  var condata = ''
   const setcondata = (m) => {
-    conData = m
+    condata = m
   }
 
   //搜索按钮--获取返回的数据 //新建、更新方法
-  function anniu (content) {
+  function anniu (content, condata) {
     let api = `/dev/connection/snapshot/rulers/${content}?`
-
-    promiseAjax(api, { conData }, { method: 'POST' })
+    //字符串转化成JSON
+    let a = JSON.parse(condata)
+    promiseAjax(api, a, { method: 'POST' })
       .then(responseData => {
         {
           if (responseData && responseData.code === 200) {
-            let respData = responseData.data;
-            console.log(respData);
+            let respdata = responseData.data;
+            console.log(respdata);
 
-            setDetail(respData);
+            setDetail(respdata);
             setIsShowData(true)
             setSwitchStatus(false)
 
-            console.log(conData);
+
             alert('更新成功！')
 
           } else {
@@ -329,7 +330,7 @@ export default function Index (props) {
             // console.log(respData);
             setDetail(respData);
             setIsShowData(true)
-
+            alert('保存成功!')
 
           } else {
             setIsShowList(true)
@@ -362,7 +363,6 @@ export default function Index (props) {
   //方法
   function printDataWay (content) {
     let api = '/dev/connection/snapshot/print/json?ruler=' + content;
-    console.log(api);
 
     promiseAjax(api)
       .then(responseData => {

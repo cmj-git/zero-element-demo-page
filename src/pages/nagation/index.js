@@ -22,7 +22,7 @@ export default function index (props) {
 
 
 
-  let api = '/api/c/navigation/navigations';
+  let api = '/api/data/services/navigation';
 
   useEffect(() => {
     console.log('首次加载')

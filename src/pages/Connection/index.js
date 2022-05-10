@@ -36,18 +36,22 @@ export default function Index (props) {
   const [isLoading, setIsLoading] = useState(false);
   const [showDetail, setDetail] = useState('');
   const [currentItemName, setCurrentItemName] = useState('');
-  const [switchStatus, setSwitchStatus] = useState(false)
-  //
+  const [switchStatus, setSwitchStatus] = useState(true)
+  const [showsetcontent, setmycontent] = useState('')
+
+  //我的想法就是在这里加一个变量来保存你那个返回的数据懂了
 
   let layoutData = '';
   const layoutJsonPath = '';
   const localLayoutJson = layout;
 
-  let api = '/dev/connection';
 
+
+  //用于下载
   if (process.env.NODE_ENV === 'development') {
-    api = `${api}`;
+    URL = `http://demo.smallsaas.cn:8001`;
   }
+
 
   if (layoutJsonPath) {
     layoutData = { path: layoutJsonPath };
@@ -131,18 +135,23 @@ export default function Index (props) {
         }
         setIsLoading(false)
       })
-
     //隐藏规则输入框
     document.getElementById('updataRule').hidden = true
     document.getElementById('downBase').hidden = true
     document.getElementById('saveLocal').hidden = true
+    document.getElementById('printBase').hidden = true
+    document.getElementById('rulerDeploy').hidden = true
+    document.getElementById('deleteRule').hidden = true
+    document.getElementById('deleteBaseData').hidden = true
+
+    //隐藏数据库输入框
+    document.getElementById('downSnapshot').hidden = true
+
 
   }
-
-  //获取数据库快照
-  function snapshotGet () {
+  //获取所有规则表
+  function getBaseSt () {
     let api = '/dev/connection/snapshot';
-
     setIsShowList(false)
     setIsLoading(true)
     promiseAjax(api)
@@ -151,23 +160,34 @@ export default function Index (props) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
+          // console.log(respData);
         } else {
           setIsShowList(true)
           setIsShowData(false)
         }
         setIsLoading(false)
       })
-
     //隐藏规则输入框
     document.getElementById('updataRule').hidden = true
     document.getElementById('downBase').hidden = true
     document.getElementById('saveLocal').hidden = true
+    document.getElementById('printBase').hidden = true
+    document.getElementById('deleteRule').hidden = true
+    document.getElementById('rulerDeploy').hidden = true
+
+    //显示数据库输入框
+    document.getElementById('downSnapshot').hidden = false
+
+    document.getElementById('deleteBaseData').hidden = false
+
   }
 
 
   //下载数据库快照
   function downData () {
     downFileanniu(content)
+    getRuler()
+
   }
   //文本信息
   var content = ''
@@ -180,8 +200,10 @@ export default function Index (props) {
     let api = `/dev/connection/snapshot/instant?ruler=` + content;
 
     const w = window.open('about:blank');
-    w.location.href = 'http://demo.smallsaas.cn:8001' + api
-
+    w.location.href = URL + api
+    console.log(URL);
+    setSwitchStatus(false)
+    alert('下载成功！')
 
   }
 
@@ -211,15 +233,27 @@ export default function Index (props) {
         setIsLoading(false)
       })
 
-
+    //点击显示输入框
     document.getElementById('saveLocal').hidden = false
     document.getElementById('updataRule').hidden = false
     document.getElementById('downBase').hidden = false
+    document.getElementById('printBase').hidden = false
+    document.getElementById('deleteRule').hidden = false
+    document.getElementById('rulerDeploy').hidden = false
+
+
+    //隐藏数据库输入框
+    document.getElementById('downSnapshot').hidden = true
+    document.getElementById('deleteBaseData').hidden = true
+
+
+
   }
 
   //新建规则，更新规则 
   function updataName () {
-    anniu(content)
+    anniu(content, conData)
+
   }
 
 
@@ -228,11 +262,64 @@ export default function Index (props) {
   const setcontent = (n) => {
     content = n
   }
+  var conData = ''
+  const setcondata = (m) => {
+    conData = m
+  }
 
   //搜索按钮--获取返回的数据 //新建、更新方法
-  function anniu (content) {
-    let api = '/dev/connection/snapshot/rulers/' + content;
-    console.log(api);
+  function anniu (content, conData) {
+    let api = '/dev/connection/snapshot/rulers/' + content
+    console.log(conData);
+
+    promiseAjax(api, { conData }, { method: 'POST' })
+      .then(responseData => {
+        {
+          if (responseData && responseData.code === 200) {
+            let respData = responseData.data;
+            // console.log(respData);
+            setDetail(respData);
+            setIsShowData(true)
+            setSwitchStatus(false)
+            alert('更新成功！')
+
+          } else {
+            setIsShowList(true)
+
+            setIsShowData(false)
+          }
+          setIsLoading(false)
+        }
+      })
+
+
+  }
+
+  //
+
+
+  //根据规则(ruler)保存数据库快照到服务器本地
+
+  //保存快照到服务器
+
+  function SaveData () {
+    LocalruleStorage(content)
+    //获取规则列表
+    getRuler()
+
+    // //刷新页面
+    // location.reload()
+  }
+  //文本信息
+  var content = ''
+  const saveBaseData = (n) => {
+    content = n
+  }
+
+  //方法
+  function LocalruleStorage (content) {
+    let api = '/dev/connection/snapshot?ruler=' + content;
+
 
     promiseAjax(api, {}, { method: 'POST' })
       .then(responseData => {
@@ -242,6 +329,8 @@ export default function Index (props) {
             // console.log(respData);
             setDetail(respData);
             setIsShowData(true)
+            alert('保存成功！')
+
 
           } else {
             setIsShowList(true)
@@ -255,46 +344,15 @@ export default function Index (props) {
   }
 
 
-  //根据规则(ruler)保存数据库快照到服务器
-
-  //保存快照到服务器
-
-  function SaveData () {
-    LocalruleStorage(content)
-  }
-  //文本信息
-  var content = ''
-  const saveBaseData = (n) => {
-    content = n
-  }
-
-  //保存数据库快照方法
-  function LocalruleStorage (content) {
-    let api = '/dev/connection/snapshot?ruler=' + content;
-    console.log(api, {}, { method: 'POST' });
-
-    promiseAjax(api)
-      .then(responseData => {
-        {
-          if (responseData && responseData.code === 200) {
-            let respData = responseData.data;
-            // console.log(respData);
-            setDetail(respData);
-            setIsShowData(true)
-
-          } else {
-            setIsShowList(true)
-            setIsShowData(false)
-          }
-          setIsLoading(false)
-        }
-      })
 
 
-  }
+
+
+  //根据规则(ruler)页面输出当前的数据库快照内容
 
   function printData () {
-    printWay(content)
+    printDataWay(content)
+
   }
   //文本信息
   var content = ''
@@ -302,12 +360,158 @@ export default function Index (props) {
     content = n
   }
 
-  //保存数据库快照方法
-  function printWay (content) {
-    let api = '/dev/connection/snapshot/print?ruler=' + content;
+  //方法
+  function printDataWay (content) {
+    let api = '/dev/connection/snapshot/print/json?ruler=' + content;
     console.log(api);
 
     promiseAjax(api)
+      .then(responseData => {
+        if (responseData && responseData.code === 200) {
+          let respData = responseData.data;
+          console.log(respData);
+          setDetail(respData);
+          setIsShowData(true)
+          alert('输出成功！')
+
+        } else {
+          setIsShowList(true)
+          setIsShowData(false)
+        }
+        setIsLoading(false)
+      })
+
+
+
+  }
+
+
+
+
+
+
+
+  //查看具体的命名规则的配置详情
+
+  function getRulerDeploy () {
+    RulerDeployWay(content)
+
+  }
+  //文本信息
+  var content = ''
+  const RulerDeploycontent = (n) => {
+    content = n
+  }
+
+  //方法
+  function RulerDeployWay (content) {
+    let api = '/dev/connection/snapshot/rulers/json/' + content;
+    console.log(api);
+
+    promiseAjax(api)
+      .then(responseData => {
+        if (responseData && responseData.code === 200) {
+          let respData = responseData.data;
+
+          // let respDataJSON = JSON.stringify(respData)
+          // setDetail(respDataJSON);
+          setmycontent(respData)
+          console.log(respData);
+          setIsShowData(true)
+
+        } else {
+          setIsShowList(true)
+          setIsShowData(false)
+        }
+        setIsLoading(false)
+      })
+
+  }
+
+
+
+  //根据规则名删除规则
+  function deleteData () {
+    deleteDatatWay(content)
+    //获取规则列表
+    getRuler()
+
+
+  }
+  //文本信息
+  var content = ''
+  const deleteRuleData = (n) => {
+    content = n
+  }
+
+  //规则名删除规则方法
+  function deleteDatatWay (content) {
+    let api = '/dev/connection/snapshot/rulers/' + content;
+    console.log(api);
+
+    promiseAjax(api, {}, { method: 'DELETE' })
+      .then(responseData => {
+        {
+          if (responseData && responseData.code === 200) {
+            let respData = responseData.data;
+            // console.log(respData);
+            setDetail(respData);
+            setIsShowData(true)
+            alert('删除成功！')
+
+          } else {
+            setIsShowList(true)
+            setIsShowData(false)
+          }
+          setIsLoading(false)
+        }
+      })
+
+
+  }
+
+
+
+  //下载snapshot文件
+
+  function printdataBaseS () {
+    printdataBaseSWay(content)
+    //刷新页面
+
+  }
+  // dataBaseS文本信息
+  var content = ''
+  const dataBaseS = (n) => {
+    content = n
+  }
+
+  //方法
+  function printdataBaseSWay (content) {
+    let api = '/dev/connection/snapshot/dl?&pattern=' + content;
+    const w = window.open('about:blank');
+    w.location.href = URL + api
+
+  }
+
+
+
+  //根据删除数据库快照
+  function deleteBase () {
+    deleteBasetWay(content)
+    getBaseSt()
+  }
+  //文本信息
+  var content = ''
+  const deleteBaseData = (n) => {
+    content = n
+  }
+
+  //规则名删除规则方法
+  function deleteBasetWay (content) {
+    let api = '/dev/connection/snapshot/' + content;
+    console.log(api);
+
+    promiseAjax(api, {}, { method: 'DELETE' })
       .then(responseData => {
         {
           if (responseData && responseData.code === 200) {
@@ -332,13 +536,42 @@ export default function Index (props) {
 
 
 
+  //获取images接口文件列表
+  function getImages () {
+    let api = '/dev/connection/images?';
+    setIsShowList(false)
+    setIsLoading(true)
+    promiseAjax(api)
+      .then(responseData => {
+        if (responseData && responseData.code === 200) {
+          let respData = responseData.data;
+          setDetail(respData);
+          setIsShowData(true)
+          alert('获取成功！')
+          // console.log(respData);
+        } else {
+          setIsShowList(true)
+          setIsShowData(false)
+        }
+        setIsLoading(false)
+      })
+    //隐藏规则输入框
+    document.getElementById('updataRule').hidden = true
+    document.getElementById('downBase').hidden = true
+    document.getElementById('saveLocal').hidden = true
+    document.getElementById('printBase').hidden = true
+    document.getElementById('deleteRule').hidden = true
+    document.getElementById('rulerDeploy').hidden = true
+    //隐藏数据库输入框
+    document.getElementById('downSnapshot').hidden = true
 
-  function goBack () {
-    setIsShowList(true)
-    setIsShowData(false)
-    setCurrentItemName('')
-
+    document.getElementById('deleteBaseData').hidden = true
   }
+
+
+
+
+
 
 
 
@@ -396,102 +629,66 @@ export default function Index (props) {
 
 
             <div> <Tabs variant='soft-rounded' colorScheme='green' >
-              <TabList style={{ position: 'absolute', left: '30% ' }}>
+              <TabList style={{ position: 'absolute', left: '36% ' }}>
                 <Tab onClick={() => getconnection()}>显示所有表</Tab>
                 <Tab onClick={() => getRuler()}>获取/更新规则</Tab>
-                <Tab onClick={() => snapshotGet()}>获取数据库快照</Tab>
-                <Tab>snapshot文件</Tab>
-                <Tab>规则的配置详情</Tab>
+                <Tab onClick={() => getBaseSt()}>获取数据库快照</Tab>
+                <Tab onClick={() => getImages()}>images接口</Tab>
               </TabList>
 
             </Tabs>
             </div>
 
 
-            <div id='updataRule' hidden={true} style={{ position: 'absolute', top: '100px', left: '650px' }}><Input size={'sm'} placeholder='规则已存在就更新替换内容，不存在即新建' width={'350px'} onBlur={(N) => setcontent(N.target.value)} />
-              {/* <Button margin='20px ' colorScheme='blue' onClick={() => anniu()}>确定</Button> */}
+            <div id='updataRule' hidden={true} style={{ position: 'absolute', top: '100px', left: '650px' }}><Input placeholder='规则名称' width={'120px'} onBlur={(N) => setcontent(N.target.value)} />
+              <Input placeholder='输入内容' width={'250px'} onBlur={(M) => setcondata(M.target.value)} />
 
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} marginLeft={'20px'} colorScheme='blue' onClick={() => updataName()}>新建/更新</Button>
 
-              <div>    <Popover>
-                <PopoverTrigger>
-                  <Button>更新/新建</Button>
-                </PopoverTrigger>
-                <Portal>
-                  <PopoverContent>
-                    <PopoverArrow />
-                    <PopoverHeader>Header</PopoverHeader>
-                    <PopoverCloseButton />
-                    <PopoverBody>
-                      <Button id='anniuID' colorScheme='blue' onClick={() => updataName()}>确定</Button>
-                    </PopoverBody>
-                    <PopoverFooter>文件已存在就更新替换内容，不存在就新建，确定吗？</PopoverFooter>
-                  </PopoverContent>
-                </Portal>
-              </Popover>
-              </div>
             </div>
             {/* 下载数据库快照-输入框 */}
-            <div id='downBase' hidden={true} style={{ position: 'absolute', top: '300px', left: '650px' }}><Input size={'sm'} placeholder='根据规则名下载数据库快照' width={'350px'} onBlur={(N) => downFile(N.target.value)} />
-              <div>  <Popover>
-                <PopoverTrigger>
-                  <Button>下载</Button>
-                </PopoverTrigger>
-                <Portal>
-                  <PopoverContent>
-                    <PopoverArrow />
-                    <PopoverHeader>Header</PopoverHeader>
-                    <PopoverCloseButton />
-                    <PopoverBody>
-                      <Button id='anniuID' colorScheme='blue' onClick={() => downData()}>确定</Button>
-                    </PopoverBody>
-                    <PopoverFooter>确定吗？</PopoverFooter>
-                  </PopoverContent>
-                </Portal>
-              </Popover>
-              </div>
+            <div id='downBase' hidden={true} style={{ position: 'absolute', top: '210px', left: '650px' }}><Input placeholder='根据规则名下载数据库快照' width={'350px'} onBlur={(N) => downFile(N.target.value)} />
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => downData()}>下载</Button>
             </div>
 
             {/* 根据规则(ruler)保存数据库快照到服务器本地-输入框 */}
-            <div id='saveLocal' hidden={true} style={{ position: 'absolute', top: '500px', left: '650px' }}><Input size={'sm'} placeholder='根据规则名保存数据库快照到服务器本地' width={'350px'} onBlur={(N) => saveBaseData(N.target.value)} />
-              <div>  <Popover>
-                <PopoverTrigger>
-                  <Button>保存</Button>
-                </PopoverTrigger>
-                <Portal >
-                  <PopoverContent  >
-                    <PopoverArrow />
-                    <PopoverHeader>Header</PopoverHeader>
-                    <PopoverCloseButton />
-                    <PopoverBody>
-                      <Button colorScheme='blue' onClick={() => SaveData()}>确定</Button>
-                    </PopoverBody>
-                    <PopoverFooter>确定吗？</PopoverFooter>
-                  </PopoverContent>
-                </Portal>
-              </Popover>
-              </div>
+            <div id='saveLocal' hidden={true} style={{ position: 'absolute', top: '320px', left: '650px' }}><Input placeholder='根据规则名保存数据库快照到服务器本地' width={'350px'} onBlur={(N) => saveBaseData(N.target.value)} />
+
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => SaveData()}>保存</Button>
+
             </div>
 
 
             {/* 页面输出当前的数据库快照内容-输入框 */}
-            <div id='printBase' style={{ position: 'absolute', top: '700px', left: '650px' }}><Input size={'sm'} placeholder='输出当前的数据库快照内容' width={'350px'} onBlur={(N) => printBaseData(N.target.value)} />
-              <div>  <Popover>
-                <PopoverTrigger>
-                  <Button>输出</Button>
-                </PopoverTrigger>
-                <Portal >
-                  <PopoverContent  >
-                    <PopoverArrow />
-                    <PopoverHeader>Header</PopoverHeader>
-                    <PopoverCloseButton />
-                    <PopoverBody>
-                      <Button colorScheme='blue' onClick={() => printData()}>确定</Button>
-                    </PopoverBody>
-                    <PopoverFooter>确定吗？</PopoverFooter>
-                  </PopoverContent>
-                </Portal>
-              </Popover>
-              </div>
+            <div id='printBase' hidden={true} style={{ position: 'absolute', top: '430px', left: '650px' }}><Input placeholder='根据规则名输出当前的数据库快照内容' width={'350px'} onBlur={(N) => printBaseData(N.target.value)} />
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => printData()}>输出</Button>
+            </div>
+
+
+
+            {/* 查看具体的命名规则的配置详情-输入框 */}
+            <div id='rulerDeploy' hidden={true} style={{ position: 'absolute', top: '540px', left: '650px' }}><Input placeholder='根据规则名查看当前规则配置详情' width={'350px'} onBlur={(N) => RulerDeploycontent(N.target.value)} />
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => getRulerDeploy()} >查看</Button>
+            </div>
+
+
+
+
+
+            {/* 删除规则-输入框 */}
+            <div id='deleteRule' hidden={true} style={{ position: 'absolute', top: '650px', left: '650px' }}><Input placeholder='根据规则名删除当前规则' width={'350px'} onBlur={(N) => deleteRuleData(N.target.value)} />
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => deleteData()}  >删除</Button>
+            </div>
+
+
+            {/* 根据数据库文件名下载snapshot文件-输入框 */}
+            <div id='downSnapshot' hidden={true} style={{ position: 'absolute', top: '200px', left: '650px' }}><Input placeholder='根据数据库文件名下载snapshot文件' width={'350px'} onBlur={(N) => dataBaseS(N.target.value)} />
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => printdataBaseS()} >下载</Button>
+            </div>
+
+            {/* 删除保存在本地的快照文件-输入框 */}
+            <div id='deleteBaseData' hidden={true} style={{ position: 'absolute', top: '320px', left: '650px' }}><Input placeholder='根据数据库文件名删除保存在本地的快照' width={'350px'} onBlur={(N) => deleteBaseData(N.target.value)} />
+              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => deleteBase()} >删除</Button>
             </div>
 
 
@@ -527,7 +724,10 @@ export default function Index (props) {
 
       </Flex>
 
+      {/* 如何把数据绑定到这里 */}
+      <div style={{ whiteSpace: 'pre-wrap' }} >{showsetcontent}</div>
     </ChakraProvider>
+
 
 
   )

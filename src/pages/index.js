@@ -17,28 +17,28 @@ import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/c
 export default function index (props) {
 
   // connection
-  // if (process.env.NODE_ENV == 'development') {
-  //   setEndpoint('http://demo.smallsaas.cn:8001');
-  // }
+  if (process.env.NODE_ENV == 'development') {
+    setEndpoint('http://demo.smallsaas.cn:8001');
+  }
 
-  // return (
+  return (
 
-  //   <ConnectionPage {...props} />
+    <ConnectionPage {...props} />
 
-  // )
+  )
   // --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
   // Nagation
-  if (process.env.NODE_ENV == 'development') {
-    setEndpoint('http://app1.console.smallsaas.cn:8001');
-    // setToken('')
-  }
-  return (
+  // if (process.env.NODE_ENV == 'development') {
+  //   setEndpoint('http://app1.console.smallsaas.cn:8001');
+  //   // setToken('')
+  // }
+  // return (
 
-    <Nagation {...props} />
+  //   <Nagation {...props} />
 
-  )
+  // )
 
 
 

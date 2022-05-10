@@ -39,7 +39,7 @@ export default function Index (props) {
   const [switchStatus, setSwitchStatus] = useState(true)
   const [showsetcontent, setmycontent] = useState('')
 
-  //我的想法就是在这里加一个变量来保存你那个返回的数据懂了
+
 
   let layoutData = '';
   const layoutJsonPath = '';
@@ -252,11 +252,9 @@ export default function Index (props) {
 
   //新建规则，更新规则 
   function updataName () {
-    anniu(content, conData)
+    anniu(content)
 
   }
-
-
   //文本信息
   var content = ''
   const setcontent = (n) => {
@@ -268,19 +266,21 @@ export default function Index (props) {
   }
 
   //搜索按钮--获取返回的数据 //新建、更新方法
-  function anniu (content, conData) {
-    let api = '/dev/connection/snapshot/rulers/' + content
-    console.log(conData);
+  function anniu (content) {
+    let api = `/dev/connection/snapshot/rulers/${content}?`
 
     promiseAjax(api, { conData }, { method: 'POST' })
       .then(responseData => {
         {
           if (responseData && responseData.code === 200) {
             let respData = responseData.data;
-            // console.log(respData);
+            console.log(respData);
+
             setDetail(respData);
             setIsShowData(true)
             setSwitchStatus(false)
+
+            console.log(conData);
             alert('更新成功！')
 
           } else {
@@ -329,7 +329,6 @@ export default function Index (props) {
             // console.log(respData);
             setDetail(respData);
             setIsShowData(true)
-            alert('保存成功！')
 
 
           } else {
@@ -372,7 +371,6 @@ export default function Index (props) {
           console.log(respData);
           setDetail(respData);
           setIsShowData(true)
-          alert('输出成功！')
 
         } else {
           setIsShowList(true)
@@ -412,10 +410,11 @@ export default function Index (props) {
       .then(responseData => {
         if (responseData && responseData.code === 200) {
           let respData = responseData.data;
-
+          respData = respData.replace(/[\'\\\\/\b\f\n\r\t]/g, '');
           // let respDataJSON = JSON.stringify(respData)
-          // setDetail(respDataJSON);
-          setmycontent(respData)
+          // setDetail(respData);
+          setDetail(respData)
+
           console.log(respData);
           setIsShowData(true)
 
@@ -447,7 +446,6 @@ export default function Index (props) {
   //规则名删除规则方法
   function deleteDatatWay (content) {
     let api = '/dev/connection/snapshot/rulers/' + content;
-    console.log(api);
 
     promiseAjax(api, {}, { method: 'DELETE' })
       .then(responseData => {
@@ -457,7 +455,6 @@ export default function Index (props) {
             // console.log(respData);
             setDetail(respData);
             setIsShowData(true)
-            alert('删除成功！')
 
           } else {
             setIsShowList(true)
@@ -547,8 +544,7 @@ export default function Index (props) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
-          alert('获取成功！')
-          // console.log(respData);
+
         } else {
           setIsShowList(true)
           setIsShowData(false)
@@ -629,7 +625,7 @@ export default function Index (props) {
 
 
             <div> <Tabs variant='soft-rounded' colorScheme='green' >
-              <TabList style={{ position: 'absolute', left: '36% ' }}>
+              <TabList style={{ position: 'absolute', left: '32% ' }}>
                 <Tab onClick={() => getconnection()}>显示所有表</Tab>
                 <Tab onClick={() => getRuler()}>获取/更新规则</Tab>
                 <Tab onClick={() => getBaseSt()}>获取数据库快照</Tab>
@@ -725,7 +721,7 @@ export default function Index (props) {
       </Flex>
 
       {/* 如何把数据绑定到这里 */}
-      <div style={{ whiteSpace: 'pre-wrap' }} >{showsetcontent}</div>
+      {/* <div style={{ whiteSpace: 'pre-wrap' }} >{showsetcontent}</div> */}
     </ChakraProvider>
 
 

@@ -9,8 +9,8 @@ import {
   PopoverArrow,
   PopoverCloseButton,
   PopoverAnchor,
-  Portal,
-  sm, closeOnEsc
+  Portal, Grid, HStack,
+  sm, closeOnEsc, Textarea, Tooltip
 
 } from "@chakra-ui/react";
 import { AutoLayout } from 'zero-element-boot';
@@ -38,8 +38,8 @@ export default function Index (props) {
   const [currentItemName, setCurrentItemName] = useState('');
   const [switchStatus, setSwitchStatus] = useState(true)
   const [showsetcontent, setmycontent] = useState('')
-
-
+  const [showybutton, setmybutton] = useState(false)
+  const [showRulercontent, setRulercontent] = useState('')
 
   let layoutData = '';
   const layoutJsonPath = '';
@@ -128,6 +128,7 @@ export default function Index (props) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
+          setmybutton(false)
           // console.log(respData);
         } else {
           setIsShowList(true)
@@ -135,21 +136,11 @@ export default function Index (props) {
         }
         setIsLoading(false)
       })
-    //隐藏规则输入框
-    document.getElementById('updataRule').hidden = true
-    document.getElementById('downBase').hidden = true
-    document.getElementById('saveLocal').hidden = true
-    document.getElementById('printBase').hidden = true
-    document.getElementById('rulerDeploy').hidden = true
-    document.getElementById('deleteRule').hidden = true
-    document.getElementById('deleteBaseData').hidden = true
 
-    //隐藏数据库输入框
-    document.getElementById('downSnapshot').hidden = true
 
 
   }
-  //获取所有规则表
+  //获取数据库快照
   function getBaseSt () {
     let api = '/dev/connection/snapshot';
     setIsShowList(false)
@@ -160,6 +151,7 @@ export default function Index (props) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
+          setmybutton(false)
           // console.log(respData);
         } else {
           setIsShowList(true)
@@ -167,44 +159,18 @@ export default function Index (props) {
         }
         setIsLoading(false)
       })
-    //隐藏规则输入框
-    document.getElementById('updataRule').hidden = true
-    document.getElementById('downBase').hidden = true
-    document.getElementById('saveLocal').hidden = true
-    document.getElementById('printBase').hidden = true
-    document.getElementById('deleteRule').hidden = true
-    document.getElementById('rulerDeploy').hidden = true
 
-    //显示数据库输入框
-    document.getElementById('downSnapshot').hidden = false
-
-    document.getElementById('deleteBaseData').hidden = false
 
   }
 
-
-  //下载数据库快照
-  function downData () {
-    downFileanniu(content)
-    getRuler()
-
-  }
-  //文本信息
-  var content = ''
-  const downFile = (n) => {
-    content = n
-  }
 
   //下载按钮--
   function downFileanniu (content) {
-    let api = `/dev/connection/snapshot/instant?ruler=` + content;
-
+    let api = `/dev/connection/snapshot/instant?ruler=${content}`
     const w = window.open('about:blank');
     w.location.href = URL + api
-    console.log(URL);
+    console.log(api);
     setSwitchStatus(false)
-    alert('下载成功！')
-
   }
 
 
@@ -225,7 +191,7 @@ export default function Index (props) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
-
+          setmybutton(true)
         } else {
           setIsShowList(true)
           setIsShowData(false)
@@ -233,27 +199,35 @@ export default function Index (props) {
         setIsLoading(false)
       })
 
-    //点击显示输入框
-    document.getElementById('saveLocal').hidden = false
-    document.getElementById('updataRule').hidden = false
-    document.getElementById('downBase').hidden = false
-    document.getElementById('printBase').hidden = false
-    document.getElementById('deleteRule').hidden = false
-    document.getElementById('rulerDeploy').hidden = false
+  }
 
+  var getRulerWay = function getRuler () {
 
-    //隐藏数据库输入框
-    document.getElementById('downSnapshot').hidden = true
-    document.getElementById('deleteBaseData').hidden = true
+    let api = '/dev/connection/snapshot/rulers/';
 
-
+    setIsShowList(false)
+    setIsLoading(true)
+    promiseAjax(api)
+      .then(responseData => {
+        if (responseData && responseData.code === 200) {
+          let respData = responseData.data;
+          setDetail(respData);
+          setIsShowData(true)
+          setmybutton(true)
+        } else {
+          setIsShowList(true)
+          setIsShowData(false)
+        }
+        setIsLoading(false)
+      })
 
   }
+
 
   //新建规则，更新规则 
   function updataName () {
     anniu(content, condata)
-
+    getRulerWay()
   }
   //文本信息
   var content = ''
@@ -269,6 +243,7 @@ export default function Index (props) {
   function anniu (content, condata) {
     let api = `/dev/connection/snapshot/rulers/${content}?`
     //字符串转化成JSON
+    console.log(content);
     let a = JSON.parse(condata)
     promiseAjax(api, a, { method: 'POST' })
       .then(responseData => {
@@ -280,7 +255,7 @@ export default function Index (props) {
             setDetail(respdata);
             setIsShowData(true)
             setSwitchStatus(false)
-
+            setRulercontent(respdata)
 
             alert('更新成功！')
 
@@ -301,27 +276,9 @@ export default function Index (props) {
 
   //根据规则(ruler)保存数据库快照到服务器本地
 
-  //保存快照到服务器
-
-  function SaveData () {
-    LocalruleStorage(content)
-    //获取规则列表
-    getRuler()
-
-    // //刷新页面
-    // location.reload()
-  }
-  //文本信息
-  var content = ''
-  const saveBaseData = (n) => {
-    content = n
-  }
-
   //方法
   function LocalruleStorage (content) {
     let api = '/dev/connection/snapshot?ruler=' + content;
-
-
     promiseAjax(api, {}, { method: 'POST' })
       .then(responseData => {
         {
@@ -330,7 +287,6 @@ export default function Index (props) {
             // console.log(respData);
             setDetail(respData);
             setIsShowData(true)
-            alert('保存成功!')
 
           } else {
             setIsShowList(true)
@@ -349,21 +305,9 @@ export default function Index (props) {
 
 
   //根据规则(ruler)页面输出当前的数据库快照内容
-
-  function printData () {
-    printDataWay(content)
-
-  }
-  //文本信息
-  var content = ''
-  const printBaseData = (n) => {
-    content = n
-  }
-
   //方法
   function printDataWay (content) {
     let api = '/dev/connection/snapshot/print/json?ruler=' + content;
-
     promiseAjax(api)
       .then(responseData => {
         if (responseData && responseData.code === 200) {
@@ -390,17 +334,6 @@ export default function Index (props) {
 
 
   //查看具体的命名规则的配置详情
-
-  function getRulerDeploy () {
-    RulerDeployWay(content)
-
-  }
-  //文本信息
-  var content = ''
-  const RulerDeploycontent = (n) => {
-    content = n
-  }
-
   //方法
   function RulerDeployWay (content) {
     let api = '/dev/connection/snapshot/rulers/json/' + content;
@@ -410,7 +343,7 @@ export default function Index (props) {
       .then(responseData => {
         if (responseData && responseData.code === 200) {
           let respData = responseData.data;
-          respData = respData.replace(/[\'\\\\/\b\f\n\r\t]/g, '');
+          // respData = respData.replace(/[\'\\\\/\b\f\n\r\t]/g, '');
           // let respDataJSON = JSON.stringify(respData)
           // setDetail(respData);
           setDetail(respData)
@@ -430,23 +363,8 @@ export default function Index (props) {
 
 
   //根据规则名删除规则
-  function deleteData () {
-    deleteDatatWay(content)
-    //获取规则列表
-    getRuler()
-
-
-  }
-  //文本信息
-  var content = ''
-  const deleteRuleData = (n) => {
-    content = n
-  }
-
-  //规则名删除规则方法
   function deleteDatatWay (content) {
     let api = '/dev/connection/snapshot/rulers/' + content;
-
     promiseAjax(api, {}, { method: 'DELETE' })
       .then(responseData => {
         {
@@ -464,47 +382,21 @@ export default function Index (props) {
         }
       })
 
-
   }
 
 
 
-  //下载snapshot文件
-
-  function printdataBaseS () {
-    printdataBaseSWay(content)
-    //刷新页面
-
-  }
-  // dataBaseS文本信息
-  var content = ''
-  const dataBaseS = (n) => {
-    content = n
-  }
-
-  //方法
+  // //下载snapshot文件
   function printdataBaseSWay (content) {
-    let api = '/dev/connection/snapshot/dl?&pattern=' + content;
+    let api = `/dev/connection/snapshot/dl?&pattern=${content}`
     const w = window.open('about:blank');
     w.location.href = URL + api
-
   }
 
 
-
-  //根据删除数据库快照
-  function deleteBase () {
-    deleteBasetWay(content)
-    getBaseSt()
-  }
-  //文本信息
-  var content = ''
-  const deleteBaseData = (n) => {
-    content = n
-  }
 
   //规则名删除规则方法
-  function deleteBasetWay (content) {
+  function deleteBase (content) {
     let api = '/dev/connection/snapshot/' + content;
     console.log(api);
 
@@ -544,6 +436,7 @@ export default function Index (props) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
+          setmybutton(false)
 
         } else {
           setIsShowList(true)
@@ -551,57 +444,141 @@ export default function Index (props) {
         }
         setIsLoading(false)
       })
-    //隐藏规则输入框
-    document.getElementById('updataRule').hidden = true
-    document.getElementById('downBase').hidden = true
-    document.getElementById('saveLocal').hidden = true
-    document.getElementById('printBase').hidden = true
-    document.getElementById('deleteRule').hidden = true
-    document.getElementById('rulerDeploy').hidden = true
-    //隐藏数据库输入框
-    document.getElementById('downSnapshot').hidden = true
 
-    document.getElementById('deleteBaseData').hidden = true
+
+
+
+  }
+
+
+  function getshow (item) {
+
+    let api = '/dev/connection/schema?pattern=' + item;
+
+    setIsShowList(false)
+    setIsLoading(true)
+    promiseAjax(api)
+      .then(responseData => {
+        if (responseData && responseData.code === 200) {
+
+          let respData = responseData.data;
+          JSON.parse(respData)
+          setDetail(respData);
+          setIsShowData(true)
+
+        } else {
+          setIsShowList(true)
+          setIsShowData(false)
+        }
+        setIsLoading(false)
+      })
+
+  }
+
+
+  function getRulerContent (name) {
+
+    let api = '/dev/connection/snapshot/rulers/json/' + name;
+    console.log(api);
+
+    promiseAjax(api)
+      .then(responseData => {
+        if (responseData && responseData.code === 200) {
+          let resData = responseData.data;
+          setRulercontent(resData)
+          console.log(resData);
+
+        }
+      })
+
   }
 
 
 
 
-
-
-
+  // function over () {
+  //   var Blk = document.getElementById('outbutton');
+  //   Blk.style.display = "block";
+  // }
 
   //
   //处理返回内容
   function handleContent (data) {
-
+    // console.log(data);
     if (typeof data === 'string') {
       return data;
-    } if (data instanceof Array && data.length > 0) {
+    }
+    if (data instanceof Array && data.length > 0) {
       return (
         <Stack spacing='3px'>
           {
             data.map((item, index) => {
-              if (item.indexOf("/*") > -1 || item.indexOf("*") > -1) {
-                return <div style={{ whiteSpace: 'pre-wrap' }} key={`${index}_item`}>{item}</div>;
+              if (item.indexOf(".sql") > -1) {
+
+                // onMouseMove={out()}
+                return <div key={`${index}_item`} >
+                  <a href='#'>{item}</a>
+                  <Button size={'xs'} colorScheme={'blue'} left='6px' onClick={() => printdataBaseSWay(item)}>下载</Button>
+                  <Button size={'xs'} colorScheme={'red'} left='10px' onClick={() => deleteBase(item)}>删除</Button>
+                </div>;
+
               } else {
-                // return  <Container maxW='container.xl' key={index}>{item}</Container>
-                if (item.indexOf("BOOT-INF") > -1) {
+                if (item.indexOf("ruler") > -1) {
                   return (
-                    <div key={`${index}_item`} onClick={() => getDetailFetch(item, 2)}>
-                      <JarItem value={item} />
+                    <div key={`${index}_item`} >
+
+                      {/* <JarItem value={item} /> */}
+
+                      <Tooltip label='查看该规则的配置详情' placement='top'>
+                        <div style={{ position: 'absolute', left: '20px' }}><a href="#" onClick={() => RulerDeployWay(item)}>{item}</a></div>
+                      </Tooltip>
+
+                      <Box style={{ position: 'relative', left: '150px' }}>
+                        <Flex>
+                          <Popover>
+                            <PopoverTrigger>
+                              {/* <Tooltip label='更新规则内容' placement='top'> */}
+                              <Button size={'xs'} colorScheme={'blue'} left='6px' onClick={() => getRulerContent(item)}>更新规则</Button>
+                              {/* </Tooltip> */}
+                            </PopoverTrigger>
+                            <Portal>
+                              <PopoverContent left={'500px'}>
+                                <PopoverArrow />
+                                <PopoverHeader>更新规则内容</PopoverHeader>
+                                <PopoverCloseButton />
+                                <PopoverBody>
+                                  <Input placeholder='规则名' onMouseOut={(N) => setcontent(N.target.value)} defaultValue={item} />
+                                  <Textarea marginTop={'10px'} height={'200px'} onMouseOut={(N) => setcondata(N.target.value)} defaultValue={showRulercontent}></Textarea>
+                                  <Button colorScheme={'blue'} marginTop={'5px'} left='120px' onClick={() => updataName()}>保存</Button>
+                                </PopoverBody>
+                              </PopoverContent>
+                            </Portal>
+                          </Popover>
+                          <Tooltip label='下载数据库快照' placement='top'>
+                            <Button size={'xs'} colorScheme={'blue'} left='10px' onClick={() => downFileanniu(item)}>实时备份</Button>
+                          </Tooltip>
+                          <Tooltip label='根据规则保存数据库快照到本地' placement='top'>
+                            <Button size={'xs'} colorScheme={'blue'} left='14px' onClick={() => LocalruleStorage(item)}>执行</Button>
+                          </Tooltip>
+                          <Tooltip label='根据规则页面输出当前的数据库快照内容' placement='top'>
+                            <Button size={'xs'} colorScheme={'blue'} left='18px' onClick={() => printDataWay(item)}>输出</Button>
+                          </Tooltip>
+                          <Tooltip label='删除规则' placement='top'>
+                            <Button size={'xs'} colorScheme={'red'} left='22px' onClick={() => deleteDatatWay(item)}>删除</Button>
+                          </Tooltip>
+                        </Flex>
+
+                      </Box>
                     </div>
                   )
                 } else {
-                  return <Container maxW='container.xl' key={`${index}_item`}>{item}</Container>
+                  return <Container onClick={() => getshow(item)} maxW='container.xl' key={`${index}_item`}><a href='#'>{item}</a>  </Container>
                 }
               }
             })
           }
-        </Stack>
+        </Stack >
       )
-    } else {
-      return '';
     }
 
   }
@@ -627,70 +604,43 @@ export default function Index (props) {
             <div> <Tabs variant='soft-rounded' colorScheme='green' >
               <TabList style={{ position: 'absolute', left: '32% ' }}>
                 <Tab onClick={() => getconnection()}>显示所有表</Tab>
-                <Tab onClick={() => getRuler()}>获取/更新规则</Tab>
-                <Tab onClick={() => getBaseSt()}>获取数据库快照</Tab>
+                <Tab onClick={() => getRuler()}>获取规则</Tab>
+                <Tab onClick={() => getBaseSt()}>数据库快照</Tab>
                 <Tab onClick={() => getImages()}>images接口</Tab>
               </TabList>
-
             </Tabs>
+
+
+              {/* //新建规则 */}
             </div>
+            {showybutton ? <></> : (<div style={{ position: 'absolute', left: '30px', top: '70px', }} >
+              <Popover>
+                <PopoverTrigger >
+                  <Button colorScheme={'blue'} left='6px'>新建规则</Button>
+                </PopoverTrigger>
+                <Portal>
+                  <PopoverContent left={'500px'}>
+                    <PopoverArrow />
+                    <PopoverHeader>新建规则</PopoverHeader>
+                    <PopoverCloseButton />
+                    <PopoverBody>
+                      {/* <Textarea onMouseOut={(N) => setcontent(N.target.value)}>{item}</Textarea> */}
+                      <Textarea onBlur={(N) => setcontent(N.target.value)}></Textarea>
 
-
-            <div id='updataRule' hidden={true} style={{ position: 'absolute', top: '100px', left: '650px' }}><Input placeholder='规则名称' width={'120px'} onBlur={(N) => setcontent(N.target.value)} />
-              <Input placeholder='输入内容' width={'250px'} onBlur={(M) => setcondata(M.target.value)} />
-
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} marginLeft={'20px'} colorScheme='blue' onClick={() => updataName()}>新建/更新</Button>
-
+                      <Textarea placeholder='请输入内容' height={'200px'} marginTop={'5px'} onBlur={(M) => setcondata(M.target.value)} />
+                      <Button colorScheme={'blue'} marginTop={'5px'} left='120px' onClick={() => updataName()}>保存</Button>
+                    </PopoverBody>
+                  </PopoverContent>
+                </Portal>
+              </Popover>
             </div>
-            {/* 下载数据库快照-输入框 */}
-            <div id='downBase' hidden={true} style={{ position: 'absolute', top: '210px', left: '650px' }}><Input placeholder='根据规则名下载数据库快照' width={'350px'} onBlur={(N) => downFile(N.target.value)} />
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => downData()}>下载</Button>
-            </div>
-
-            {/* 根据规则(ruler)保存数据库快照到服务器本地-输入框 */}
-            <div id='saveLocal' hidden={true} style={{ position: 'absolute', top: '320px', left: '650px' }}><Input placeholder='根据规则名保存数据库快照到服务器本地' width={'350px'} onBlur={(N) => saveBaseData(N.target.value)} />
-
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => SaveData()}>保存</Button>
-
-            </div>
-
-
-            {/* 页面输出当前的数据库快照内容-输入框 */}
-            <div id='printBase' hidden={true} style={{ position: 'absolute', top: '430px', left: '650px' }}><Input placeholder='根据规则名输出当前的数据库快照内容' width={'350px'} onBlur={(N) => printBaseData(N.target.value)} />
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => printData()}>输出</Button>
-            </div>
-
-
-
-            {/* 查看具体的命名规则的配置详情-输入框 */}
-            <div id='rulerDeploy' hidden={true} style={{ position: 'absolute', top: '540px', left: '650px' }}><Input placeholder='根据规则名查看当前规则配置详情' width={'350px'} onBlur={(N) => RulerDeploycontent(N.target.value)} />
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => getRulerDeploy()} >查看</Button>
-            </div>
+            )}
 
 
 
 
 
-            {/* 删除规则-输入框 */}
-            <div id='deleteRule' hidden={true} style={{ position: 'absolute', top: '650px', left: '650px' }}><Input placeholder='根据规则名删除当前规则' width={'350px'} onBlur={(N) => deleteRuleData(N.target.value)} />
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => deleteData()}  >删除</Button>
-            </div>
-
-
-            {/* 根据数据库文件名下载snapshot文件-输入框 */}
-            <div id='downSnapshot' hidden={true} style={{ position: 'absolute', top: '200px', left: '650px' }}><Input placeholder='根据数据库文件名下载snapshot文件' width={'350px'} onBlur={(N) => dataBaseS(N.target.value)} />
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => printdataBaseS()} >下载</Button>
-            </div>
-
-            {/* 删除保存在本地的快照文件-输入框 */}
-            <div id='deleteBaseData' hidden={true} style={{ position: 'absolute', top: '320px', left: '650px' }}><Input placeholder='根据数据库文件名删除保存在本地的快照' width={'350px'} onBlur={(N) => deleteBaseData(N.target.value)} />
-              <Button style={{ position: 'absolute', top: '0px', left: '356px' }} colorScheme='blue' onClick={() => deleteBase()} >删除</Button>
-            </div>
-
-
-
-
-            <div style={{ minWidth: '800px', marginTop: '80px' }}>   {
+            <div style={{ minWidth: '1200px', marginTop: '80px' }}>   {
               isShowList ? (
                 <AutoLayout {...config} onItemClick={onJarItemClick}>
                   {/* <StandaloneBody  onItemClick={onJarItemClick}/> */}
@@ -703,7 +653,7 @@ export default function Index (props) {
                 <Loading styles={{ marginTop: '60px' }} />
               )
                 : isShowData && showDetail ? (
-                  <div style={{ width: '100%', paddingLeft: '25px' }}>
+                  <div style={{ width: '100%', paddingLeft: '50px' }}>
                     <Box flex='1'>
                       {showDetail && showDetail.length > 0 ? (
                         <div style={{ background: '#ffffff', width: '100%', paddingTop: '10px' }}>
@@ -719,6 +669,7 @@ export default function Index (props) {
         </Box>
 
       </Flex>
+
 
       {/* 如何把数据绑定到这里 */}
       {/* <div style={{ whiteSpace: 'pre-wrap' }} >{showsetcontent}</div> */}

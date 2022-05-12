@@ -7,7 +7,7 @@ GET {{endpoint}}/dev/connection?sql=SELECT * FROM nft_player&format=md
 可选参数 ?format=md
 
 ### 获取数据库数据 pattern=<table_name>
-GET {{endpoint}}/dev/connection?pattern=
+GET {{endpoint}}/dev/connection?pattern=doc_attachment
 
 ### 页面输出数据
 GET {{endpoint}}/dev/connection/print

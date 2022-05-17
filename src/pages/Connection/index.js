@@ -30,7 +30,7 @@ export default function Index (props) {
   }
 
   const { data = [] } = props;
-//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
   const [isShowList, setIsShowList] = useState(true);
   const [isShowData, setIsShowData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -231,9 +231,61 @@ export default function Index (props) {
 
 
 
-  //新建规则，更新规则
+  //新建规则
+  function newRuler (content) {
+    newRulerWay(content, condata)
 
-  function updataName () {
+  }
+
+  //文本信息
+  var ruler = ''
+  const setrulers = (n) => {
+    ruler = n
+  }
+  var rulercontent = ''
+  const setcondatas = (m) => {
+    rulercontent = m
+  }
+
+  //搜索按钮--获取返回的数据 //新建、更新方法
+  function newRulerWay (ruler, rulercontent, signdata) {
+    let api = `/dev/connection/snapshot/rulers/${ruler}?sign=${signdata}`;
+
+    //字符串转化成JSON
+    // console.log(api);
+    let rulerdata = JSON.parse(rulercontent)
+    promiseAjax(api, rulerdata, { method: 'POST' })
+      .then(responseData => {
+        {
+          if (responseData && responseData.code === 200) {
+            let respdata = responseData.data;
+            // console.log(respdata);
+            setDetail(respdata);
+            setIsShowData(true)
+            setSwitchStatus(false)
+            setRulercontent(respdata)
+
+            alert('更新成功！')
+
+          } else {
+            setIsShowList(true)
+
+            setIsShowData(false)
+          }
+          setIsLoading(false)
+        }
+      })
+
+
+  }
+
+
+
+
+
+  //更新规则
+
+  function updataName (content) {
     updataRulers(content, condata)
 
   }
@@ -249,8 +301,8 @@ export default function Index (props) {
   }
 
   //搜索按钮--获取返回的数据 //新建、更新方法
-  function updataRulers (content, condata) {
-    let api = `/dev/connection/snapshot/rulers/${content}`;
+  function updataRulers (content, condata, signdata) {
+    let api = `/dev/connection/snapshot/rulers/${content}?sign=${signdata}`;
 
     //字符串转化成JSON
     // console.log(api);
@@ -498,9 +550,17 @@ export default function Index (props) {
   }
 
   //获取
-  function getshow (item) {
 
-    let api = `/dev/connection/json?pattern=${item}`;
+  //获取images接口文件列表
+  function getshow (content) {
+    getshowWay(content, signdata)
+    //签名文本框定时获取焦点
+    SignText()
+  }
+
+  function getshowWay (item) {
+
+    let api = `/dev/connection/json?sign=${signdata}&pattern=${item}`;
     // let api = `/dev/connection/schema/json?pattern=${item}`;
     setIsShowList(false)
     setIsLoading(true)
@@ -523,8 +583,15 @@ export default function Index (props) {
   }
 
 
-  function getRulerContent (name) {
-    let api = `/dev/connection/snapshot/rulers/json/${name}`
+  //更新规则
+  function getRulerContent (content) {
+    getRulerContentWay(content, signdata)
+    //签名文本框定时获取焦点
+    SignText()
+  }
+
+  function getRulerContentWay (name) {
+    let api = `/dev/connection/snapshot/rulers/json/${name}?sign=${signdata}`
     console.log(api);
     promiseAjax(api)
       .then(responseData => {
@@ -726,10 +793,10 @@ export default function Index (props) {
                     <PopoverCloseButton />
                     <PopoverBody>
                       {/* <Textarea onMouseOut={(N) => setcontent(N.target.value)}>{item}</Textarea> */}
-                      <Textarea onBlur={(N) => setcontent(N.target.value)}></Textarea>
+                      <Textarea onBlur={(N) => setrulers(N.target.value)}></Textarea>
 
-                      <Textarea placeholder='请输入内容' height={'200px'} marginTop={'5px'} onBlur={(M) => setcondata(M.target.value)} />
-                      <Button colorScheme={'blue'} marginTop={'5px'} left='120px' onClick={() => updataName()}>保存</Button>
+                      <Textarea placeholder='请输入内容' height={'200px'} marginTop={'5px'} onBlur={(M) => setcondatas(M.target.value)} />
+                      <Button colorScheme={'blue'} marginTop={'5px'} left='120px' onClick={() => newRuler()}>保存</Button>
                     </PopoverBody>
                   </PopoverContent>
                 </Portal>

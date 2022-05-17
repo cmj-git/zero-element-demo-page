@@ -9,36 +9,39 @@ import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequ
 import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
 // const promiseAjax = require('@/components/utils/request');
-import layout from './nagation/layout'
+// import layout from './nagation/layout'
 // import layout from './Standalone/layout';
 import { Page } from 'zero-element-boot/lib/components/cart'
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
+
+import ModelPage from '@/pages/Model'
+
 export default function index (props) {
 
   // connection
-  if (process.env.NODE_ENV == 'development') {
-    setEndpoint('http://demo.smallsaas.cn:8001');
-  }
-
-  return (
-
-    <ConnectionPage {...props} />
-
-  )
-  // --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-  // Nagation
   // if (process.env.NODE_ENV == 'development') {
-  //   setEndpoint('http://app1.console.smallsaas.cn:8001');
-  //   // setToken('')
+  //   setEndpoint('http://demo.smallsaas.cn:8001');
   // }
+
   // return (
 
-  //   <Nagation {...props} />
+  //   <ConnectionPage {...props} />
 
   // )
+  // // --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  Nagation
+  if (process.env.NODE_ENV == 'development') {
+    setEndpoint('http://app1.console.smallsaas.cn:8001');
+    // setToken('')
+  }
+  return (
+
+    <Nagation {...props} />
+
+  )
 
 
 

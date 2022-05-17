@@ -1,22 +1,17 @@
 function _extends () { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } from "@chakra-ui/react";
-// import { AutoLayout } from '@/components';
-// import Logs from '@/pages/dev/logs'
 
-import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
-// const promiseAjax = require('@/components/utils/request');
 import layout from '../nagation/layout'
-// import layout from './Standalone/layout';
 import { Page } from 'zero-element-boot/lib/components/cart'
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps';
-// import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
+
 export default function index (props) {
 
   const { } = props;
-
 
   const [listData, setListData] = useState([])
   const [isLoading, setLoading] = useState(false)
@@ -116,12 +111,11 @@ export default function index (props) {
       const w = window.open('about:blank');
       w.location.href = location.host + item.path
 
-      console.log(w.location.href);
+      console.log(location.host);
 
     }
 
   }
-
   const onNavItemClick = item => {
     const id = item.id;
     console.log('id = ', id);
@@ -129,15 +123,14 @@ export default function index (props) {
   }; //列表item回调函数
 
   //回调函数
-  const callback = (value) => {
-
-    console.log('item1111111 = ', value)
+  const callback = value => {
     if (value) {
-      fetchData(api, {})
+      const queryData = {
+        typeId: tabIndex
+      };
+      fetchData(navListApi, queryData);
     }
-  }
-
-
+  }; //列表item回调函数
 
   const tabscallback = value => {
     if (value) {
@@ -172,16 +165,15 @@ export default function index (props) {
 
   return /*#__PURE__*/React.createElement(ChakraProvider, null, /*#__PURE__*/React.createElement("div", {
     style: {
-      git
-
+      maxWidth: '600px'
     }
   }, /*#__PURE__*/React.createElement(VStack, {
     align: "stretch",
     spacing: "-2"
   }, /*#__PURE__*/React.createElement(Box, {
     style: {
-      position: 'relative',
-      top: '-15px'
+      margin: '10px 10px 30px 10px',
+      paddingLeft: '8px'
     }
   }, /*#__PURE__*/React.createElement(FormControl, {
     display: "flex",
@@ -198,27 +190,26 @@ export default function index (props) {
 
 
   /*#__PURE__*/React.createElement(Box, null, navCateListData && navCateListData.length > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/
-
-    React.createElement(TabsCompox, {
-      items: navCateListData,
-      onSwitchTab: switchTab,
-      isSwtich: switchStatus,
-      cb: tabscallback
-
-
-    }), /*#__PURE__*/React.createElement("div", {
-      style: {
-        marginTop: '20px'
-      }
-    }, isLoading ? /*#__PURE__*/React.createElement(Spinner, null) : /*#__PURE__*/React.createElement(Box, null, /*#__PURE__*/React.createElement(AutoLayout, _extends({}, config, {
-      onItemClick: onUserItemClick,
-      cb: callback,
-      isSwtich: switchStatus
-    }))))) : null)
+    
+        React.createElement(TabsCompox, {
+    items: navCateListData,
+    onSwitchTab: switchTab,
+    isSwtich: switchStatus,
+    cb: tabscallback
 
 
-
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: '20px'
+    }
+  }, isLoading ? /*#__PURE__*/React.createElement(Spinner, null) : /*#__PURE__*/React.createElement(Box, null, /*#__PURE__*/React.createElement(AutoLayout, _extends({}, config, {
+    onItemClick: onNavItemClick,
+    cb: callback,
+    isSwtich: switchStatus
+  }))))) : null)
+  
+  
+  
   )));
-
 
 }

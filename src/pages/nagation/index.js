@@ -172,7 +172,11 @@ export default function index (props) {
 
   return /*#__PURE__*/React.createElement(ChakraProvider, null, /*#__PURE__*/React.createElement("div", {
     style: {
-      git
+      position: 'absolute',
+      maxWidth: '900px',
+      left: '30%',
+      top: '40%',
+
 
     }
   }, /*#__PURE__*/React.createElement(VStack, {

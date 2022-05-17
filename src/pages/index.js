@@ -19,7 +19,7 @@ import ModelPage from '@/pages/Model'
 
 export default function index (props) {
 
-  // connection
+  //// connection
   // if (process.env.NODE_ENV == 'development') {
   //   setEndpoint('http://demo.smallsaas.cn:8001');
   // }
@@ -29,10 +29,10 @@ export default function index (props) {
   //   <ConnectionPage {...props} />
 
   // )
-  // // --------------------------------------------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  Nagation
+  //// Nagation
   if (process.env.NODE_ENV == 'development') {
     setEndpoint('http://app1.console.smallsaas.cn:8001');
     // setToken('')

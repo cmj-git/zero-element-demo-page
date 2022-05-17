@@ -39,7 +39,9 @@ export default function Index (props) {
   const [switchStatus, setSwitchStatus] = useState(true)
   const [showsetcontent, setmycontent] = useState('')
   const [showybutton, setmybutton] = useState(false)
-  const [showRulercontent, setRulercontent] = useState('')
+  const [showRulercontent, setRulercontent] = useState('');
+  const [myRuler, setmyRulert] = useState('')
+
   // const [showSign,setSigncntent] = serState('')
 
 
@@ -158,8 +160,6 @@ export default function Index (props) {
 
   }
 
-
-
   function getBaseStWay (signdata) {
     let api = `/dev/connection/snapshot?sign=${signdata}`;
     console.log(api);
@@ -200,7 +200,6 @@ export default function Index (props) {
 
 
   //获取规则
-
   function signgetRulerWay () {
     getRuler(signdata)
     //签名文本框定时获取焦点
@@ -232,8 +231,8 @@ export default function Index (props) {
 
 
   //新建规则
-  function newRuler (content) {
-    newRulerWay(content, condata)
+  function newRuler () {
+    newRulerWay(ruler, rulercontent)
 
   }
 
@@ -263,9 +262,9 @@ export default function Index (props) {
             setDetail(respdata);
             setIsShowData(true)
             setSwitchStatus(false)
-            setRulercontent(respdata)
 
-            alert('更新成功！')
+
+            alert('新建成功！')
 
           } else {
             setIsShowList(true)
@@ -285,8 +284,8 @@ export default function Index (props) {
 
   //更新规则
 
-  function updataName (content) {
-    updataRulers(content, condata)
+  function updataName () {
+    updataRulerWay(content, condata)
 
   }
 
@@ -300,12 +299,12 @@ export default function Index (props) {
     condata = m
   }
 
-  //搜索按钮--获取返回的数据 //新建、更新方法
-  function updataRulers (content, condata, signdata) {
+  //搜索按钮--获取返回的数据 更新方法
+  function updataRulerWay (content, condata, signdata) {
     let api = `/dev/connection/snapshot/rulers/${content}?sign=${signdata}`;
 
     //字符串转化成JSON
-    // console.log(api);
+    console.log(signdata);
     let rulerdata = JSON.parse(condata)
     promiseAjax(api, rulerdata, { method: 'POST' })
       .then(responseData => {
@@ -587,12 +586,12 @@ export default function Index (props) {
   function getRulerContent (content) {
     getRulerContentWay(content, signdata)
     //签名文本框定时获取焦点
-    SignText()
-  }
 
-  function getRulerContentWay (name) {
+  }
+  function getRulerContentWay (name, signdata) {
     let api = `/dev/connection/snapshot/rulers/json/${name}?sign=${signdata}`
     console.log(api);
+
     promiseAjax(api)
       .then(responseData => {
         if (responseData && responseData.code === 200) {
@@ -608,7 +607,7 @@ export default function Index (props) {
   function SignText () {
     setTimeout(() => {
       document.getElementById('mysignText').focus()
-    }, 2000);
+    }, 0);
   }
 
 
@@ -793,7 +792,7 @@ export default function Index (props) {
                     <PopoverCloseButton />
                     <PopoverBody>
                       {/* <Textarea onMouseOut={(N) => setcontent(N.target.value)}>{item}</Textarea> */}
-                      <Textarea onBlur={(N) => setrulers(N.target.value)}></Textarea>
+                      <Textarea onBlur={(N) => setrulers(N.target.value)} />
 
                       <Textarea placeholder='请输入内容' height={'200px'} marginTop={'5px'} onBlur={(M) => setcondatas(M.target.value)} />
                       <Button colorScheme={'blue'} marginTop={'5px'} left='120px' onClick={() => newRuler()}>保存</Button>

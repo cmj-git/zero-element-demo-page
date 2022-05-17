@@ -1,17 +1,14 @@
-function _extends () { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 import React, { useState, useEffect } from 'react';
-import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } from "@chakra-ui/react";
-// import { AutoLayout } from '@/components';
-// import Logs from '@/pages/dev/logs'
-
+import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel, } from "@chakra-ui/react";
+import { getEndpoint } from 'zero-element-boot/src/components/config/common';
 import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
 // const promiseAjax = require('@/components/utils/request');
 import layout from '../nagation/layout'
 // import layout from './Standalone/layout';
 import { Page } from 'zero-element-boot/lib/components/cart'
+import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps'
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
-import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps';
 // import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
 
@@ -23,7 +20,6 @@ export default function index (props) {
   const [switchStatus, setSwitchStatus] = useState(false)
   const [navCateListData, setNavCateListData] = useState([]);
   const [tabIndex, setTabIndex] = useState(0);
-
 
 
   let api = '/api/pub/data/services/navigation';
@@ -114,19 +110,14 @@ export default function index (props) {
 
     } else {
       const w = window.open('about:blank');
-      w.location.href = location.host + item.path
+      const host = getEndpoint || location.host
+      w.location.href = host + item.path
 
-      console.log(w.location.href);
+      console.log(host);
 
     }
 
   }
-
-  const onNavItemClick = item => {
-    const id = item.id;
-    console.log('id = ', id);
-    alert(`选择的用户id为: ${id}`);
-  }; //列表item回调函数
 
   //回调函数
   const callback = (value) => {
@@ -160,69 +151,59 @@ export default function index (props) {
     }
   }
 
+
+
+  //tab切换
   const switchTab = (item, index) => {
     if (index != tabIndex) {
-      setTabIndex(index);
+      setTabIndex(index)
       const queryData = {
         typeId: item.id
-      };
-      fetchData(navListApi, queryData);
-    }
-  };
-
-  return /*#__PURE__*/React.createElement(ChakraProvider, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'absolute',
-      maxWidth: '900px',
-      left: '30%',
-      top: '40%',
-
-
-    }
-  }, /*#__PURE__*/React.createElement(VStack, {
-    align: "stretch",
-    spacing: "-2"
-  }, /*#__PURE__*/React.createElement(Box, {
-    style: {
-      position: 'relative',
-      top: '-15px'
-    }
-  }, /*#__PURE__*/React.createElement(FormControl, {
-    display: "flex",
-    alignItems: "center"
-  }, /*#__PURE__*/React.createElement(FormLabel, {
-    htmlFor: "email-alerts",
-    mb: "0"
-  }, "\u7F16\u8F91\u5F00\u5173\uFF1A"), /*#__PURE__*/React.createElement(Switch, {
-    isFocusable: true,
-    size: "lg",
-    onChange: () => handleChange(),
-    isChecked: switchStatus
-  }))),
-
-
-  /*#__PURE__*/React.createElement(Box, null, navCateListData && navCateListData.length > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/
-
-    React.createElement(TabsCompox, {
-      items: navCateListData,
-      onSwitchTab: switchTab,
-      isSwtich: switchStatus,
-      cb: tabscallback
-
-
-    }), /*#__PURE__*/React.createElement("div", {
-      style: {
-        marginTop: '20px'
       }
-    }, isLoading ? /*#__PURE__*/React.createElement(Spinner, null) : /*#__PURE__*/React.createElement(Box, null, /*#__PURE__*/React.createElement(AutoLayout, _extends({}, config, {
-      onItemClick: onUserItemClick,
-      cb: callback,
-      isSwtich: switchStatus
-    }))))) : null)
+      fetchData(navListApi, queryData)
+    }
+  }
+  return (
+    <Page >
 
+      <ChakraProvider>
+        <div style={{ maxWidth: '800px' }}>
+          <VStack align='stretch' spacing='-2'>
+            <Box style={{ margin: '10px 10px 30px 10px', paddingLeft: '8px' }}>
+              <FormControl display='flex' alignItems='center'>
+                <FormLabel htmlFor='email-alerts' mb='0'>
+                  编辑开关：
+                </FormLabel>
+                <Switch size='lg' onChange={() => handleChange()} isChecked={switchStatus} />
+              </FormControl>
+            </Box>
+            <Box>
+            </Box>
+            {navCateListData && navCateListData.length > 0 ? (
+              <>
+                <TabsCompox items={navCateListData} onSwitchTab={switchTab} isSwtich={switchStatus} cb={tabscallback} />
 
+                <div style={{ marginTop: '20px' }}>
+                  {isLoading ? (
+                    <Spinner />
+                  ) : (
+                    <Box>
+                      <AutoLayout {...config} onItemClick={onUserItemClick} cb={callback} isSwtich={switchStatus} />
+                    </Box>
+                  )
+                  }
+                </div>
+              </>
+            ) : null}
 
-  )));
+          </VStack>
 
+        </div>
+
+      </ChakraProvider>
+
+    </Page >
+
+  )
 
 }

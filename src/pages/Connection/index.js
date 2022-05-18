@@ -40,7 +40,11 @@ export default function Index (props) {
   const [showsetcontent, setmycontent] = useState('')
   const [showybutton, setmybutton] = useState(false)
   const [showRulercontent, setRulercontent] = useState('');
-  const [myRuler, setmyRulert] = useState('')
+  const [showmySign, setmySign] = useState('')
+  const [showRulertitle, setRulercode] = useState('')
+  const [showtitle, settitle] = useState('')
+
+
 
   // const [showSign,setSigncntent] = serState('')
 
@@ -52,10 +56,10 @@ export default function Index (props) {
 
 
 
-  //用于下载
-  if (process.env.NODE_ENV === 'development') {
-    URL = `http://demo.smallsaas.cn:8001`;
-  }
+  // 用于下载
+  // if (process.env.NODE_ENV === 'development') {
+  //   URL = `http://demo.smallsaas.cn:8001`;
+  // }
 
 
   if (layoutJsonPath) {
@@ -122,20 +126,23 @@ export default function Index (props) {
   //全局添加sign签名
   var signdata = ''
   const signcontent = (m) => {
+
     signdata = m
+    setmySign(signdata)
     console.log();
   }
 
 
   //获取所有表
   function getconnection () {
-    let api = `/dev/connection?sign=${signdata}`;
-    console.log(signdata);
+    let api = `/dev/connection?sign=${showmySign}`;
+
     setIsShowList(false)
     setIsLoading(true)
     promiseAjax(api)
       .then(responseData => {
-        if (responseData && responseData.code === 200) {
+        if (responseData && responseData.code
+          === 200) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
@@ -144,8 +151,10 @@ export default function Index (props) {
         } else {
           setIsShowList(true)
           setIsShowData(false)
+          alert('签名已过期!')
         }
         setIsLoading(false)
+
       })
 
 
@@ -153,16 +162,13 @@ export default function Index (props) {
   //获取数据库快照
 
   function getBaseSt () {
-    getBaseStWay(signdata)
-
-    //签名文本框定时获取焦点
-    SignText()
+    getBaseStWay()
 
   }
 
-  function getBaseStWay (signdata) {
-    let api = `/dev/connection/snapshot?sign=${signdata}`;
-    console.log(api);
+  function getBaseStWay () {
+    let api = `/dev/connection/snapshot?sign=${showmySign}`;
+
     setIsShowList(false)
     setIsLoading(true)
     promiseAjax(api)
@@ -185,14 +191,14 @@ export default function Index (props) {
 
   //数据库下载--
   function downFiles (content) {
-    downFileanniu(content, signdata)
+    downFileanniu(content)
 
   }
 
-  function downFileanniu (content, signdata) {
-    let api = `/dev/connection/snapshot/instant?sign=${signdata}&ruler=${content}`
+  function downFileanniu (content) {
+    let api = `/dev/connection/snapshot/instant?sign=${showmySign}&ruler=${content}`
     const w = window.open('about:blank');
-    w.location.href = URL + api
+    w.location.href = api
     console.log(api);
     setSwitchStatus(false)
   }
@@ -201,14 +207,14 @@ export default function Index (props) {
 
   //获取规则
   function signgetRulerWay () {
-    getRuler(signdata)
+    getRuler()
     //签名文本框定时获取焦点
     SignText()
   }
 
-  function getRuler (signdata) {
-    console.log(signdata);
-    let api = `/dev/connection/snapshot/rulers?sign=${signdata}`;
+  function getRuler () {
+
+    let api = `/dev/connection/snapshot/rulers?sign=${showmySign}`;
 
     setIsShowList(false)
     setIsLoading(true)
@@ -219,6 +225,9 @@ export default function Index (props) {
           setDetail(respData);
           setIsShowData(true)
           setmybutton(true)
+
+          // console.log(respData);
+          // setRulertitle(respData)
         } else {
           setIsShowList(true)
           setIsShowData(false)
@@ -247,8 +256,8 @@ export default function Index (props) {
   }
 
   //搜索按钮--获取返回的数据 //新建、更新方法
-  function newRulerWay (ruler, rulercontent, signdata) {
-    let api = `/dev/connection/snapshot/rulers/${ruler}?sign=${signdata}`;
+  function newRulerWay (ruler, rulercontent) {
+    let api = `/dev/connection/snapshot/rulers/${ruler}?sign=${showmySign}`;
 
     //字符串转化成JSON
     // console.log(api);
@@ -285,14 +294,16 @@ export default function Index (props) {
   //更新规则
 
   function updataName () {
-    updataRulerWay(content, condata)
+    updataRulerWay(showtitle, condata)
 
   }
 
   //文本信息
   var content = ''
   const setcontent = (n) => {
-    content = n
+    settitle(n)
+    console.log(settitle);
+
   }
   var condata = ''
   const setcondata = (m) => {
@@ -300,29 +311,30 @@ export default function Index (props) {
   }
 
   //搜索按钮--获取返回的数据 更新方法
-  function updataRulerWay (content, condata, signdata) {
-    let api = `/dev/connection/snapshot/rulers/${content}?sign=${signdata}`;
+  function updataRulerWay (content, condata) {
+    let api = `/dev/connection/snapshot/rulers/${content}?sign=${showmySign}`;
 
     //字符串转化成JSON
-    console.log(signdata);
+
     let rulerdata = JSON.parse(condata)
     promiseAjax(api, rulerdata, { method: 'POST' })
       .then(responseData => {
         {
           if (responseData && responseData.code === 200) {
             let respdata = responseData.data;
-            // console.log(respdata);
+
             setDetail(respdata);
             setIsShowData(true)
             setSwitchStatus(false)
-            setRulercontent(respdata)
 
+            setRulercontent(respdata)
+            console.log(respdata);
             alert('更新成功！')
 
           } else {
             setIsShowList(true)
-
             setIsShowData(false)
+
           }
           setIsLoading(false)
         }
@@ -336,13 +348,13 @@ export default function Index (props) {
 
   //根据规则(ruler)保存数据库快照到服务器本地
   function Localrule (content) {
-    LocalruleStorage(content, signdata)
+    LocalruleStorage(content)
   }
 
 
   //方法
-  function LocalruleStorage (content, signdata) {
-    let api = `/dev/connection/snapshot?sign=${signdata}&ruler=${content}`;
+  function LocalruleStorage (content) {
+    let api = `/dev/connection/snapshot?sign=${showmySign}&ruler=${content}`;
     console.log(api);
     promiseAjax(api, {}, { method: 'POST' })
       .then(responseData => {
@@ -371,13 +383,13 @@ export default function Index (props) {
 
   //根据规则(ruler)页面输出当前的数据库快照内容
   function printData (content) {
-    printDataWay(content, signdata)
+    printDataWay(content)
 
   }
 
   //方法
-  function printDataWay (content, signdata) {
-    let api = `/dev/connection/snapshot/print/json?sign=${signdata}&ruler=${content}`;
+  function printDataWay (content) {
+    let api = `/dev/connection/snapshot/print/json?sign=${showmySign}&ruler=${content}`;
     console.log('api：' + api);
     promiseAjax(api)
       .then(responseData => {
@@ -400,14 +412,14 @@ export default function Index (props) {
 
   // 查看具体的命名规则的配置详情
   function RulerDeploy (content) {
-    RulerDeployWay(content, signdata)
+    RulerDeployWay(content)
 
   }
 
   //查看具体的命名规则的配置详情//方法
-  function RulerDeployWay (content, signdata) {
-    console.log(signdata);
-    let api = `/dev/connection/snapshot/rulers/json/${content}?sign=${signdata}`
+  function RulerDeployWay (content) {
+
+    let api = `/dev/connection/snapshot/rulers/json/${content}?sign=${showmySign}`
     console.log(api);
 
     promiseAjax(api)
@@ -439,12 +451,12 @@ export default function Index (props) {
 
   //根据规则名删除规则
   function deleteRulerData (content) {
-    deleteDatatWay(content, signdata)
+    deleteDatatWay(content)
 
   }
 
-  function deleteDatatWay (content, signdata) {
-    let api = `/dev/connection/snapshot/rulers/${content}?sign=${signdata}`;
+  function deleteDatatWay (content) {
+    let api = `/dev/connection/snapshot/rulers/${content}?sign=${showmySign}`;
     console.log(api);
     promiseAjax(api, {}, { method: 'DELETE' })
       .then(responseData => {
@@ -467,29 +479,30 @@ export default function Index (props) {
 
   function downSnapshot (content) {
     // console.log(content);
-    printdataBaseSWay(content, signdata)
+    printdataBaseSWay(content)
     // console.log(signdata);
     getBaseSt()
   }
 
   // //下载snapshot文件
-  function printdataBaseSWay (content, signdata) {
+  function printdataBaseSWay (content) {
+    let api = `/dev/connection/snapshot/dl?sign=${showmySign}&pattern=${content}`
 
-    let api = `/dev/connection/snapshot/dl?sign=${signdata}&pattern=${content}`
-    console.log(api);
     const w = window.open('about:blank');
-    w.location.href = URL + api
+    const host = getEndpoint() || location.host
+    w.location.href = host + api
+    console.log(host + api);
   }
 
 
 
   //删除保存在本地的快照文件
   function deleteBase (content) {
-    deleteBaseWay(content, signdata)
+    deleteBaseWay(content)
 
   }
-  function deleteBaseWay (content, signdata) {
-    let api = `/dev/connection/snapshot/${content}?sign=${signdata}`
+  function deleteBaseWay (content) {
+    let api = `/dev/connection/snapshot/${content}?sign=${showmySign}`
     console.log(api);
 
     promiseAjax(api, {}, { method: 'DELETE' })
@@ -519,13 +532,13 @@ export default function Index (props) {
 
   //获取images接口文件列表
   function getImages (content) {
-    getImagesWay(content, signdata)
+    getImagesWay(content)
     //签名文本框定时获取焦点
     SignText()
   }
 
-  function getImagesWay (content, signdata) {
-    let api = `/dev/connection/images?sign=${signdata}`;
+  function getImagesWay (content) {
+    let api = `/dev/connection/images?sign=${showmySign}`;
     setIsShowList(false)
     setIsLoading(true)
     promiseAjax(api)
@@ -552,14 +565,14 @@ export default function Index (props) {
 
   //获取images接口文件列表
   function getshow (content) {
-    getshowWay(content, signdata)
+    getshowWay(content)
     //签名文本框定时获取焦点
     SignText()
   }
 
   function getshowWay (item) {
 
-    let api = `/dev/connection/json?sign=${signdata}&pattern=${item}`;
+    let api = `/dev/connection/json?sign=${showmySign}&pattern=${item}`;
     // let api = `/dev/connection/schema/json?pattern=${item}`;
     setIsShowList(false)
     setIsLoading(true)
@@ -584,19 +597,21 @@ export default function Index (props) {
 
   //更新规则
   function getRulerContent (content) {
-    getRulerContentWay(content, signdata)
+
+    settitle(content)
+    getRulerContentWay(content)
     //签名文本框定时获取焦点
 
   }
-  function getRulerContentWay (name, signdata) {
-    let api = `/dev/connection/snapshot/rulers/json/${name}?sign=${signdata}`
-    console.log(api);
+  function getRulerContentWay (name) {
+    let api = `/dev/connection/snapshot/rulers/json/${name}?sign=${showmySign}`
 
     promiseAjax(api)
       .then(responseData => {
         if (responseData && responseData.code === 200) {
           let resData = responseData.data;
           setRulercontent(resData)
+
           console.log(resData);
 
         }
@@ -605,9 +620,9 @@ export default function Index (props) {
   }
   //签名文本框定时获取焦点
   function SignText () {
-    setTimeout(() => {
-      document.getElementById('mysignText').focus()
-    }, 0);
+    // setTimeout(() => {
+    //   document.getElementById('mysignText').focus()
+    // }, 0);
   }
 
 
@@ -616,7 +631,8 @@ export default function Index (props) {
 
   //处理返回内容
   function handleContent (data) {
-    // console.log(data);
+
+
     if (typeof data === 'string') {
       return data;
     }
@@ -625,6 +641,8 @@ export default function Index (props) {
         <Stack spacing='3px'>
           {
             data.map((item, index) => {
+
+
               if (item.indexOf(".sql") > -1) {
 
                 // onMouseMove={out()}
@@ -674,6 +692,8 @@ export default function Index (props) {
 
               } else {
                 if (item.indexOf("ruler") > -1) {
+
+
                   return (
                     <div key={`${index}_item`} >
 
@@ -697,7 +717,7 @@ export default function Index (props) {
                                 <PopoverHeader>更新规则内容</PopoverHeader>
                                 <PopoverCloseButton />
                                 <PopoverBody>
-                                  <Input placeholder='规则名' onMouseOut={(N) => setcontent(N.target.value)} defaultValue={item} />
+                                  <Input placeholder='规则名' value={showtitle} onChange={(N) => setcontent(N.target.value)} />
                                   <Textarea marginTop={'10px'} height={'200px'} onMouseOut={(N) => setcondata(N.target.value)} defaultValue={showRulercontent}></Textarea>
                                   <Button colorScheme={'blue'} marginTop={'10px'} left='120px' onClick={() => updataName()}>保存</Button>
                                 </PopoverBody>
@@ -710,7 +730,7 @@ export default function Index (props) {
                           <Tooltip label='数据库执行保存到规则快照' placement='top'>
                             <Button size={'xs'} colorScheme={'blue'} left='30px' onClick={() => Localrule(item)}>执行</Button>
                           </Tooltip>
-                          <Tooltip label='页面输出当前的数据库快照内容' placement='top'>
+                          <Tooltip label='页面输出该规则的数据库快照' placement='top'>
                             <Button size={'xs'} colorScheme={'blue'} left='40px' onClick={() => printData(item)}>输出</Button>
                           </Tooltip>
 
@@ -842,3 +862,9 @@ export default function Index (props) {
   )
 
 }
+
+
+
+
+
+

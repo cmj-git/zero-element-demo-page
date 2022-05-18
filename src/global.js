@@ -1,14 +1,12 @@
 // import { set as NamedCartSet } from 'zero-element-boot/lib/config/NamedCartConfig';
 import { set as NamedIndicatorSet } from 'zero-element-boot/lib/components/config/NamedIndicatorConfig';
 import { set as NamedPresenterSet } from 'zero-element-boot/lib/components/config/NamedPresenterConfig';
+import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 
-
-// //cart
-// import Cart from 'zero-element-boot/lib/components/cart/Cart';
-
-//indicator
-//layout
-
+if (process.env.NODE_ENV == 'development') {
+  setEndpoint('http://demo.smallsaas.cn:8001');
+  // setToken('')
+}
 
 //presenter
 import JarItem from '@/pages/Standalone/JarItem';

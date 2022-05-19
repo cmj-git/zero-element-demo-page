@@ -23,11 +23,11 @@ export default function index (props) {
   //   setEndpoint('http://demo.smallsaas.cn:8001');
   // }
 
-  return (
+  // return (
 
-    <ConnectionPage {...props} />
+  //   <ConnectionPage {...props} />
 
-  )
+  // )
 
 
   //--------------------------------------------------------------------------------------------------------///------------------------------------------------
@@ -46,11 +46,12 @@ export default function index (props) {
 
   //ModelPage
 
+  return (
 
-  // return (
+    <ModelPage {...props} />
 
-  //   <ModelPage {...props} />
+  )
 
-  // )
+
 
 }

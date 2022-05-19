@@ -4,6 +4,31 @@ module.exports = {
     align: 'start',
     direction: 'row'
   },
+  children: [
+    {
+      presenter: 'Avatar',
+      gateway: {
+        xname: 'Binding',
+        props: {
+          binding: {
+            name: 'url',
+
+          }
+        }
+      }
+    },
+    {
+      presenter: "Title",
+      gateway: {
+        xname: "Binding",
+        props: {
+          binding: {
+            name: "titleText",
+
+          }
+        }
+      }
+    }],
   // gateway: {
   //   xname: 'Binding',
   //   props: {
@@ -55,15 +80,17 @@ module.exports = {
           },
           container: 'ItemClickList',
         },
+
         gateway: {
           xname: 'Binding',
           props: {
             binding: {
-              items: 'items'
+              name: 'modelLabel'
             }
           }
         }
-      },
+
+      }
     ]
   }
 }

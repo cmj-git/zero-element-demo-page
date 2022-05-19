@@ -2,7 +2,7 @@
 ;
 import React, { useState } from 'react';
 import {
-  ChakraProvider, Flex, Center, Box, Stack, Spacer, VStack, Container, Tabs, TabList, Tab, TabPanels, TabPanel
+  ChakraProvider, Flex, Center, Box, Stack, Spacer, VStack, Container, Tabs, TabList, Tab, TabPanels, TabPanel, Button
 } from "@chakra-ui/react";
 import { AutoLayout } from 'zero-element-boot';
 import Loading from 'zero-element-boot/lib/components/loading';
@@ -10,8 +10,8 @@ const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 import JarItem from './JarItem';
 // import config from 'zero-element-boot\lib\components\config'
 import layout from './layout';
-
-import { setEndpoint, setToken, getEndpoint } from 'zero-element-boot/lib/components/config/common';
+import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
+import { setEndpoint, setToken, getEndpoint, getToken } from 'zero-element-boot/lib/components/config/common';
 export default function Index (props) {
 
   const { data = [] } = props;
@@ -19,6 +19,8 @@ export default function Index (props) {
   const [isShowData, setIsShowData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showDetail, setDetail] = useState('');
+
+
 
 
 
@@ -55,8 +57,8 @@ export default function Index (props) {
     getDetailFetch(name, 1)
   }
 
-  function getconnection () {
-    let api = `/dev/connection?sign=${showmySign}`;
+  function getName () {
+    let api = `/api/crud/fieldModel/fieldModels`;
 
     setIsShowList(false)
     setIsLoading(true)
@@ -67,12 +69,11 @@ export default function Index (props) {
           let respData = responseData.data;
           setDetail(respData);
           setIsShowData(true)
-          setmybutton(false)
+
           // console.log(respData);
         } else {
           setIsShowList(true)
           setIsShowData(false)
-          alert('签名已过期!')
         }
         setIsLoading(false)
 
@@ -80,7 +81,6 @@ export default function Index (props) {
 
 
   }
-
 
 
 
@@ -171,7 +171,7 @@ export default function Index (props) {
       <Tabs variant='enclosed' align="center">
         <TabList>
           <Tab>One
-            {/* <Button style={{ position: 'absolute', top: '200px' }}>1</Button> */}
+            <Button style={{ position: 'absolute', top: '200px' }} onClick={() => getName()} >1</Button>
           </Tab>
           <Tab>Two</Tab>
           <Tab>three</Tab>

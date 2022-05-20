@@ -1,17 +1,17 @@
-
-;
 import React, { useState } from 'react';
 import {
-  ChakraProvider, Flex, Center, Box, Stack, Spacer, VStack, Container, Tabs, TabList, Tab, TabPanels, TabPanel, Button
+  ChakraProvider, Flex, Center, Box, Stack, Spacer, VStack, Container, Tabs, TabList, Tab, TabPanels, TabPanel, Button, Checkbox
 } from "@chakra-ui/react";
 import { AutoLayout } from 'zero-element-boot';
 import Loading from 'zero-element-boot/lib/components/loading';
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 import JarItem from './JarItem';
 // import config from 'zero-element-boot\lib\components\config'
+
 import layout from './layout';
 import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
 import { setEndpoint, setToken, getEndpoint, getToken } from 'zero-element-boot/lib/components/config/common';
+import { get } from 'lodash';
 export default function Index (props) {
 
   const { data = [] } = props;
@@ -19,9 +19,13 @@ export default function Index (props) {
   const [isShowData, setIsShowData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showDetail, setDetail] = useState('');
+  const [getdata, setdata] = useState('')
 
 
 
+
+  //items数组
+  const items = []
 
 
 
@@ -66,8 +70,9 @@ export default function Index (props) {
       .then(responseData => {
         if (responseData && responseData.code
           === 200) {
-          let respData = responseData.data;
+          let respData = responseData.data.records;
           setDetail(respData);
+          console.log(respData);
           setIsShowData(true)
 
           // console.log(respData);
@@ -84,8 +89,48 @@ export default function Index (props) {
 
 
 
+  function getId (N) {
+    items.push({ fieldModelId: N })
+    console.log(items);
+
+  }
 
 
+
+
+  //搜索按钮--获取返回的数据 更新方法
+  function newEntityModel () {
+    let api = `/api/crud/api_model/apiTableModel/apiTableModels`;
+
+    //字符串转化成JSON
+
+    let itemsArr = JSON.parse(items)
+    console.log(data);
+    promiseAjax(api, itemsArr, { method: 'POST' })
+      .then(responseData => {
+        {
+          if (responseData && responseData.code === 200) {
+            let respdata = responseData.data;
+
+            setDetail(respdata);
+            setIsShowData(true)
+            setSwitchStatus(false)
+
+            setRulercontent(respdata)
+            console.log(respdata);
+
+
+          } else {
+            setIsShowList(true)
+            setIsShowData(false)
+
+          }
+          setIsLoading(false)
+        }
+      })
+
+
+  }
 
 
 
@@ -95,31 +140,24 @@ export default function Index (props) {
   //
   //处理返回内容
   function handleContent (data) {
-
-
-    if (typeof data === 'string') {
-      return data;
-    } if (data instanceof Array && data.length > 0) {
+    if (data instanceof Array && data.length > 0) {
       return (
         <Stack spacing='3px'>
-          {
-            data.map((item, index) => {
-              if (item.indexOf("/*") > -1 || item.indexOf("*") > -1) {
-                return <div style={{ whiteSpace: 'pre-wrap' }} key={`${index}_item`}>{item}</div>;
-              } else {
-                // return  <Container maxW='container.xl' key={index}>{item}</Container>
-                if (item.indexOf("BOOT-INF") > -1) {
-                  return (
-                    <div key={`${index}_item`} onClick={() => getDetailFetch(item, 2)}>
-                      <JarItem value={item} />
-                    </div>
-                  )
-                } else {
-                  return <Container maxW='container.xl' key={`${index}_item`}>{item}</Container>
-                }
+          <div >
+            <Flex align='center'>
+              {
+                data.map((item, index) => (
+
+                  <div style={{ width: '100px', height: '100px', backgroundColor: 'pink', margin: '10px', }} key={index}>
+                    <a href="#">{item.modelLabel}</a>
+                    <a href="#">{item.modelName}</a>
+                    {/* 复选框 */}
+                    <Checkbox onChange={() => getId(item.id)}></Checkbox>
+                  </div>
+                ))
               }
-            })
-          }
+            </Flex>
+          </div>
         </Stack>
       )
     } else {
@@ -137,23 +175,15 @@ export default function Index (props) {
         <Box>
           <VStack spacing='3px'>
 
-            <div style={{ minWidth: '1200px', marginTop: '20px' }}>   {
-              isShowList ? (
-                <AutoLayout {...config} onItemClick={onJarItemClick}>
-
-                </AutoLayout>
-              ) : <></>
-            }</div>
-
             {
               isLoading ? (
                 <Loading styles={{ marginTop: '60px' }} />
               )
                 : isShowData && showDetail ? (
-                  <div style={{ width: '100%', paddingLeft: '50px' }}>
+                  <div>
                     <Box flex='1'>
                       {showDetail && showDetail.length > 0 ? (
-                        <div style={{ background: '#ffffff', width: '100%', paddingTop: '10px' }}>
+                        <div style={{ background: '#ffffff', }}>
                           {handleContent(showDetail)}
                         </div>
                       ) : null}
@@ -168,26 +198,8 @@ export default function Index (props) {
       </Flex>
 
 
-      <Tabs variant='enclosed' align="center">
-        <TabList>
-          <Tab>One
-            <Button style={{ position: 'absolute', top: '200px' }} onClick={() => getName()} >1</Button>
-          </Tab>
-          <Tab>Two</Tab>
-          <Tab>three</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <p>one!</p>
-          </TabPanel>
-          <TabPanel>
-            <p>two!</p>
-          </TabPanel>
-          <TabPanel>
-            <p>three!</p>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Button style={{ position: 'absolute', top: '200px', left: '300px' }} onClick={() => getName()} >输出</Button>
+      <Button style={{ position: 'absolute', top: '200px', left: '400px' }} onClick={() => newEntityModel()} >新建实体</Button>
 
     </ChakraProvider>
 

@@ -56,7 +56,7 @@ module.exports = {
   presenter: {
     xname: 'Flexbox',
     props: {
-      direction: 'column',
+      direction: 'row',
       justify: 'center row'
     },
     children: [
@@ -65,7 +65,7 @@ module.exports = {
           xname: 'Flexbox',
           props: {
             align: 'start',
-            direction: 'column',
+            direction: 'row',
             flexWidth: 'auto-full'
           },
           presenter: 'JarItem',

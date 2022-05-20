@@ -44,7 +44,7 @@ export default function index (props) {
 
   // )
 
-  //ModelPage
+  ModelPage
 
   return (
 

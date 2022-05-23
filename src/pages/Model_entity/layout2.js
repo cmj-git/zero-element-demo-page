@@ -124,7 +124,7 @@ module.exports = {
       {
 
         label: '类别',
-        field: 'items.fieldModelId',
+        field: 'fieldModelId',
         type: 'select-fetch',
 
         rules: {
@@ -143,34 +143,10 @@ module.exports = {
 
           api: '/api/crud/fieldModel/fieldModels',
           label: 'modelLabel',
-          value: 'items.id',
+          value: 'id',
 
-        }, children: [
-          {
-            presenter: {
-              xname: 'Flexbox',
-              props: {
-                align: 'start',
-                direction: 'column',
-                flexWidth: 'auto-full'
-              },
-              presenter: 'Checkbox',
-
-
-            },
-            gateway: {
-              xname: 'Binding',
-              props: {
-                binding: {
-                  items: 'items'
-                }
-              }
-            }
-          },
-
-        ]
+        }
       }
-
       ]
     }
   }

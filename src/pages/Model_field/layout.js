@@ -54,7 +54,7 @@ module.exports = {
           field: 'modelName',
           type: 'input',
           rules: {
-            isRequired: true
+            isRequired: false
           },
           props: {
             placeholder: '请输入 modelName',
@@ -65,7 +65,7 @@ module.exports = {
           field: 'modelLabel',
           type: 'input',
           rules: {
-            isRequired: true
+            isRequired: false
           },
           props: {
             placeholder: '请输入 modelLabel',
@@ -76,7 +76,7 @@ module.exports = {
           field: 'defaultValue',
           type: 'input',
           rules: {
-            isRequired: true
+            isRequired: false
           },
           props: {
             placeholder: '请输入 defaultValue',
@@ -109,7 +109,7 @@ module.exports = {
           field: 'defaultFieldName',
           type: 'input',
           rules: {
-            isRequired: true
+            isRequired: false
           },
           props: {
             placeholder: '请输入 defaultFieldName',
@@ -120,7 +120,7 @@ module.exports = {
           field: 'optionalFieldName',
           type: 'input',
           rules: {
-            isRequired: true
+            isRequired: false
           },
           props: {
             placeholder: '请输入 optionalFieldName',

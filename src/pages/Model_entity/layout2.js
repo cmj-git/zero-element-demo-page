@@ -102,23 +102,6 @@ module.exports = {
           placeholder: 'name',
         }
       },
-      // {
-      //   label: 'items',
-      //   field: 'items.fieldModelId',
-      //   type: 'input',
-      //   rules: {
-      //     isRequired: true
-      //   },
-      //   props: {
-      //     placeholder: 'items',
-      //   }
-      // }, 
-
-      //Checkbox
-
-
-
-
 
 
       {

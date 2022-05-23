@@ -2,6 +2,7 @@
 import { set as NamedIndicatorSet } from 'zero-element-boot/lib/components/config/NamedIndicatorConfig';
 import { set as NamedPresenterSet } from 'zero-element-boot/lib/components/config/NamedPresenterConfig';
 import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
+// import {set as Cart} from 'zero-element-boot/lib/components/cart/Cart';
 
 if (process.env.NODE_ENV == 'development') {
 
@@ -16,6 +17,7 @@ import JarItem from '@/pages/Standalone/JarItem';
 // NamedCartSet({
 //   Cart
 // })
+
 // NamedLayoutSet({
 //   Flexbox,
 //   Wrap

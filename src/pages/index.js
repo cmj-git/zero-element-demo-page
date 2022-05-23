@@ -6,15 +6,22 @@ import ConnectionPage from '@/pages/Connection'
 import Nagation from '@/pages/nagation'
 import ModelPage from '@/pages/Model'
 
+import Helloword from '@/pages/helloworld' 
+
+import TestCrudList from '@/pages/testCrudList/layout'
+
+import TestPageCart from './TestCart/TestPageCart';
+
 import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
 import { history } from 'umi';
-import { AutoLayout } from 'zero-element-boot';
+import { AutoLayout, NamedCart } from 'zero-element-boot';
 // const promiseAjax = require('@/components/utils/request');
 // import layout from './nagation/layout'
 // import layout from './Standalone/layout';
 import { Page } from 'zero-element-boot/lib/components/cart'
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 
+// import Rad from '@/pages/TestCart/Red/Index';
 
 export default function index (props) {
 
@@ -48,7 +55,12 @@ export default function index (props) {
 
   return (
 
-    <ModelPage {...props} />
+    <TestPageCart {...props} />
+
+    // <NamedCart xname="Cart"props={{padding:"100px"}} >
+   
+    // <h1>1</h1>
+    // </NamedCart>
 
   )
 

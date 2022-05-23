@@ -10,18 +10,7 @@ module.exports = {
       justify: 'center row'
     },
     children: [
-      // {
-      //   presenter: "Title",
-      //   gateway: {
-      //     xname: "Binding",
-      //     props: {
-      //       binding: {
-      //         modelName: "titleText"
-      //       }
-      //     }
-      //   }
-      // }
-      // ,
+
       {
         presenter: "Title",
         gateway: {
@@ -50,6 +39,7 @@ module.exports = {
   container: 'SimCRUDList',
   navigation: {
     model: {
+      delConfirmTips: true,
       delComfirmTips: true,
       api: {
         createAPI: '/api/crud/fieldModel/fieldModels',
@@ -58,28 +48,128 @@ module.exports = {
         deleteAPI: '/api/crud/fieldModel/fieldModels/(id)'
       },
 
-      // "modelName": "TEST",
-      // "modelLabel": "名称",
-      // "defaultValue": "",
-      // "isNotNull": 1,
-      // "isUnique": 1,
-      // "defaultFieldName": "name",
-      // "optionalFieldName": "",
-      // "fieldType": "varchar",
-      // "fieldLength": 50,
-      // "fieldFloatLength": 0,
-      // "comments": ""
-      fields: [{
-        label: 'modelName',
-        field: 'modelName',
-        type: 'input',
-        rules: {
-          isRequired: true
+      fields: [
+        {
+          label: 'modelName',
+          field: 'modelName',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 modelName',
+          }
         },
-        props: {
-          placeholder: '请输入modelName',
+        {
+          label: 'modelLabel',
+          field: 'modelLabel',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 modelLabel',
+          }
+        },
+        {
+          label: 'defaultValue',
+          field: 'defaultValue',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 defaultValue',
+          }
+        },
+        {
+          label: 'isNotNull',
+          field: 'isNotNull',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 isNotNull',
+          }
+        },
+        {
+          label: 'isUnique',
+          field: 'isUnique',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 isUnique',
+          }
+        },
+        {
+          label: 'defaultFieldName',
+          field: 'defaultFieldName',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 defaultFieldName',
+          }
+        },
+        {
+          label: 'optionalFieldName',
+          field: 'optionalFieldName',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 optionalFieldName',
+          }
+        },
+        {
+          label: 'fieldType',
+          field: 'fieldType',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 varchar',
+          }
+        },
+        {
+          label: 'fieldLength',
+          field: 'fieldLength',
+          type: 'input',
+          rules: {
+            isRequired: false
+          },
+          props: {
+            placeholder: '请输入 fieldLength',
+          }
+        },
+        {
+          label: 'fieldFloatLength',
+          field: 'fieldFloatLength',
+          type: 'input',
+          rules: {
+            isRequired: false
+          },
+          props: {
+            placeholder: '请输入 fieldFloatLength',
+          }
+        },
+        {
+          label: 'comments',
+          field: 'comments',
+          type: 'input',
+          rules: {
+            isRequired: false
+          },
+          props: {
+            placeholder: '请输入 comments',
+          }
         }
-      }
 
       ]
     }

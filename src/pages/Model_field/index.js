@@ -19,7 +19,7 @@ import layout from '../Model_field/layout'
 
 // import SelectFetch from 'zero-element-boot/lib/components/formItemType'
 import { Page } from 'zero-element-boot/lib/components/cart'
-// import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps'
+import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps'
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 // import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
@@ -212,60 +212,60 @@ export default function index (props) {
             <ModalBody pb={10} size='4xl'>
               <div style={{ position: 'reletive', left: '20px', fontSize: '16px' }}>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     modelName:{showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     defaultValue:{showDetails.defaultValue}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     id:{showDetails.id}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     fieldFloatLength: {showDetails.fieldFloatLength}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>fieldLength:
+                  <Cart fill='#fcfcfc'>fieldLength:
                     {showDetails.fieldLength}
                   </Cart>
                 </Flexbox>
 
 
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>fieldType:
+                  <Cart fill='#fcfcfc'>fieldType:
                     {showDetails.fieldType}
                   </Cart>
                 </Flexbox>
 
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>isNotNulld:
+                  <Cart fill='#fcfcfc'>isNotNulld:
                     {showDetails.isNotNull}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>isUnique:
+                  <Cart fill='#fcfcfc'>isUnique:
                     {showDetails.isUnique}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>modelLabel:
+                  <Cart fill='#fcfcfc'>modelLabel:
                     {showDetails.modelLabel}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>modelName:
+                  <Cart fill='#fcfcfc'>modelName:
                     {showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>optionalFieldName
+                  <Cart fill='#fcfcfc'>optionalFieldName
                     {showDetails.optionalFieldName}
                   </Cart>
                 </Flexbox>

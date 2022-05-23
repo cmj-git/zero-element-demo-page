@@ -13,7 +13,6 @@ module.exports = {
       //title
       //binding 绑定数据   api字段：组件固定值
       {
-        presenter: 'Checkobx',
         presenter: "Title",
         gateway: {
           xname: "Binding",
@@ -74,6 +73,7 @@ module.exports = {
   container: 'SimCRUDList',
   navigation: {
     model: {
+      delConfirmTips: true,
       delComfirmTips: true,
       api: {
         createAPI: '/api/crud/api_model/apiTableModel/apiTableModels',
@@ -115,15 +115,16 @@ module.exports = {
 
         },
         props: {
-          placeholder: '请类别'
+          placeholder: '请选择类别',
+
         },
         saveData: {
           //额外提交的字段和值
           typeName: 'name'
         },
 
-        options: {
 
+        options: {
           api: '/api/crud/fieldModel/fieldModels',
           label: 'modelLabel',
           value: 'id',

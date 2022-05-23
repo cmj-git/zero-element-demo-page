@@ -190,22 +190,22 @@ export default function index (props) {
               <div style={{ position: 'reletive', left: '20px', fontSize: '16px' }}>
 
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     modelName:{showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     name:{showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     pid:{showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     id:{showDetails.modelName}
                   </Cart>
                 </Flexbox>

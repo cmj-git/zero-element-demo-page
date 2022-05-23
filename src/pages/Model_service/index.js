@@ -13,7 +13,7 @@ import { getEndpoint } from 'zero-element-boot/src/components/config/common';
 import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
 // const promiseAjax = require('@/components/utils/request');
-import layout from '../Model_entity/layout2'
+import layout from '../Model_service/layout3'
 import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox';
 
 // import layout from './Standalone/layout';
@@ -191,37 +191,37 @@ export default function index (props) {
             <ModalBody pb={6}>
               <div style={{ position: 'reletive', left: '20px', fontSize: '16px' }}>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     modelName:{showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     note:{showDetails.note}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     modelId:{showDetails.modelId}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     name:{showDetails.name}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     id:{showDetails.id}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     modelType:{showDetails.modelType}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#f0e9e9'>
+                  <Cart fill='#fcfcfc'>
                     masterTableModelId:{showDetails.masterTableModelId}
                   </Cart>
                 </Flexbox>

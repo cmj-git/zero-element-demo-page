@@ -28,7 +28,7 @@ module.exports = {
           xname: "Binding",
           props: {
             binding: {
-              name: "titleText"
+              modelLabel: "titleText"
             }
           }
         }

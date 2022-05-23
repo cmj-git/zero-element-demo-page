@@ -86,6 +86,7 @@ export default function index (props) {
     return promiseAjax(api, queryData).then(resp => {
       if (resp && resp.code === 200) {
         const list = resp.data.records;
+        console.log('list', list);
         setListData(list);
         setLoading(false)
       } else {

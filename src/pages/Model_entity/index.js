@@ -18,6 +18,7 @@ import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox';
 // import layout from './Standalone/layout';
 import { Page } from 'zero-element-boot/lib/components/cart'
 import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps'
+import { set } from 'lodash';
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 // import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
@@ -29,6 +30,9 @@ export default function index (props) {
   const [isLoading, setLoading] = useState(false)
   const [switchStatus, setSwitchStatus] = useState(false)
   const [showDetails, setDetails] = useState('')
+  const [showitems, setitems] = useState('')
+
+
 
   const [showEntitydata, setEntitydata] = useState('')
 
@@ -81,9 +85,13 @@ export default function index (props) {
         {
           if (responseData && responseData.code === 200) {
             let respdata = responseData.data;
+            console.log('1111' + responseData.data.items);
+            console.log(Array.isArray(responseData.data.items));//true
+
+
             setDetails(respdata)
             setopen(true)
-            console.log(respdata);
+
           } else {
 
           }
@@ -184,32 +192,44 @@ export default function index (props) {
         <Modal closeOnOverlayClick={false} isOpen={isopen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>内容</ModalHeader>
+            <ModalHeader>实体详情</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-              <div style={{ position: 'reletive', left: '20px', fontSize: '16px' }}>
+              <div style={{ position: 'reletive', left: '20px', fontSize: '16px', fontWeight: 'bold' }}>
 
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    modelName:{showDetails.modelName}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'modelName:' + showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    name:{showDetails.modelName}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'name:' + showDetails.name}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    pid:{showDetails.modelName}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'id:' + showDetails.id}
                   </Cart>
                 </Flexbox>
-                <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    id:{showDetails.modelName}
+                {/* <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'id:' + showDetails['items.id']}
                   </Cart>
-                </Flexbox>
-
+                </Flexbox> */}
+                {showDetails.items?.map(item =>
+                  <Cart fill='#fcfcfc' linewidth='0px' key={item.id}>
+                    item:(
+                    {'isNotNull:' + item.isNotNull}
+                    {'comments:' + item.comments}
+                    {'fieldName:' + item.fieldName}
+                    {'tableModelId:' + item.tableModelId}
+                    {'fieldModelId:' + item.fieldModelId}
+                    {'isUnique:' + item.isUnique}
+                    {'id:' + item.id}
+                    {'fieldType:' + item.fieldType}
+                    {'fieldLength:' + item.fieldLength})
+                  </Cart>)}
               </div>
             </ModalBody>
             <ModalFooter>

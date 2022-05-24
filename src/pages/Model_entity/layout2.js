@@ -82,31 +82,31 @@ module.exports = {
         deleteAPI: '/api/crud/api_model/apiTableModel/apiTableModels/(id)'
       },
       fields: [{
-        label: 'modelName',
+        label: '表模型标识',
         field: 'modelName',
         type: 'input',
         rules: {
           isRequired: true
         },
         props: {
-          placeholder: '请输入modelName',
+          placeholder: '请输入 表模型标识',
         }
       }, {
-        label: 'name',
+        label: '模型名称',
         field: 'name',
         type: 'input',
         rules: {
           isRequired: true
         },
         props: {
-          placeholder: 'name',
+          placeholder: '模型名称',
         }
       },
 
 
       {
 
-        label: '类别',
+        label: '参数',
         field: 'fieldModelId',
         type: 'select-fetch',
 
@@ -115,7 +115,7 @@ module.exports = {
 
         },
         props: {
-          placeholder: '请选择类别',
+          placeholder: '参数',
 
         },
         saveData: {

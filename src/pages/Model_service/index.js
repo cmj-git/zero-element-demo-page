@@ -35,7 +35,7 @@ export default function index (props) {
   const [showEntitydata, setEntitydata] = useState('')
 
   const [isopen, setopen] = useState(false)
-  let api = '/api/crud/serviceModel/serviceModels';
+  let api = '/api/crud/serviceModel/serviceModels?pageSize=100';
 
   useEffect(() => {
     console.log('首次加载')
@@ -186,46 +186,57 @@ export default function index (props) {
         <Modal closeOnOverlayClick={false} isOpen={isopen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>内容</ModalHeader>
+            <ModalHeader>业务详情</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-              <div style={{ position: 'reletive', left: '20px', fontSize: '16px' }}>
+              <div style={{ position: 'reletive', left: '20px', fontSize: '16px', fontWeight: 'bold' }}>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    modelName:{showDetails.modelName}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'modelName:' + showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    note:{showDetails.note}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'   note:' + showDetails.note}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    modelId:{showDetails.modelId}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {' modelId:' + showDetails.modelId}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    name:{showDetails.name}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'name:' + showDetails.name}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    id:{showDetails.id}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'id:' + showDetails.id}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    modelType:{showDetails.modelType}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'modelType:' + showDetails.modelType}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    masterTableModelId:{showDetails.masterTableModelId}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'masterTableModelId:' + showDetails.masterTableModelId}
                   </Cart>
                 </Flexbox>
+                {showDetails.items?.map(item =>
+                  <Cart fill='#fcfcfc' linewidth='0px' key={item.id}>
+                    item: (
+                    {'itemsKey:' + item.itemsKey}
+                    {'tableModelId:' + item.tableModelId}
+                    {'relationshipPeerId:' + item.relationshipPeerId}
+                    {'tableModelRelationship:' + item.tableModelRelationship}
+                    {'id:' + item.id}
+                    {'relationshipId:' + item.relationshipId}
+                    {'serviceModelId:' + item.serviceModelId})
 
+                  </Cart>)}
 
               </div>
             </ModalBody>

@@ -20,6 +20,7 @@ import layout from '../Model_field/layout'
 // import SelectFetch from 'zero-element-boot/lib/components/formItemType'
 import { Page } from 'zero-element-boot/lib/components/cart'
 import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps'
+import { size } from 'lodash';
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 // import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
@@ -207,66 +208,66 @@ export default function index (props) {
         <Modal closeOnOverlayClick={false} isOpen={isopen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>内容</ModalHeader>
+            <ModalHeader>数据详情</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={10} size='4xl'>
-              <div style={{ position: 'reletive', left: '20px', fontSize: '16px' }}>
+              <div style={{ position: 'reletive', left: '20px', fontSize: '16px', fontWeight: 'bold' }}>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    modelName:{showDetails.modelName}
+                  <Cart fill='#fcfcfc' linewidth='0px' >
+                    {'modelName:' + showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    defaultValue:{showDetails.defaultValue}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'defaultValue:' + showDetails.defaultValue}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    id:{showDetails.id}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {' id:' + showDetails.id}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>
-                    fieldFloatLength: {showDetails.fieldFloatLength}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'fieldFloatLength:' + showDetails.fieldFloatLength}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>fieldLength:
-                    {showDetails.fieldLength}
-                  </Cart>
-                </Flexbox>
-
-
-                <Flexbox>
-                  <Cart fill='#fcfcfc'>fieldType:
-                    {showDetails.fieldType}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'fieldLength:' + showDetails.fieldLength}
                   </Cart>
                 </Flexbox>
 
+
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>isNotNulld:
-                    {showDetails.isNotNull}
+                  <Cart fill='#fcfcfc' linewidth='0px' >
+                    {'fieldType:' + showDetails.fieldType}
+                  </Cart>
+                </Flexbox>
+
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'isNotNulld:' + showDetails.isNotNull}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>isUnique:
-                    {showDetails.isUnique}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'isUnique:' + showDetails.isUnique}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>modelLabel:
-                    {showDetails.modelLabel}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'modelLabel:' + showDetails.modelLabel}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>modelName:
-                    {showDetails.modelName}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'modelName:' + showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
-                  <Cart fill='#fcfcfc'>optionalFieldName
-                    {showDetails.optionalFieldName}
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'optionalFieldName' + showDetails.optionalFieldName}
                   </Cart>
                 </Flexbox>
               </div>

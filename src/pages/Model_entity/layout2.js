@@ -23,7 +23,18 @@ module.exports = {
           }
         }
       },
-
+      {
+        presenter: "Title",
+        gateway: {
+          xname: "Binding",
+          props: {
+            binding: {
+              name: "titleText"
+            }
+          }
+        }
+      }
+      ,
       // {
       //   presenter: "select-fetch",
       //   gateway: {
@@ -109,10 +120,8 @@ module.exports = {
         label: '参数',
         field: 'fieldModelId',
         type: 'select-fetch',
-
         rules: {
           isRequired: true
-
         },
         props: {
           placeholder: '参数',

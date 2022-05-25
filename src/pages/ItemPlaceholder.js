@@ -1,16 +1,11 @@
 import React from 'react';
 import { Box,Tabs, Center,TabList, TabPanels, Tab, TabPanel  } from '@chakra-ui/react'
-import { Butter, Clean, Pink } from 'zero-element-boot/lib/components/presenter/default'
+import { Butter, Clean, Pink } from 'zero-element-boot/lib/components/presenter'
 import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox'
 import PageCart from 'zero-element-boot/lib/components/cart/PageCart';
 import Circle from 'zero-element-boot/lib/components/cart/Circle';
 // import Cart from 'zero-element-boot/lib/components/cart/Cart';
 import Rectangle from '@/pages/TestCart/Rectangle';
-
-
-export default function ItemPlaceholder(props) {
-
-    const { width='90px',height='90px',fill='#edf0fd',bg='#ffffff' } = props
 
 
 /**
@@ -23,14 +18,19 @@ export default function ItemPlaceholder(props) {
  * 
  */
 
+export default function ItemPlaceholder(props) {
+
+    const { width='90px',height='90px',fill='#edf0fd',bg='#dadde1' } = props
+
+
 
 
     console.log('w,h,b ==', width,height,fill)
 
     return (
-
-   <Center w='300px' h='140px' bg={bg}>
-       <Rectangle  margin='10px' width={width} height={height} fill={fill} corner='50%'/>
+<Center w='100%' >
+        <Center w='300px' h='140px' bg={bg}>
+         <Rectangle  margin='10px' width={width} height={height} fill={fill} corner='50%'/>
 
 
        {/* <Center w='50%' h='80%'> */}
@@ -46,7 +46,7 @@ export default function ItemPlaceholder(props) {
    
        {/* </Center> */}
 
-</Center>
-
+      </Center>
+ </Center>
     )
 }

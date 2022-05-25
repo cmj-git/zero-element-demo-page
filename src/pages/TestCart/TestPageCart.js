@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box,Tabs, Center,TabList, TabPanels, Tab, TabPanel  } from '@chakra-ui/react'
-import { Butter, Clean, Pink } from 'zero-element-boot/lib/components/presenter/default'
+import { Butter, Clean, Pink } from 'zero-element-boot/lib/components/presenter'
 import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox'
 import PageCart from 'zero-element-boot/lib/components/cart/PageCart';
 import Circle from 'zero-element-boot/lib/components/cart/Circle';
 // import Cart from 'zero-element-boot/lib/components/cart/Cart';
 import Rectangle from '@/pages/TestCart/Rectangle';
-import ItemPlaceholder from '@/pages/ItemPlaceholder';
+// import ItemPlaceholder from '@/pages/ItemPlaceholder';
 
 
 
@@ -15,11 +15,13 @@ import ItemPlaceholder from '@/pages/ItemPlaceholder';
 
 export default function TestPageCart(props) {
     return (
-        <PageCart  backgroundColor='#dadde1' width='800px'height='400px'>
+        <></>
+        // <APIContainer api='' >
+            // <NamedCart  xname='Cart'>
+                // <ItemPlaceholder />
+            /* </NamedCart> */
+         /* </APIContainer > */
+        
 
-
- <ItemPlaceholder />
-
-        </PageCart>
     )
 }

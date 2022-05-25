@@ -46,72 +46,75 @@ module.exports = {
         updateAPI: '/api/crud/serviceModel/serviceModels/(id)',
         deleteAPI: '/api/crud/serviceModel/serviceModels/(id)'
       },
-      fields: [{
-        label: 'masterTableModelId',
-        field: 'masterTableModelId',
-        type: 'input',
-        rules: {
-          isRequired: true
+      fields: [
+        {
+          label: '表模型标识',
+          field: 'modelName',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 表模型标识',
+          }
         },
-        props: {
-          placeholder: '请输入 masterTableModelId',
-        }
-      },
-      {
-        label: 'modelType',
-        field: 'modelType',
-        type: 'input',
-        rules: {
-          isRequired: true
+
+        {
+          label: '模型名称',
+          field: 'name',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 模型名称',
+          }
         },
-        props: {
-          placeholder: '请输入 modelType',
-        }
-      },
-      {
-        label: 'modelId',
-        field: 'modelId',
-        type: 'input',
-        rules: {
-          isRequired: true
+        {
+          label: 'masterTableModelId',
+          field: 'masterTableModelId',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 masterTableModelId',
+          }
         },
-        props: {
-          placeholder: '请输入 modelId',
-        }
-      },
-      {
-        label: 'modelName',
-        field: 'modelName',
-        type: 'input',
-        rules: {
-          isRequired: true
+
+        {
+          label: 'modelType',
+          field: 'modelType',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 modelType',
+          }
         },
-        props: {
-          placeholder: '请输入 modelName',
-        }
-      },
-      {
-        label: 'name',
-        field: 'name',
-        type: 'input',
-        rules: {
-          isRequired: true
+        {
+          label: 'modelId',
+          field: 'modelId',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 modelId',
+          }
         },
-        props: {
-          placeholder: '请输入 name',
+        {
+          label: 'note',
+          field: 'note',
+          type: 'input',
+          rules: {
+            isRequired: true
+          },
+          props: {
+            placeholder: '请输入 note',
+          }
         }
-      },
-      {
-        label: 'note',
-        field: 'note',
-        type: 'input',
-        rules: {
-          isRequired: true
-        },
-        props: {
-          placeholder: '请输入 note',
-        }
-      }
       ]
     }
   }

@@ -21,6 +21,16 @@ module.exports = {
             }
           }
         }
+      }, {
+        presenter: "Title",
+        gateway: {
+          xname: "Binding",
+          props: {
+            binding: {
+              modelName: "titleText"
+            }
+          }
+        }
       }
 
     ]
@@ -134,7 +144,7 @@ module.exports = {
             isRequired: true
           },
           props: {
-            placeholder: '请输入 varchar',
+            placeholder: '请输入 fieldType',
           }
         },
         {

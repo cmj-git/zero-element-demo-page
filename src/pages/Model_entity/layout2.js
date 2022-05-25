@@ -137,6 +137,7 @@ module.exports = {
           api: '/api/crud/fieldModel/fieldModels',
           label: 'modelLabel',
           value: 'id',
+          presenter: 'Checkbox',
 
         }
       }

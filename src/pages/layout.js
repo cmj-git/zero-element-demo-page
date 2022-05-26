@@ -12,22 +12,22 @@ module.exports = {
     children: [
 
       {
-        presenter: "Title",
+        presenter: "SubtitleL",
         gateway: {
           xname: "Binding",
           props: {
             binding: {
-              modelLabel: "titleText"
+              modelLabel: "contentTxt"
             }
           }
         }
       }, {
-        presenter: "Title",
+        presenter: "SubtitleBig",
         gateway: {
           xname: "Binding",
           props: {
             binding: {
-              modelName: "titleText"
+              modelName: "contentTxt"
             }
           }
         }

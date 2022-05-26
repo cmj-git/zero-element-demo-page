@@ -2,6 +2,7 @@ import React from 'react';
 
 import { AutoLayout } from 'zero-element-boot';
 
+
 export default function ItemPlaceholderDemo(props) {
 
   // const { width='100px' } = props;
@@ -10,14 +11,18 @@ export default function ItemPlaceholderDemo(props) {
     layout: {
       xname: 'Flexbox',
       props: {
-          align: 'center, ',
-          direction: 'row',
+          align: 'center',
+          direction: 'column',
           justify: 'center'
       },
       children: [
         {
-          presenter: 'ItemPlaceholder',
-          cart: {
+        
+         
+        },
+        {
+          presenter: 'Holder',
+         cart: {
             xname: 'Cart',
             props: {
               // padding: '16px',
@@ -25,7 +30,7 @@ export default function ItemPlaceholderDemo(props) {
               corner: 0,
               linewidth: '0',
               padding: '10px 25px',
-              isOnHover: true
+              isOnHover: false
             }
           },
           gateway: {
@@ -38,7 +43,7 @@ export default function ItemPlaceholderDemo(props) {
           }
         },
         {
-          presenter: 'ItemPlaceholder',
+          presenter: 'Holder',
           gateway: {
             xname: 'Binding',
             props: {
@@ -49,7 +54,7 @@ export default function ItemPlaceholderDemo(props) {
           }
         },
         {
-          presenter: 'ItemPlaceholder',
+          presenter: 'Holder',
           gateway: {
             xname: 'Binding',
             props: {
@@ -58,7 +63,7 @@ export default function ItemPlaceholderDemo(props) {
               }
             }
           }
-        }
+        },
       ]
     },
     ...props,

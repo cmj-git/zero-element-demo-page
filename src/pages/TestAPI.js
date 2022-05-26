@@ -10,15 +10,13 @@ export default function TestAPI(props) {
 return(
 
 
-<APIContainer API='http://app1.console.smallsaas.cn:8001/openapi/lc/cart/Cart' extend={true}> 
+ <APIContainer API='http://app1.console.smallsaas.cn:8001/openapi/lc/cart/Cart' extend={true}>  */
 
      <NamedCart cart="Cart" >
        <ItemPlaceholder  />
        
      </NamedCart>
      
-     
-
- </APIContainer> 
+</APIContainer>  
   )
 }

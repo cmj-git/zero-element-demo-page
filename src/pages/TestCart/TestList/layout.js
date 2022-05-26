@@ -20,6 +20,6 @@ module.exports = {
   },
   container: 'PlainList',
   
-  presenter: 'CartIPH'
+  presenter: 'NamedCartIPH'
   
 }

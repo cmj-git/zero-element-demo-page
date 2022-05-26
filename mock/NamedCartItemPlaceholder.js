@@ -6,25 +6,37 @@ export default {
              "cart": {
                 "xname":"Cart",
                 "props":{
-                  "fill":"#red", 
+                  "fill":"#aaa8e1", 
                   "corner":"4px",
                   "stroke":"solid", 
                   "linewidth":"1px", 
-                  "margin":"4px",
+                  "margin":"30px",
                   "padding":"0px"
                   }
               }
           },
-        
+          {
+            "cart": {
+               "xname":"Cart",
+               "props":{
+                 "fill":"#72709f", 
+                 "corner":"4px",
+                 "stroke":"solid", 
+                 "linewidth":"1px", 
+                 "margin":"30px",
+                 "padding":"0px"
+                 }
+             }
+         },
           {
             "cart": {
                "xname":"HightlightCart",
                "props":{
-                 "fill":"#red", 
+                 "fill":"#757790", 
                  "corner":"4px",
                  "stroke":"solid", 
                  "linewidth":"1px", 
-                 "margin":"4px",
+                 "margin":"30px",
                  "padding":"0px"
                  }
              }

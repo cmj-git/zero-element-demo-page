@@ -17,9 +17,9 @@ export default function NamedCartItemPlaceholder(props) {
 
     return (
         // <APIContainer API='/api/detailData'>
-        //  <NamedCart {...props}>
-             <ItemPlaceholder  fill='#ada0b2' bg='rgb(192,192,192,0.3)' />
-        //  </NamedCart>
+         <NamedCart {...props}>
+             <ItemPlaceholder  fill='#757790' bg='rgb(192,192,192,0.3)' />
+         </NamedCart>
          /* </APIContainer> */
     )
 }

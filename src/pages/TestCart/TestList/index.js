@@ -22,7 +22,7 @@ import { ChakraProvider,Center} from "@chakra-ui/react";
 import { AutoLayout } from 'zero-element-boot';
 
 // import layout from '../../layout';
-import layout from '@/pages/TestCart/TestcartList/layout';
+import layout from '@/pages/TestCart/TestList/layout';
 
 
 export default function Index (props) {

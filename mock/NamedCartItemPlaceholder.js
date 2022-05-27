@@ -17,7 +17,7 @@ export default {
           },
           {
             "cart": {
-               "xname":"Cart",
+               "xname":"HoverShadowCart",
                "props":{
                  "fill":"#72709f", 
                  "corner":"4px",

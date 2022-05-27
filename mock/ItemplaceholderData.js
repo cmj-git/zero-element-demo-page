@@ -3,50 +3,71 @@ export default {
       "code": 200,
       "data": [
         {
-            "fill":"#d1d2cc", 
-            "corner":"4px",
-             "stroke":"solid", 
-            "linewidth":"1px", 
-             "margin":"4px",
-             "padding":"2px"
+            "cart":{
+                "xname":"Cart",
+                "props":{
+                  "fill":"#ff0000", 
+                  "corner":"4px",
+                  "stroke":"solid", 
+                  "linewidth":"1px", 
+                  "margin":"30px",
+                  "padding":"0px"
+                  }
+            },
+          
     
           },
+
           {
-            "fill":"#6f6f91", 
-            "corner":"4px",
-             "stroke":"solid", 
-            "linewidth":"10px", 
-             "margin":"4px",
-             "padding":"2px"
+            "cart":{
+              "xname":"HightlightCart",
+              "props":{
+                "fill":"#72709f", 
+                "corner":"4px",
+                "stroke":"solid", 
+                "linewidth":"1px", 
+                "margin":"30px",
+                "padding":"0px"
+                }
+            },
+            
     
           },
-          {
-            "fill":"#5b778f", 
-            "corner":"4px",
-             "stroke":"solid", 
-            "linewidth":"1px", 
-             "margin":"4px",
-             "padding":"2px"
+          { "cart":{
+            "xname":"Cart",
+            "props":{
+              "fill":"#72709f", 
+              "corner":"4px",
+              "stroke":"solid", 
+              "linewidth":"1px", 
+              "margin":"30px",
+              "padding":"0px"
+              }
+        },
     
           },
-          {
-            "fill":"#456693", 
-            "corner":"4px",
-             "stroke":"dashed ", 
-            "linewidth":"3px", 
-             "margin":"4px",
-             "padding":""
+          // {
+          //   "cart":{
+          //     "xname":"Cart",
+          // },
+            // "fill":"#456693", 
+            // "corner":"4px",
+            //  "stroke":"dashed ", 
+            // "linewidth":"3px", 
+            //  "margin":"4px",
+            //  "padding":""
     
-          },
-           {
-            "fill":"#757790", 
-            "corner":"4px",
-             "stroke":"solid", 
-            "linewidth":"1px", 
-             "margin":"4px",
-             "padding":""
+          // },
+          //  {
+          //   "cart":"Cart",
+          //   "fill":"#757790", 
+          //   "corner":"4px",
+          //    "stroke":"solid", 
+          //   "linewidth":"1px", 
+          //    "margin":"4px",
+          //    "padding":""
     
-          }
+          // }
           
       ],
       "message": "Success"

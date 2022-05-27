@@ -1,6 +1,8 @@
 import React from 'react';
 import Cart from 'zero-element-boot/lib/components/cart/Cart';
 import ItemPlaceholder from '@/pages/ItemPlaceholder'
+import NamedCart from 'zero-element-boot/lib/components/NamedCart'
+
 
 
 /**
@@ -17,13 +19,18 @@ import ItemPlaceholder from '@/pages/ItemPlaceholder'
  
 
 export default function CartItemPlaceholder(props) {
+    console.log('CartItemPlaceholder==',props )
 
-    const {fill='',  corner='4px', stroke='solid', linewidth='1px', margin='4px',padding='',}=props
+    // const {fill='',  corner='4px', stroke='solid', linewidth='1px', margin='4px',padding='',}=props
+    const {cart={}}=props
 
-console.log(fill,'==bg' )
+console.log("xname===",cart)
     return (
-        <Cart fill={fill} margin={margin} padding={padding} corner={corner} stroke={stroke} linewidth= {linewidth}>
-          <ItemPlaceholder  bg='rgb(192,192,192,0.3)' />
-        </Cart>
+        // <Cart fill={fill} margin={margin} padding={padding} corner={corner} stroke={stroke} linewidth= {linewidth}>
+        //   <ItemPlaceholder  bg='rgb(192,192,192,0.3)' />
+        // </Cart>
+           <NamedCart cart={cart}>
+              <ItemPlaceholder  />
+           </NamedCart>
     )
 }

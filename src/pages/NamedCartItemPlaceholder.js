@@ -12,17 +12,29 @@ import {   APIContainer } from 'zero-element-boot';
 
 export default function NamedCartItemPlaceholder(props) {
 
-    // const {xname, props, ...rest}=prop
-     console.log("style==", props )
+    // // const {cart, ...rest}=props
+    // console.log("NamedCartItemPlaceholder==", cart )
 
-    return (
-        // <APIContainer API='/api/detailData'>
-         <NamedCart {...props}>
-             <ItemPlaceholder  fill='#757790' bg='rgb(192,192,192,0.3)' />
-         </NamedCart>
-         /* </APIContainer> */
+    // return (
+    //      <NamedCart {...cart} {...rest}>
+    //          <ItemPlaceholder fill='#757790' bg='rgb(192,192,192,0.3)' />
+    //      </NamedCart>
+
+
+    const{ xname }=props
+// console.log("===============", ...props)
+
+         return (
+            //  <Flex></Flex>
+            //  <NamedCart xname={xname} >
+                 <ItemPlaceholder  fill='#757790' bg='rgb(192,192,192,0.3)' />
+             /* </NamedCart> */
     )
 }
+
+
+// props={{ padding: "0px" }} props={{lineColor:"rgb(192,192,192,0.3)" }}
+
 
 //[x: string]: any;
 // children: any;

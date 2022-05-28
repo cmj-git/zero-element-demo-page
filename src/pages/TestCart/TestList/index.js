@@ -44,10 +44,12 @@ export default function Index (props) {
   console.log(data, ' === item')
 
   return (
-    <Center>
-      <ChakraProvider>
+    <ChakraProvider>
+
+    <Center bg='#f4f3f2'>
               <AutoLayout {...config} onItemClick={onJarItemClick} />
-      </ChakraProvider>
     </Center>
+    </ChakraProvider>
+
   )
 }

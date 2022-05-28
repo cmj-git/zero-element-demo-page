@@ -5,8 +5,14 @@ import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } 
 // import Logs from '@/pages/dev/logs'
 import ConnectionPage from '@/pages/Connection'
 import Nagation from '@/pages/nagation'
-import ItemPlaceholder from '@/pages/ItemPlaceholder'
-import Sandbox from '@/pages/TestCart/TestList/Sandbox'
+import ItemPlaceholder from '@/pages/ItemPlaceholder/ItemPlaceholder'
+// import Sandbox from '@/pages/TestCart/TestList/Sandbox'
+import Sandbox from '@/pages/DomeCart/DomeCartList/Sandbox'
+import DomeCart from '@/pages/DomeCart/index'
+import SimpleCart from '@/pages/DomeCart/SimpleCart/index'
+
+
+
 
 
 
@@ -57,8 +63,11 @@ export default function index (props) {
   <Sandbox  />
   // <NamedCartItemPlaceholder  />
   // <TestAPI  />
- // <ManyCart />
+//  <DomeCart />
 //  <CartList />
+/* <SimpleCart>
+  11
+</SimpleCart> */
 
 
 

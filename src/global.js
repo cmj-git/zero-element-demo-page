@@ -3,6 +3,9 @@ import { set as NamedIndicatorSet } from 'zero-element-boot/lib/components/confi
 import { set as NamedPresenterSet } from 'zero-element-boot/lib/components/config/NamedPresenterConfig';
 import { set as NamedCartConfig } from 'zero-element-boot/lib/components/config/NamedCartConfig';
 import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
+import CheckBoxIndicatorCart from 'zero-element-boot/lib/components/indicator/CheckBoxIndicatorCart';
+
+
 
 
 if (process.env.NODE_ENV == 'development') {
@@ -19,9 +22,13 @@ if (process.env.NODE_ENV == 'development') {
 // import Holder from '@/pages/CartItemPlaceholder';
 import CartIPH from '@/pages/CartItemPlaceholder';
 import NamedCartIPH from '@/pages/NamedCartItemPlaceholder';
-import { Cart, Circle,HightlightCart,HoverShadowCart} from 'zero-element-boot/lib/components/cart/';
+import DomeCartList from '@/pages/DomeCart/index';
 
+import { Cart, Circle,HightlightCart,HoverShadowCart,Shape,Rectangle,Round} from 'zero-element-boot/lib/components/cart/';
 
+// import RightIconCheckboxSelect from '@/pages/RightIconCheckboxIndicator/Select';
+// import RightIconCheckboxSelected from '@/pages/RightIconCheckboxIndicator/Selected';
+// import RightIconCheckboxDefauct from '@/pages/RightIconCheckboxIndicator/Defauct';
 
 
 
@@ -33,19 +40,28 @@ import { Cart, Circle,HightlightCart,HoverShadowCart} from 'zero-element-boot/li
 //   Wrap
 // })
 NamedIndicatorSet({
+  CheckBoxIndicatorCart,
+  // RightIconCheckboxSelect,
+  // RightIconCheckboxSelected,
+  // RightIconCheckboxDefauct
 
 })
 
 NamedPresenterSet({
   NamedCartIPH,
-  CartIPH
+  CartIPH,
+  DomeCartList,
+  
 })
 
 NamedCartConfig({
   Cart,
   Circle,
   HightlightCart,
-  HoverShadowCart
+  HoverShadowCart,
+  Shape,
+  Rectangle,
+  Round,
 })
 
 // FormItemTypeSet({

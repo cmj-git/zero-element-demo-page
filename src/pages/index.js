@@ -5,9 +5,9 @@ import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } 
 // import Logs from '@/pages/dev/logs'
 import ConnectionPage from '@/pages/Connection'
 import Nagation from '@/pages/nagation'
-import Field from '@/pages/Model_field'
-import Entity from '@/pages/Model_entity'
-import Service from '@/pages/Model_service'
+import Field from '@/pages/model/Model_field'
+import Entity from '@/pages/model/Model_entity'
+import Service from '@/pages/model/Model_service'
 import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
 import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
@@ -16,7 +16,7 @@ import { AutoLayout } from 'zero-element-boot';
 // import layout from './Standalone/layout';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Page } from 'zero-element-boot/lib/components/cart'
-import ModelTab from '@/pages/Model_tab'
+import ModelTab from '@/pages/model/Model_tab'
 
 
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
@@ -65,7 +65,7 @@ export default function index (props) {
 
   // )
 
-
+  ////1111111
 
 
   //modelTab

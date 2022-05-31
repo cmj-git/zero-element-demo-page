@@ -6,17 +6,18 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton
+  ModalCloseButton, Tabs, TabList, TabPanels, Tab, TabPanel
 } from "@chakra-ui/react";
-import Cart from 'zero-element-boot/lib/components/cart/Cart';
+
 import { getEndpoint } from 'zero-element-boot/src/components/config/common';
 import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
-// const promiseAjax = require('@/components/utils/request');
-import layout from '../Model_service/layout3'
+import Cart from 'zero-element-boot/lib/components/cart/Cart';
 import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox';
+// const promiseAjax = require('@/components/utils/request');
+import layout from '../Model_field/layout'
 
-// import layout from './Standalone/layout';
+// import SelectFetch from 'zero-element-boot/lib/components/formItemType'
 import { Page } from 'zero-element-boot/lib/components/cart'
 import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps'
 import { size } from 'lodash';
@@ -35,13 +36,13 @@ export default function index (props) {
   const [showEntitydata, setEntitydata] = useState('')
 
   const [isopen, setopen] = useState(false)
-  let api = '/api/crud/serviceModel/serviceModels?pageSize=100';
-
+  let api = '/api/crud/fieldModel/fieldModels?pageSize=100';
+  let emptyapi = `/api/crud/api_model/apiTableModel/apiTableModels`
   useEffect(() => {
     console.log('首次加载')
     const queryData = {}
-    queryService(api, queryData)
-
+    fetchData(api, queryData)
+    queryEntity(emptyapi)
   }, []);
 
   useEffect(() => {
@@ -59,25 +60,26 @@ export default function index (props) {
 
   // </Page>
   //获取列表信息
-  const queryService = async (api, queryData) => {
+  const fetchData = (api, queryData) => {
 
     setLoading(true)
-    const resp = await promiseAjax(api, queryData);
-    if (resp && resp.code === 200) {
-      const list = resp.data.records;
-      console.log('list', list);
-      setListData(list);
-      setLoading(false);
+    return promiseAjax(api, queryData).then(resp => {
+      if (resp && resp.code === 200) {
+        const list = resp.data.records;
+        console.log('list', list);
+        setListData(list);
+        setLoading(false)
 
-    } else {
-      console.error('获取列表数据失败 ==', resp);
-    }
+      } else {
+        console.error('获取列表数据失败 ==', resp)
+      }
+    });
   }
 
-  //查看实体详情
+  //
   const onUserItemClick = (item) => {
     const id = item.id;
-    let api = `/api/crud/serviceModel/serviceModels/${id}`
+    let api = `/api/crud/fieldModel/fieldModels/${id}`
     promiseAjax(api)
       .then(responseData => {
         {
@@ -101,7 +103,7 @@ export default function index (props) {
 
     console.log('item1111111 = ', value)
     if (value) {
-      queryService(api, {})
+      fetchData(api, {})
     }
   }
 
@@ -133,6 +135,26 @@ export default function index (props) {
     }
   }
 
+
+  //查看实体模型列表信息
+  function queryEntity (emptyapi) {
+
+    promiseAjax(emptyapi)
+      .then(responseData => {
+        if (responseData && responseData.code
+          === 200) {
+          let respData = responseData.data.records;
+          setEntitydata(respData)
+          console.log('我是实体列表:' + respData);
+        } else {
+
+        }
+
+
+      })
+
+
+  }
   //关闭框
   function onClose () {
     setopen(false)
@@ -144,6 +166,7 @@ export default function index (props) {
     <Page >
 
       <ChakraProvider>
+
         <div style={{ position: 'absolute', left: '20px' }}>
           <VStack align='stretch' spacing='-2'>
             <Box style={{ margin: '10px 10px 30px 10px', paddingLeft: '8px' }}>
@@ -163,12 +186,11 @@ export default function index (props) {
                   <Spinner />
                 ) : (
                   <Box>
+
                     <Cart fill='#ffffff' lineColor='#cfe2f3' corner='10px' linewidth='4px' isOnHover={false} >
                       <AutoLayout {...config} onItemClick={onUserItemClick} cb={callback} isSwtich={switchStatus} />
                     </Cart>
                   </Box>
-
-
                 )
                 }
               </div>
@@ -186,59 +208,77 @@ export default function index (props) {
         <Modal closeOnOverlayClick={false} isOpen={isopen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>业务详情</ModalHeader>
+            <ModalHeader>数据详情</ModalHeader>
             <ModalCloseButton />
-            <ModalBody pb={6}>
+            <ModalBody pb={10} size='4xl'>
               <div style={{ position: 'reletive', left: '20px', fontSize: '16px', fontWeight: 'bold' }}>
                 <Flexbox>
-                  <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'modelName:' + showDetails.modelName}
+                  <Cart fill='#fcfcfc' linewidth='0px' >
+                    {'表模型标识:' + showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
                   <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'   note:' + showDetails.note}
+                    {'模型标签:' + showDetails.modelLabel}
                   </Cart>
                 </Flexbox>
-                <Flexbox>
-                  <Cart fill='#fcfcfc' linewidth='0px'>
-                    {' modelId:' + showDetails.modelId}
-                  </Cart>
-                </Flexbox>
-                <Flexbox>
-                  <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'name:' + showDetails.name}
-                  </Cart>
-                </Flexbox>
-                <Flexbox>
-                  <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'id:' + showDetails.id}
-                  </Cart>
-                </Flexbox>
-                <Flexbox>
-                  <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'modelType:' + showDetails.modelType}
-                  </Cart>
-                </Flexbox>
-                <Flexbox>
-                  <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'masterTableModelId:' + showDetails.masterTableModelId}
-                  </Cart>
-                </Flexbox>
-                {showDetails.items?.map(item =>
-                  <Cart fill='#fcfcfc' linewidth='0px' key={item.id}>
-                    item: (
-                    {'itemsKey:' + item.itemsKey}
-                    {'tableModelId:' + item.tableModelId}
-                    {'relationshipPeerId:' + item.relationshipPeerId}
-                    {'tableModelRelationship:' + item.tableModelRelationship}
-                    {'id:' + item.id}
-                    {'relationshipId:' + item.relationshipId}
-                    {'serviceModelId:' + item.serviceModelId})
 
-                  </Cart>)}
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'默认值:' + showDetails.defaultValue}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'默认字段名:' + showDetails.defaultFieldName}
+                  </Cart>
+                </Flexbox>
 
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {' id:' + showDetails.id}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'字段浮动长度:' + showDetails.fieldFloatLength}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'字段长度:' + showDetails.fieldLength}
+                  </Cart>
+                </Flexbox>
+
+
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px' >
+                    {'字段类型:' + showDetails.fieldType}
+                  </Cart>
+                </Flexbox>
+
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'非空:' + showDetails.isNotNull}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'唯一的:' + showDetails.isUnique}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'注释：' + showDetails.comments}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'选择字段名' + showDetails.optionalFieldName}
+                  </Cart>
+                </Flexbox>
               </div>
+
             </ModalBody>
             <ModalFooter>
 
@@ -253,6 +293,7 @@ export default function index (props) {
         </Box>
 
       </ChakraProvider>
+
 
     </Page >
 

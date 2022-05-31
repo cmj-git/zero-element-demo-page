@@ -13,23 +13,23 @@ module.exports = {
       //title
       //binding 绑定数据   api字段：组件固定值
       {
-        presenter: "Title",
+        presenter: "SubtitleL",
         gateway: {
           xname: "Binding",
           props: {
             binding: {
-              modelName: "titleText"
+              modelName: "contentTxt"
             }
           }
         }
       },
       {
-        presenter: "Title",
+        presenter: "SubtitleBig",
         gateway: {
           xname: "Binding",
           props: {
             binding: {
-              name: "titleText"
+              name: "contentTxt"
             }
           }
         }
@@ -55,7 +55,6 @@ module.exports = {
             direction: 'column',
             flexWidth: 'auto-full'
           },
-          presenter: 'Checkbox',
 
 
         },
@@ -77,8 +76,10 @@ module.exports = {
       padding: '5px 10px',
       margin: '5px',
       linewidth: 1,
-      fill: '#c9daf8',
-      corner: '10px'
+      fill: '#f5f5f6',
+      corner: '10px',
+
+
     }
   },
   container: 'SimCRUDList',
@@ -93,7 +94,7 @@ module.exports = {
         deleteAPI: '/api/crud/api_model/apiTableModel/apiTableModels/(id)'
       },
       fields: [{
-        label: '表模型标识',
+        label: 'modelName',
         field: 'modelName',
         type: 'input',
         rules: {
@@ -103,7 +104,7 @@ module.exports = {
           placeholder: '请输入 表模型标识',
         }
       }, {
-        label: '模型名称',
+        label: 'name',
         field: 'name',
         type: 'input',
         rules: {
@@ -113,34 +114,31 @@ module.exports = {
           placeholder: '模型名称',
         }
       },
-
-
       {
-
-        label: '参数',
-        field: 'fieldModelId',
-        type: 'select-fetch',
+        label: '复选框',
+        field: 'items',
+        type: 'checkbox-fetch',
         rules: {
-          isRequired: true
+          isRequired: false
         },
         props: {
-          placeholder: '参数',
-
+          placeholder: '请选择'
         },
         saveData: {
           //额外提交的字段和值
-          typeName: 'name'
+          isNotNull: 'isNotNull'
         },
-
-
         options: {
+          modalTitle: '选择字段',
           api: '/api/crud/fieldModel/fieldModels',
           label: 'modelLabel',
-          value: 'id',
-          presenter: 'Checkbox',
+          value: 'fieldModelId',
+          itemField: 'fieldModelId' // 数组的 item 承载字段
 
         }
       }
+
+
       ]
     }
   }

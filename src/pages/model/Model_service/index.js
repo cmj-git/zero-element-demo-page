@@ -13,12 +13,13 @@ import { getEndpoint } from 'zero-element-boot/src/components/config/common';
 import { history } from 'umi';
 import { AutoLayout } from 'zero-element-boot';
 // const promiseAjax = require('@/components/utils/request');
-import layout from '../Model_entity/layout2'
+import layout from '../Model_service/layout3'
 import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox';
+
 // import layout from './Standalone/layout';
 import { Page } from 'zero-element-boot/lib/components/cart'
 import TabsCompox from 'zero-element-boot/lib/composition/testCrudList/compx/tabsComps'
-import { set } from 'lodash';
+import { size } from 'lodash';
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 // import { setEndpoint, setToken } from 'zero-element-boot/lib/components/config/common';
 export default function index (props) {
@@ -30,19 +31,16 @@ export default function index (props) {
   const [isLoading, setLoading] = useState(false)
   const [switchStatus, setSwitchStatus] = useState(false)
   const [showDetails, setDetails] = useState('')
-  const [showitems, setitems] = useState('')
-
-
 
   const [showEntitydata, setEntitydata] = useState('')
 
   const [isopen, setopen] = useState(false)
-  let api = '/api/crud/api_model/apiTableModel/apiTableModels?pageSize=100';
+  let api = '/api/crud/serviceModel/serviceModels?pageSize=100';
 
   useEffect(() => {
     console.log('首次加载')
     const queryData = {}
-    queryEntity(api, queryData)
+    queryService(api, queryData)
 
   }, []);
 
@@ -61,7 +59,7 @@ export default function index (props) {
 
   // </Page>
   //获取列表信息
-  const queryEntity = async (api, queryData) => {
+  const queryService = async (api, queryData) => {
 
     setLoading(true)
     const resp = await promiseAjax(api, queryData);
@@ -79,19 +77,15 @@ export default function index (props) {
   //查看实体详情
   const onUserItemClick = (item) => {
     const id = item.id;
-    let api = `/api/crud/api_model/apiTableModel/apiTableModels/${id}`
+    let api = `/api/crud/serviceModel/serviceModels/${id}`
     promiseAjax(api)
       .then(responseData => {
         {
           if (responseData && responseData.code === 200) {
             let respdata = responseData.data;
-            console.log('1111' + responseData.data.items);
-            console.log(Array.isArray(responseData.data.items));//true
-
-
             setDetails(respdata)
             setopen(true)
-
+            console.log(respdata);
           } else {
 
           }
@@ -107,7 +101,7 @@ export default function index (props) {
 
     console.log('item1111111 = ', value)
     if (value) {
-      queryEntity(api, {})
+      queryService(api, {})
     }
   }
 
@@ -192,19 +186,28 @@ export default function index (props) {
         <Modal closeOnOverlayClick={false} isOpen={isopen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>实体详情</ModalHeader>
+            <ModalHeader>业务详情</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <div style={{ position: 'reletive', left: '20px', fontSize: '16px', fontWeight: 'bold' }}>
-
                 <Flexbox>
                   <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'modelName:' + showDetails.modelName}
+                    {'表模型标识:' + showDetails.modelName}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
                   <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'name:' + showDetails.name}
+                    {'记录:' + showDetails.note}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {' 模型ID:' + showDetails.modelId}
+                  </Cart>
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'模型名称:' + showDetails.name}
                   </Cart>
                 </Flexbox>
                 <Flexbox>
@@ -212,24 +215,30 @@ export default function index (props) {
                     {'id:' + showDetails.id}
                   </Cart>
                 </Flexbox>
-                {/* <Flexbox>
+                <Flexbox>
                   <Cart fill='#fcfcfc' linewidth='0px'>
-                    {'id:' + showDetails['items.id']}
+                    {'模型类型:' + showDetails.modelType}
                   </Cart>
-                </Flexbox> */}
+                </Flexbox>
+                <Flexbox>
+                  <Cart fill='#fcfcfc' linewidth='0px'>
+                    {'主表模型Id:' + showDetails.masterTableModelId}
+                  </Cart>
+                </Flexbox>
                 {showDetails.items?.map(item =>
                   <Cart fill='#fcfcfc' linewidth='0px' key={item.id}>
-                    item:(
-                    {'isNotNull:' + item.isNotNull}
-                    {'comments:' + item.comments}
-                    {'fieldName:' + item.fieldName}
-                    {'tableModelId:' + item.tableModelId}
-                    {'fieldModelId:' + item.fieldModelId}
-                    {'isUnique:' + item.isUnique}
+                    item: (
                     {'id:' + item.id}
-                    {'fieldType:' + item.fieldType}
-                    {'fieldLength:' + item.fieldLength})
+                    {'itemsKey:' + item.itemsKey}
+                    {'表格模型Id:' + item.tableModelId}
+                    {'对等关系Id:' + item.relationshipPeerId}
+                    {'表格模型关系:' + item.tableModelRelationship}
+
+                    {'关联Id:' + item.relationshipId}
+                    {'业务模型ID:' + item.serviceModelId})
+
                   </Cart>)}
+
               </div>
             </ModalBody>
             <ModalFooter>

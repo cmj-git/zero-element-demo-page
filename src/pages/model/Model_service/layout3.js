@@ -11,12 +11,12 @@ module.exports = {
     },
     children: [
       {
-        presenter: "Title",
+        presenter: "SubtitleL",
         gateway: {
           xname: "Binding",
           props: {
             binding: {
-              modelName: "titleText"
+              modelName: "contentTxt"
             }
           }
         }
@@ -31,7 +31,7 @@ module.exports = {
       padding: '5px 10px',
       margin: '5px',
       linewidth: 1,
-      fill: '#c9daf8',
+      fill: '#f5f5f6',
       corner: '10px'
     }
   },
@@ -78,7 +78,7 @@ module.exports = {
             isRequired: true
           },
           props: {
-            placeholder: '请输入 masterTableModelId',
+            placeholder: '请输入 主表模型Id',
           }
         },
 
@@ -90,7 +90,7 @@ module.exports = {
             isRequired: true
           },
           props: {
-            placeholder: '请输入 modelType',
+            placeholder: '请输入 模型类型',
           }
         },
         {
@@ -101,7 +101,7 @@ module.exports = {
             isRequired: true
           },
           props: {
-            placeholder: '请输入 modelId',
+            placeholder: '请输入 模型ID',
           }
         },
         {
@@ -112,7 +112,7 @@ module.exports = {
             isRequired: true
           },
           props: {
-            placeholder: '请输入 note',
+            placeholder: '请输入 记录',
           }
         }
       ]

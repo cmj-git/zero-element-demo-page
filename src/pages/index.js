@@ -36,43 +36,37 @@ export default function index (props) {
   // )
 
 
-  //--------------------------------------------------------------------------------------------------------///------------------------------------------------
+  // import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder';
+
+  // import TestAPI from './TestAPI';
 
 
-  // //// Nagation
+  // import TestCrudList from '@/pages/testCrudList/layout'
 
-  // return (
-
-  //   <Nagation {...props} />
-
-  // )
+  // // import TestPageCart from './TestCart/TestPageCart';
+  // import ManyCart from '@/pages/ManyCart';
 
 
+  // import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
+  // import { history } from 'umi';
+  // import { AutoLayout, NamedCart } from 'zero-element-boot';
+  // // const promiseAjax = require('@/components/utils/request');
+  // // import layout from './nagation/layout'
+  // // import layout from './Standalone/layout';
+  // import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+  // import { Page } from 'zero-element-boot/lib/components/cart'
 
 
 
-  //ModelPage
-
-  // return (
-
-  //   <ModelPage {...props} />
-
-  // )
-  // //ModelPage2
-  // return (
-
-  //  <ModelPage {...props} />
-
-  // )
+  // const promiseAjax = require('zero-element-boot/lib/components/utils/request');
 
   ////1111111
 
 
-  //modelTab
   return (
 
-    <ModelTab {...props} />
-
+    <ModelTab  {...props} />
+    // <ManyCart />
   )
 
 

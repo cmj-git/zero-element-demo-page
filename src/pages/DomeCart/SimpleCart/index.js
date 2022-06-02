@@ -4,7 +4,7 @@ import React from 'react';
 export default function SimpleCart(props) {
     const{
     
-    children, fill='',hight='',width='',padding='0px',marign='',shadow = '',
+    children, fill='',height='',width='',padding='0px',margin='',shadow = '',
     }=props;
 
 return React.Children.map(children,child=>{
@@ -16,8 +16,8 @@ return React.Children.map(children,child=>{
                 backgroundColor:`${fill}`,
                 width:`${width}`,
                 padding:`${padding}`,
-              margin:`${marign}`,
-              hight:`${hight}`,
+              margin:`${margin}`,
+              height:`${height}`,
               boxShadow: `${shadow}`,
 
             }  

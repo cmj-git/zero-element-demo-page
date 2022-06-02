@@ -17,7 +17,6 @@ import Sandbox from '@/pages/DomeCart/PatternCart/Pattern/Sandbox'
 // import Sandbox from '@/pages/DomeCart/DomeCartList/Sandbox'
 
 
-import SimpleCart from '@/pages/DomeCart/SimpleCart/index'
 import Container from '@/pages/AppletsContainer/index'
 import ContentCart from '@/pages/DomeCart/ContentCart/Content/index'
 import TestRight from '@/pages/DomeCart/TestRight'
@@ -61,6 +60,15 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Page } from 'zero-element-boot/lib/components/cart'
 import PageCart from '@/pages/PageCart'
 
+import Circle from '@/components/shape/Circle'
+import Round from '@/components/shape/Round'
+import Rectangle from '@/components/shape/Rectangle'
+
+
+
+import SimpleCart from '@/pages/DomeCart/SimpleCart'
+
+
 
 
 
@@ -88,13 +96,21 @@ export default function index (props) {
 </CheckBoxIndicatorCart> */
 /* <Container /> */
 /* <ContentCart>11</ContentCart>  */
- <PageCart >
-         <SelectorCollection /> 
-</PageCart>
+//  <PageCart >
+//          <SelectorCollection /> 
+// </PageCart>
 //  <IndicatorCollection />  
 /* <TestTitleContainer /> */
 
 //  <Select />
+ <SimpleCart width='400px'  height='400px' fill='#f4f4f7'padding='20px'>
+  {/* <Circle /> */}
+ {/* <Round /> */}
+<Rectangle />
+ </SimpleCart> 
+
+
+
   )
 
 

@@ -11,7 +11,10 @@ export default {
                   "stroke":"solid", 
                   "linewidth":"1px", 
                   "margin":"30px",
-                  "padding":"0px"
+                  "padding":"0px",
+                  "defaultHoverStyles":{
+                    
+                  }
                   }
               }
           },

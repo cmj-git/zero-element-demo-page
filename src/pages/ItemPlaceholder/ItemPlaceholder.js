@@ -9,6 +9,7 @@ import Rectangle from '@/pages/TestCart/Rectangle';
 
 import checkOff from '@/assets/check_off.svg';
 import checkOn from '@/assets/check_on.svg';
+
 require('@/pages/ItemPlaceholder/ItemPlaceholder.less');
 /**
  * 

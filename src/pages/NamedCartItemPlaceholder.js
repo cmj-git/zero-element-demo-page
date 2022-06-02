@@ -33,18 +33,3 @@ export default function NamedCartItemPlaceholder(props) {
 }
 
 
-// props={{ padding: "0px" }} props={{lineColor:"rgb(192,192,192,0.3)" }}
-
-
-//[x: string]: any;
-// children: any;
-// xname: any;
-// indicator: any;
-// selector: any;
-// defaultIndicator: any;
-// props: any;
-// cart?: {
-//     xname: any;
-//     props: any;
-
-

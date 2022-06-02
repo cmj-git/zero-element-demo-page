@@ -1,10 +1,18 @@
 import React from 'react';
 
 
-export default function SimpleCart(props) {
+export default function SimpleCartDefault(props) {
     const{
-    
-    children, fill='',hight='',width='',padding='0px',marign='',shadow = '',
+       children, fill='#ffffff',
+       hight='',
+       padding='0px',
+       marign='',
+       borderRadius= '8px',
+       borderWidth= '',
+       stroke='solid',
+       shadow = '0 0px 14px rgba(0, 0, 0, 0.14)',
+       corner='4px'
+       
     }=props;
 
 return React.Children.map(children,child=>{
@@ -14,11 +22,12 @@ return React.Children.map(children,child=>{
         <div style={
             {
                 backgroundColor:`${fill}`,
-                width:`${width}`,
                 padding:`${padding}`,
               margin:`${marign}`,
               hight:`${hight}`,
+              borderWidth: `${borderWidth}`,
               boxShadow: `${shadow}`,
+              borderRadius: `${corner}`,
 
             }  
         }>

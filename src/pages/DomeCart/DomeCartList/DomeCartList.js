@@ -1,14 +1,8 @@
 import React from 'react';
 import Cart from 'zero-element-boot/lib/components/cart/Cart';
-import ItemPlaceholder from '@/pages/ItemPlaceholder'
+import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder'
 import NamedCart from 'zero-element-boot/lib/components/NamedCart'
 import { Flex, Text, Center } from '@chakra-ui/react'
-import CheckBoxIndicatorCart from 'zero-element-boot/lib/components/indicator/CheckBoxIndicatorCart';
-import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox';
-import SimpleCart from '@/pages/DomeCart/SimpleCart'
-
-
-
 
 /**
  *
@@ -29,11 +23,11 @@ export default function DomeCartList(props) {
 
         
         <Flex>
-            <SimpleCart margin={margin}>
+            <Cart margin='20px' linewidth='0'>
                 <NamedCart cart={cart}>
                     <ItemPlaceholder indicate={selected} fill={cart.stroke}/>
                 </NamedCart>
-            </SimpleCart>
+            </Cart>
 
                 <Center>
                     <Text fontSize='3xl' color='#999ca1'>{cart.xname}</Text>

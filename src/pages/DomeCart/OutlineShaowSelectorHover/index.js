@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default function SimpleCartDefault(props) {
+export default function OutlineShaowSelectorHover(props) {
     const{
        children, fill='#ffffff',
        hight='',

@@ -20,7 +20,7 @@ export default function DomeCartList(props) {
     console.log("xname===", cart)
     return (
         <Flex>
-            <SimpleCart margin="10px">
+            <SimpleCart margin="30px">
                 <NamedCart cart={cart}   >
                     <ContentCart fill={C_fill}  fontSize={fontSize} lineColor = {color} corner="16px">{title}</ContentCart>
                 </NamedCart>

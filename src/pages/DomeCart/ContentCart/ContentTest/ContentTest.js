@@ -13,15 +13,15 @@ import ContentCart from '@/pages/DomeCart/ContentCart/Content/index'
 export default function DomeCartList(props) {
     console.log('CartItemPlaceholder==', props)
 
-    const { cart, fontSize, title,margin } = props
+    const { cart, fontSize, title } = props
 
     const { selected, color,C_fill } = cart
 
     console.log("xname===", cart)
     return (
         <Flex>
-            <SimpleCart margin="0">
-                <NamedCart cart={cart}   >
+            <SimpleCart margin="30px">
+                <NamedCart cart={cart}>
                     <ContentCart fill={C_fill}  fontSize={fontSize} lineColor = {color} corner="2px" width='700px' >{title}</ContentCart>
                 </NamedCart>
             </SimpleCart>

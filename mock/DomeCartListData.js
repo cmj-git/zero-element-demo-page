@@ -15,7 +15,6 @@ export default {
                         "linewidth": "1px",
                         "padding": "0px",
                         "margin": "0",
-                        "isOnHover": false
                     },
 
                 },
@@ -53,6 +52,8 @@ export default {
                 "cart": {
                     "xname": "Round",
                     "props": {
+                        "padding": "0px"
+
                     }
                 },
 
@@ -64,6 +65,7 @@ export default {
                 "cart": {
                     "xname": "HoverShadowCart",
                     "props": {
+                        "padding": "0px"
                         
                     }
 
@@ -76,6 +78,7 @@ export default {
                 "cart": {
                     "xname": "SelectCart",
                     "props": {
+                        "padding": "0px"
                         
                     }
 
@@ -88,6 +91,7 @@ export default {
                 "cart": {
                     "xname": "HightlightCart",
                     "props": {
+                        "padding": "0px"
                     
                     },
 
@@ -111,7 +115,6 @@ export default {
                         "linewidth": "1px",
                         "padding": "0px",
                         "margin": "0",
-                        "isOnHover": false
                     },
 
 
@@ -132,7 +135,6 @@ export default {
                         "padding": "0px",
                         "margin": "0",
                         "stroke":"#e17d99",
-                        "isOnHover": false
                     },
                  
                 },
@@ -152,10 +154,7 @@ export default {
                         "linewidth": "1px",
                         "padding": "0px",
                         "margin": "0",
-                        "isOnHover": false
                     },
-                    "selected": false,
-                    "content_fill":"#9f713f"
 
                 },
               
@@ -175,7 +174,6 @@ export default {
                         "linewidth": "1px",
                         "padding": "0px",
                         "margin": "0",
-                        "isOnHover": false
                     },
 
                 },

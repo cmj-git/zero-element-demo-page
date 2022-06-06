@@ -1,12 +1,12 @@
 import React from 'react';
 import ItemPlaceholder from '@/pages/ItemPlaceholder'
-import TitleContainer from '@/pages/DomeCart/TitleContainer'
+import TitledContainer from '@/pages/DomeCart/TitledContainer'
 
 export default function TestTitleContainer(props) {
     return (
-        <TitleContainer title='ItemPlaceholder'textAlign='center'>
+        <TitledContainer title='ItemPlaceholder'>
             <ItemPlaceholder />     
-        </TitleContainer>
+        </TitledContainer>
     )
 
 }

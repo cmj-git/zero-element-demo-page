@@ -111,8 +111,8 @@ export default function index (props) {
 //  <AutoCartSetpresenter />   
 
 // <AutoCartSetSelector />  
-<SimpleCart  width='300px'  height='200px' fill='#f4f4f7'padding='20px'>
-    <ItemPlaceholder size='60px' />
+<SimpleCart  width='400px'  height='200px' fill='#f4f4f7'padding='30px'>
+    <ItemPlaceholder size='80px' />
 </SimpleCart>
   )
 

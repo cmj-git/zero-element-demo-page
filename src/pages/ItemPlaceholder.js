@@ -13,20 +13,20 @@ import Cart from 'zero-element-boot/lib/components/cart/Cart';
 
 export default function ItemPlaceholder(props) {
 
-   const { fill = '#e0e4e4', bg = '',size='90px' } = props
+   const { fill = '#e0e4e4', bg = '#ffffff',size='90px' } = props
 
    return (
-      <Cart fill={bg} paddin='0'>
+      <Cart fill={bg} paddin='0' linewidth='0' margin='0'>
          < Flex >
-                  <Rectangle margin='1%' width={size} height={size} fill={fill} corner='50%' />
+                  <Rectangle margin='2px' width={size} height={size} fill={fill} corner='50%' />
 
                   <Box as='span' fontWeight='bold' fontSize='lg' width={size} height={size}  p={4}>
 
-                     <Rectangle margin='12%' width='260%' height='30%' fill={fill} />
+                     <Rectangle margin='7px' width='240%' height='30%' fill={fill} />
 
-                     <Rectangle margin='12%' width='140%' height='15%' fill={fill} />
+                     <Rectangle margin='10px 7px' width='130%' height='15%' fill={fill} />
 
-                     <Rectangle margin='12%' width='140%' height='15%' fill={fill} />
+                     <Rectangle margin='10px 7px' width='130%' height='15%' fill={fill} />
 
                   </Box>
          </Flex>

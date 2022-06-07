@@ -63,7 +63,7 @@ import CssImage from '@/components/css/CssImage'
 import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequest';
 import { history } from 'umi';
 import { AutoLayout, NamedCart } from 'zero-element-boot';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { Center,Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Page } from 'zero-element-boot/lib/components/cart'
 import PageCart from '@/pages/PageCart'
 
@@ -76,6 +76,8 @@ import Rectangle from 'zero-element-boot/lib/components/shape/Rectangle'
 import SimpleCart from '@/pages/DomeCart/SimpleCart'
 
 import checkOff from '@/assets/check_off.svg';
+
+import TestOverlaySelector  from '@/pages/TestOverlaySelector'
 
 
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
@@ -111,9 +113,14 @@ export default function index (props) {
 //  <AutoCartSetpresenter />   
 
 // <AutoCartSetSelector />  
-<SimpleCart  width='400px'  height='200px' fill='#f4f4f7'padding='30px'>
-    <ItemPlaceholder size='80px' />
-</SimpleCart>
+  /* <SimpleCart  width='400px'  height='200px' fill='#f4f4f7'padding='30px'>
+        <ItemPlaceholder size='80px' />
+    </SimpleCart> */
+ <SimpleCart  width='500px'  height='800px' fill='#f4f4f7'padding='10px'>
+      <TestOverlaySelector />
+</SimpleCart> 
+
+
   )
 
 

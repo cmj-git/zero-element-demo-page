@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemPlaceholder from '@/pages/ItemPlaceholder'
-import TitledContainer from '@/pages/DomeCart/TitledContainer'
+import TitledContainer from 'zero-element-boot/lib/components/container/TitledContainer'
 
 export default function TestTitleContainer(props) {
     return (

@@ -13,6 +13,7 @@ export default function Index (props) {
     // let api ='/api/DomeCartListData'
     let api ='http://app1.console.smallsaas.cn:8001/openapi/lc/components/cart'
 
+
     const [data] = useTokenRequest({ api });
 
   /**
@@ -26,7 +27,7 @@ export default function Index (props) {
 
   return (
     <ChakraProvider>
-       <Center bg='#f4f3f2'>
+       <Center bg='#ffffff'>
                <AutoLayout {...config} data={data}>
                     <Presenter />
                </AutoLayout>

@@ -3,7 +3,7 @@ import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } 
 
 import ConnectionPage from '@/pages/Connection'
 import Nagation from '@/pages/nagation'
-import ItemPlaceholder from '@/pages/ItemPlaceholder/ItemPlaceholder'
+import ItemPlaceholder from '@/pages/ItemPlaceholder'
 // import Sandbox from '@/pages/TestCart/TestList/Sandbox'
 // import Sandbox from '@/pages/DomeCart/PatternCart/Pattern/Sandbox'
 
@@ -11,10 +11,14 @@ import ItemPlaceholder from '@/pages/ItemPlaceholder/ItemPlaceholder'
 // import Sandbox from '@/pages/DomeCart/ContentCart/ContentTest/Sandbox'
 // import Sandbox from '@/pages/DomeCart/DomeCartList/Sandbox'
 
-import AutoCartPresenter from '@/auto/AutoCartSet/Presenter.js';
+import AutoCartSetpresenter from '@/auto/AutoCartSet/Presenter'
+
 
 import Sandbox from '@/auto/AutoCartSet/Sandbox';
+// import Sandbox from '@/auto/AutoCartSetSelector/Sandbox';
 
+
+// import AutoCartSetSelector from '@/auto/AutoCartSetSelector/index';
 
 
 
@@ -23,8 +27,6 @@ import ContentCart from '@/pages/DomeCart/ContentCart/Content/index'
 import TestRight from '@/pages/DomeCart/TestRight'
 import IndicatorCollection from '@/composition/IndicatorCollection'
 import SelectorCollection from '@/composition/SelectorCollection'
-
-
 
 
 // import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder';
@@ -65,9 +67,9 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Page } from 'zero-element-boot/lib/components/cart'
 import PageCart from '@/pages/PageCart'
 
-import Circle from '@/components/shape/Circle'
-import Round from '@/components/shape/Round'
-import Rectangle from '@/components/shape/Rectangle'
+import Circle from 'zero-element-boot/lib/components/shape/Circle'
+import Round from 'zero-element-boot/lib/components/shape/Round'
+import Rectangle from 'zero-element-boot/lib/components/shape/Rectangle'
 
 
 
@@ -104,10 +106,14 @@ export default function index (props) {
 // </CssCart>
 
 /* <CssImage  src={checkOff} width='800px' height='800px'/> */
- <Sandbox /> 
+//  <Sandbox /> 
 
-/* <AutoCartPresenter /> */
-// <AutoCartSet /> 
+//  <AutoCartSetpresenter />   
+
+// <AutoCartSetSelector />  
+<SimpleCart  width='300px'  height='200px' fill='#f4f4f7'padding='20px'>
+    <ItemPlaceholder size='60px' />
+</SimpleCart>
   )
 
 

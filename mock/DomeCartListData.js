@@ -6,6 +6,7 @@ export default {
             {
 
                 "cart": {
+                    "cname": "dfdfdfd",
                     "xname": "Corner",
                     "props": {
                         "fill": "#ffffff",
@@ -26,6 +27,7 @@ export default {
             {
 
                 "cart": {
+                    // "cname": "dfdfdfd",
                     "xname": "Cart",
                     "props": {
                         "fill": "#ffffff",
@@ -134,7 +136,6 @@ export default {
                         "linewidth": "1px",
                         "padding": "0px",
                         "margin": "0",
-                        "stroke":"#e17d99",
                     },
                  
                 },

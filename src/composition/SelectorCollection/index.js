@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box} from "@chakra-ui/react";
 import SimpleCart from '@/pages/DomeCart/SimpleCart';
+import TitledContainer from 'zero-element-boot/lib/components/container/TitledContainer'
 
-import TitledContainer from '@/pages/DomeCart/TitledContainer'
 
 import OutlineShaowSelector from '@/composition/SelectorCollection/OutlineShaowSelector'
 import Select from '@/composition/SelectorCollection/Select'

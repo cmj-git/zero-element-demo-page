@@ -3,8 +3,7 @@ import Cart from 'zero-element-boot/lib/components/cart/Cart';
 import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder'
 import NamedCart from 'zero-element-boot/lib/components/NamedCart'
 import { Flex,Center,Text } from '@chakra-ui/react'
-import TitledContainer from '@/pages/DomeCart/TitledContainer/index'
-
+import TitledContainer from 'zero-element-boot/lib/components/container/TitledContainer'
 
 /**
  * 
@@ -12,29 +11,26 @@ import TitledContainer from '@/pages/DomeCart/TitledContainer/index'
  * 
  */
 
-
 export default function DomeCartList(props) {
     console.log('CartItemPlaceholder==', props)
 
     const { cart } = props
 
-    const { selected } = cart
+    const {cname} = cart
 
     console.log("xname===", cart)
     return (
         
         <Flex>
-            <Cart margin='20px' linewidth='0' >
-                <TitledContainer title={cart.xname}  style={{textIndent:'1em',margin:'0',fontWeight:'bold'}} >
-                    <NamedCart cart={cart}>
-                        <ItemPlaceholder indicate={selected} fill={cart.stroke}/>
-                    </NamedCart>
-                 </TitledContainer>
+            <Cart margin='20px' linewidth='0' width='200px' >
+                <TitledContainer title={cname}  style={{textIndent:'1em',margin:'0'}} >
+                    <TitledContainer title={cart.xname}  style={{textIndent:'1em',margin:'0',fontWeight:'bold'}} >
+                        <NamedCart cart={cart}>
+                            <ItemPlaceholder fill={cart.stroke}/>
+                        </NamedCart>
+                    </TitledContainer>
+                </TitledContainer>
             </Cart>
-          
-                {/* <Center>
-                    <Text fontSize='3xl' color='#999ca1'></Text>
-                </Center> */}
         </Flex>
 
     )

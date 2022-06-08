@@ -14,8 +14,8 @@ import ItemPlaceholder from '@/pages/ItemPlaceholder'
 import AutoCartSetpresenter from '@/auto/AutoCartSet/Presenter'
 
 
-import Sandbox from '@/auto/AutoCartSet/Sandbox';
-// import Sandbox from '@/auto/AutoCartSetSelector/Sandbox';
+// import Sandbox from '@/auto/AutoCartSet/Sandbox';
+import Sandbox from '@/auto/AutoCartSetSelector/Sandbox';
 
 
 // import AutoCartSetSelector from '@/auto/AutoCartSetSelector/index';
@@ -27,6 +27,8 @@ import ContentCart from '@/pages/DomeCart/ContentCart/Content/index'
 import TestRight from '@/pages/DomeCart/TestRight'
 import IndicatorCollection from '@/composition/IndicatorCollection'
 import SelectorCollection from '@/composition/SelectorCollection'
+import TestShadowIndicator from '@/pages/Test/TestShadowlndicator'
+
 
 
 // import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder';
@@ -78,6 +80,8 @@ import SimpleCart from '@/pages/DomeCart/SimpleCart'
 import checkOff from '@/assets/check_off.svg';
 
 import TestOverlaySelector  from '@/pages/TestOverlaySelector'
+import TestNamedCart  from '@/pages/TestOverlaySelector'
+
 
 
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
@@ -108,18 +112,20 @@ export default function index (props) {
 // </CssCart>
 
 /* <CssImage  src={checkOff} width='800px' height='800px'/> */
-//  <Sandbox /> 
+ <Sandbox /> 
 
 //  <AutoCartSetpresenter />   
 
-// <AutoCartSetSelector />  
-  /* <SimpleCart  width='400px'  height='200px' fill='#f4f4f7'padding='30px'>
-        <ItemPlaceholder size='80px' />
-    </SimpleCart> */
- <SimpleCart  width='500px'  height='800px' fill='#f4f4f7'padding='10px'>
-      <TestOverlaySelector />
-</SimpleCart> 
+  // /* <SimpleCart  width='400px'  height='200px' fill='#f4f4f7'padding='30px'>
+  //       <ItemPlaceholder size='80px' />
+  //   </SimpleCart> */
+//  <SimpleCart  width='500px'  height='800px' fill='#f4f4f7'padding='10px'>
+//       <TestOverlaySelector />
+// </SimpleCart> 
 
+// /* <TestShadowIndicator /> */
+
+//<TestNamedCart />
 
   )
 

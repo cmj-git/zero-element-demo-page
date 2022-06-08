@@ -39,7 +39,7 @@ import DomeCartList from '@/pages/DomeCart/DomeCartList/DomeCartList';
 import PatternCart from '@/pages/DomeCart/PatternCart/PatternCart';
 import ContentCart from '@/pages/DomeCart/ContentCart/ContentCart/ContentCart';
 import ContentTest from '@/pages/DomeCart/ContentCart/ContentTest/ContentTest';
-
+import NamedCart from 'zero-element-boot/lib/components/NamedCart'
 
 
 
@@ -63,7 +63,15 @@ NamedIndicatorSet({
 
   RightIconIndicatorDefault,
   RightIconIndicatorHover,
-  RightIconIndicatorSelected
+  RightIconIndicatorSelected,
+  Cart,
+  Circle,
+  HightlightCart,
+  HoverShadowCart,
+  Rectangle,
+  Round,
+  SelectCart,
+
 
 })
 
@@ -75,6 +83,7 @@ NamedPresenterSet({
   ContentCart,
   ContentTest,
 
+
 })
 
 NamedCartConfig({
@@ -85,7 +94,7 @@ NamedCartConfig({
   Rectangle,
   Round,
   SelectCart,
- 
+
 
  
 })

@@ -11,24 +11,35 @@ import Presenter from './Presenter';
 export default function Index (props) {
 
     // let api ='/api/DomeCartListData'
-    let api ='http://app1.console.smallsaas.cn:8001/openapi/lc/components/cart'
 
+    // let api ='http://app1.console.smallsaas.cn:8001/openapi/lc/components/cart'
+
+  const { onItemClick,endpoint,...rest}=props;
+
+const api =endpoint +'/lc/components/cart'
 
     const [data] = useTokenRequest({ api });
 
+    
   /**
    * 页面配置
    */
   const config = {
     items: data.length > 0 ? data : [],
     layout: layout
-
+   
   };
+
+  // const onJarItemClick = (item) => {
+  //     //TODO
+      // console.log(item, ' === item')
+    // }
+  //   console.log(data, ' === item')
 
   return (
     <ChakraProvider>
        <Center bg='#ffffff'>
-               <AutoLayout {...config} data={data}>
+               <AutoLayout {...config} data={data} onItemClick={onItemClick} >
                     <Presenter />
                </AutoLayout>
         </Center>

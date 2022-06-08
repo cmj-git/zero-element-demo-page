@@ -22,7 +22,7 @@ export default function DomeCartList(props) {
     return (
         
         <Flex>
-            <Cart margin='20px' linewidth='0' width='200px' >
+            <Cart margin='20px' linewidth='0'  >
                 <TitledContainer title={cname}  style={{textIndent:'1em',margin:'0'}} >
                     <TitledContainer title={cart.xname}  style={{textIndent:'1em',margin:'0',fontWeight:'bold'}} >
                         <NamedCart cart={cart}>

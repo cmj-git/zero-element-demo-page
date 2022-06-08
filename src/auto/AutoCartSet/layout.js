@@ -1,9 +1,9 @@
 
 module.exports = {
-  xname: 'Flexbox',
-  // props: {
-  //   columns: 2
-  // },
+  xname: 'Gridbox',
+  props: {
+    columns: 2
+  },
   container: 'PlainList'
   
   

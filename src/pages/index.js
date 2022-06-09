@@ -12,10 +12,11 @@ import ItemPlaceholder from '@/pages/ItemPlaceholder'
 // import Sandbox from '@/pages/DomeCart/DomeCartList/Sandbox'
 
 import AutoCartSetpresenter from '@/auto/AutoCartSet/Presenter'
+import TestApplets from '@/pages/Test/TestApplets'
 
 
-// import Sandbox from '@/auto/AutoCartSet/Sandbox';
-import Sandbox from '@/auto/AutoCartSetSelector/Sandbox';
+// import Sandbox from '@/auto/AutoCartSetDome/Sandbox';
+import Sandbox from '@/auto/AutoCartSet/Sandbox';
 
 
 // import AutoCartSetSelector from '@/auto/AutoCartSetSelector/index';
@@ -112,20 +113,21 @@ export default function index (props) {
 // </CssCart>
 
 /* <CssImage  src={checkOff} width='800px' height='800px'/> */
- <Sandbox /> 
+//  <Sandbox /> 
 
 //  <AutoCartSetpresenter />   
 
-  // /* <SimpleCart  width='400px'  height='200px' fill='#f4f4f7'padding='30px'>
-  //       <ItemPlaceholder size='80px' />
-  //   </SimpleCart> */
+   <SimpleCart  width='1200px'  height='540px' fill='#f4f4f7'padding='30px'>
+        <ItemPlaceholder />
+    </SimpleCart> 
 //  <SimpleCart  width='500px'  height='800px' fill='#f4f4f7'padding='10px'>
 //       <TestOverlaySelector />
 // </SimpleCart> 
 
 // /* <TestShadowIndicator /> */
 
-//<TestNamedCart />
+// <ItemPlaceholder /> 
+// <TestApplets /> 
 
   )
 

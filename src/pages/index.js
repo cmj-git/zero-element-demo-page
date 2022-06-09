@@ -53,6 +53,10 @@ import TestCRUDList from '@/composition/testCrudList';
 import TestDownload from '@/pages/TestDownloadDemo';
 import TestRowIcons from '@/composition/testRowIcons/Sandbox';
 import TestNamedCart from '@/pages/TestNamedCart'
+import AutoCartSet from '@/pages/AutoCartSet/Sandbox'
+import ItemPlaceholder from '@/components/presenter/ItemPlaceholder.js'
+
+
 
 export default function Index(props) {
 
@@ -97,6 +101,6 @@ export default function Index(props) {
   // return <AutoLayout {...config} onItemClick={onJarItemClick} />
   //test end
 
-  return <TestCRUDList/>
+  return <ItemPlaceholder/>
 
 }

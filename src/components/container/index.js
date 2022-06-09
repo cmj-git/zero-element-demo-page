@@ -2,9 +2,8 @@ import APIContainer from './APIContainer';
 import Container from './Container';
 //list
 import PlainList from '../list/PlainList';
-import SelectedList from '../list/SelectedList';
-import SelectionList from '../list/SelectionList';
-import SelectCheckboxList from '../list/SelectCheckboxList';
+import SelectList from '../list/SelectList';
+import MultiSelectList from '../list/MultiSelectList';
 import LoadingList from '../list/LoadingList'
 import AddMoreList from '../list/AddMoreList';
 import ItemClickList from '../list/ItemClickList';
@@ -15,10 +14,9 @@ export {
     Container,
         // list type of container
     PlainList,
-    SelectedList,
-    SelectCheckboxList,
+    MultiSelectList,
     LoadingList,
-    SelectionList,
+    SelectList,
     AddMoreList,
     ItemClickList,
     SimCRUDList

@@ -1,57 +1,40 @@
 import React from 'react';
-import { Box, Tabs, Center, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { Butter, Clean, Pink } from 'zero-element-boot/lib/components/presenter'
-import Flexbox from 'zero-element-boot/lib/components/layout/Flexbox'
-import PageCart from 'zero-element-boot/lib/components/cart/PageCart';
-import Circle from 'zero-element-boot/lib/components/cart/Circle';
-// import Cart from 'zero-element-boot/lib/components/cart/Cart';
+import { Box, Flex } from '@chakra-ui/react'
 import Rectangle from 'zero-element-boot/lib/components/presenter/Rectangle';
-
+import Cart from 'zero-element-boot/lib/components/cart/Cart';
 
 /**
  * 
  * @param {color} fill 圆、矩形背景色
  * @param {color} bg 背景色
- * @param {width} width 宽度
- * @param {height} height 高度
- * 
+ * @param {数字} size 圆和矩形的尺寸
  * 
  */
 
 export default function ItemPlaceholder(props) {
 
-   const { width = '90px', height = '90px', fill = '#e0e4e4', bg = '' } = props
+   const { fill = '#e0e4e4', bg = '', size = 150 } = props
 
-
-
-
-   console.log('w,h,b ==', width, height, fill)
-
+   console.log(size,'===size');
+   
    return (
-      <div style={{ position: 'relative' }}>
-         <Center w='100%' >
-            <Center w='350px' h='140px' bg={bg}>
-               <Rectangle margin='10px' width={width} height={height} fill={fill} corner='50%' />
+      <Cart fill={bg} paddin='0' linewidth='0' margin='0'>
+         < Flex >
+                  <Rectangle margin={`${ 0.042*size}px`} width={`${0.4*size}px`} height={`${0.4*size}px`} fill={fill} corner='50%' />
 
+                  <Box width={`${size}px`}  height={`${ 0.28*size}px`}   >
 
-               {/* <Center w='50%' h='80%'> */}
-               <Box as='span' fontWeight='bold' fontSize='lg' width='70%' height='96%'>
+                     <Rectangle margin={`${ 0.05*size}px`}  width={`${0.85*size}px`} height={`${ 0.1*size}px`} fill={fill} />
 
-                  <Rectangle margin='20px' width='192px' height='20%' fill={fill} />
+                     <Rectangle margin={`${ 0.05*size}px`} width={`${ 0.4*size}px`} height={`${ 0.08*size}px`} fill={fill} />
 
-                  <Rectangle margin='20px' width='96px' height='10%' fill={fill} />
+                     <Rectangle margin={`${ 0.05*size}px`} width={`${0.4*size}px`} height={`${ 0.08*size}px`} fill={fill} />
 
-                  <Rectangle margin='20px' width='96px' height='10%' fill={fill} />
+                  </Box>
+         </Flex>
+     </Cart>
 
-               </Box>
-
-               {/* </Center> */}
-
-            </Center>
-         </Center>
-
-         
-      </div>
+   
 
    )
 }

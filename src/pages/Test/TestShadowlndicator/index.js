@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder'
-import ShadowIndicator from '@/components/indicator/ShadowIndicator';
+import ShadowIndicator from 'zero-element-boot/lib/components/indicator/ShadowIndicator';
 
 export default function index(){
     return(

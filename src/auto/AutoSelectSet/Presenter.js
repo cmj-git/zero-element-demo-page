@@ -9,7 +9,7 @@ import OverlaySelector  from 'zero-element-boot/lib/components/OverlaySelector'
 
 import Default  from '../../components/indicator/CircularCheckboxIndicator'
 import Selected  from '../../components/indicator/CircularCheckboxIndicator/Selected'
-import ShadowIndicator from '../../components/indicator/ShadowIndicator';
+import ShadowIndicator from 'zero-element-boot/lib//components/indicator/ShadowIndicator';
 
 
 /**

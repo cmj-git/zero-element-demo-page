@@ -57,7 +57,7 @@ import Select from '@/composition/SelectorCollection/Select'
 
 import CartCollection from '@/components/collection/CartCollection'
 
-import CssCart from '@/components/css/CssCart'
+import CssCart from 'zero-element-boot/lib/components/css/CssCart'
 import CssImage from '@/components/css/CssImage'
 
 

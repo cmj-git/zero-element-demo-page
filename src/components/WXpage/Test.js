@@ -36,7 +36,7 @@ const map = {
   "iPadMini": { width: '768px', height:'1024px' },
 }
 
-let stylePropsData={
+let stylePropsDate={
     background: '#f0f0f0',
     padding:' 0',
     margin:'20px', 
@@ -48,32 +48,26 @@ let stylePropsData={
 
 export default  function Index(props) {
 
+
+  const[modelName,setModelName]=useState(deviceModel)
+  const[styleProps,setStyleProps]=useState(stylePropsDate)
+
   const { children,title='小程序' ,deviceModel='iPhoneSE'} = props;
-  const [modelName, setModelName] = useState(deviceModel)
-  const [styleProps, setStyleProps] = useState(stylePropsData)
-
-
-
-  useEffect(_=>{
-
-    if(modelName){
-      stylePropsData = {
-        ...stylePropsData,
-        ...map[modelName]
-      }
-      setStyleProps(stylePropsData)
-    }
     
-  }, [modelName])
+useEffect(_=>{
+    if(modelName){
+        stylePropsDate = {
+            ...stylePropsDate,
+            ...map[modelName]
+        }
+           setStyleProps(stylePropsDate)
+    }
+},[modelName])
 
-function modelNameChange(value){
-  console.log(value,'==value');
-  
-  setModelName(value)
-}
-
-
-
+    function modelNameChange(value){
+         console.log(value,'==value');
+         setModelName(value)
+    }
 
   return (
     <div style={styleProps}>
@@ -89,7 +83,7 @@ function modelNameChange(value){
                         <PopoverContent margin='4px 40px'>
                             <PopoverBody>
                             <PopoverHeader fontWeight='semibold'>deviceModel:</PopoverHeader>
-                                <RadioGroup onChange={(value) => modelNameChange(value)}>
+                                <RadioGroup onChange={(value) => modelNameChange(value)} >
                                   <Stack>
                                     <Radio value='iPhoneSE'>iPhoneSE</Radio>
                                     <Radio value='iPhoneXR'>iPhoneXR</Radio>

@@ -15,9 +15,7 @@ export default function index(props) {
 
 
   return React.Children.map(children, child => {
-    return <div  style={{ ...style}}
-    //   onMouseEnter={() => toggleHover()} onMouseLeave={() => toggleHover()}
-    >
+    return <div  style={{ ...style}} >
       {child}
     </div>
   })

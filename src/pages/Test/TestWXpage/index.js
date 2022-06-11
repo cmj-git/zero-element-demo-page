@@ -1,12 +1,12 @@
 import React from 'react'
-import Applets from '@/components/Applets'
+import WXpage from '@/components/WXpage'
 import ItemPlaceholder from '@/pages/ItemPlaceholder'
 
 
 export default function index(){
     return(
-        <Applets>
+        <WXpage>
             <ItemPlaceholder />
-        </Applets>
+        </WXpage>
     )
 }

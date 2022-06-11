@@ -12,11 +12,13 @@ import ItemPlaceholder from '@/pages/ItemPlaceholder'
 // import Sandbox from '@/pages/DomeCart/DomeCartList/Sandbox'
 
 import AutoCartSetpresenter from '@/auto/AutoCartSet/Presenter'
-import TestApplets from '@/pages/Test/TestApplets'
+import TestWXpage from '@/pages/Test/TestWXpage'
 
 
 // import Sandbox from '@/auto/AutoCartSetDome/Sandbox';
-import Sandbox from '@/auto/AutoCartSet/Sandbox';
+// import Sandbox from '@/auto/AutoCartSet/Sandbox';
+import Sandbox from '@/auto/AutoSelectSet/Sandbox';
+
 
 
 // import AutoCartSetSelector from '@/auto/AutoCartSetSelector/index';
@@ -83,6 +85,9 @@ import checkOff from '@/assets/check_off.svg';
 import TestOverlaySelector  from '@/pages/TestOverlaySelector'
 import TestNamedCart  from '@/pages/TestOverlaySelector'
 
+import TestBingUnderBarSelected  from '@/pages/Test/TestBingUnderBarSelected'
+import TestBorderStyleSelected  from '@/pages/Test/TestBorderStyleSelected'
+
 
 
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
@@ -117,9 +122,9 @@ export default function index (props) {
 
 //  <AutoCartSetpresenter />   
 
-   <SimpleCart  width='1200px'  height='540px' fill='#f4f4f7'padding='30px'>
-        <ItemPlaceholder />
-    </SimpleCart> 
+  //  <SimpleCart  width='1200px'  height='540px' fill='#f4f4f7'padding='30px'>
+  //       <ItemPlaceholder />
+  //   </SimpleCart> 
 //  <SimpleCart  width='500px'  height='800px' fill='#f4f4f7'padding='10px'>
 //       <TestOverlaySelector />
 // </SimpleCart> 
@@ -127,8 +132,10 @@ export default function index (props) {
 // /* <TestShadowIndicator /> */
 
 // <ItemPlaceholder /> 
-// <TestApplets /> 
+<TestWXpage /> 
 
+    // <TestBingUnderBarSelected />
+    // <TestBorderStyleSelected />
   )
 
 

@@ -25,11 +25,11 @@ import ShadowIndicator from 'zero-element-boot/lib/components/indicator/ShadowIn
 
 export default function index(props) {
 
-    const { __cart, isSelected } = props
+    const { cart, isSelected } = props
     console.log(isSelected,'==');
     
 
-    const { cname } = __cart
+    const { cname } = cart
 
     return (
 
@@ -40,14 +40,14 @@ export default function index(props) {
                                 selectedIndicator={Selected}  isSelected={isSelected} >
                     <Cart  margin='20px' linewidth='0'> 
                         <TitledContainer title={cname}  style={{textIndent:'1em',margin:'0'}} >
-                            <TitledContainer title={__cart.xname}  style={{textIndent:'1em',margin:'0',fontWeight:'bold'}} >
-                                <NamedCart  cart={__cart} >
+                            <TitledContainer title={cart.xname}  style={{textIndent:'1em',margin:'0',fontWeight:'bold'}} >
+                                <NamedCart  cart={cart} >
                                     <ItemPlaceholder bg='transparent'/>
                                 </NamedCart>
                             </TitledContainer>
                         </TitledContainer>
                     </Cart> 
-                </OverlaySelector>
+              </OverlaySelector> 
            </Cart>
         //  </Flex>
 

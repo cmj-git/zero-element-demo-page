@@ -2,38 +2,38 @@ import React from 'react';
 
 import checkOff from '@/assets/check_off.svg';
 
+import StyleDate from './index.less';
+
 import { Flex } from '@chakra-ui/react'
-
-require('./index.less');
-
-import Circle from 'zero-element-boot/lib/components/shape/Circle';
+import Flexbox from '@/components/layout/Flexbox';
 import Cart from 'zero-element-boot/lib/components/cart/Cart';
 
 
 export default function Index(props) {
 
-const { children, ...defaultSelectedStyles} = props;
+    const { children, ...defaultSelectedStyles } = props;
 
-const styles = {
-position: 'relative',
-margin:'auto 0 auto auto',
-...defaultSelectedStyles
-}
+    const styles = {
+        position: 'relative',
+        margin: 'auto 10px auto 30px',
+        padding: '0',
+        // border:'1px #ff0000 solid',
+        ...defaultSelectedStyles
+    }
 
 
-return (
-      <Flex>
-          <div>
-              {
-              React.Children.map(children, child =>(
-              child
-              ))
-              }
-          </div>
-
-          <div style={styles} className={ 'right_icon_off'}>
-            <img src={checkOff} />
-          </div>
-      </Flex>
-)
+    return (
+        <Flex>
+            <Cart padding='10px' margin='0' lineColor='#ffffff' >
+                {
+                    React.Children.map(children, child => (
+                        child
+                    ))
+                }
+            </Cart>
+            <div style={styles} className={StyleDate.right_icon_off}>
+                <img src={checkOff} />
+            </div>
+        </Flex>
+    )
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useLayout from 'zero-element-boot/lib/components/hooks/useLayout';
 
 // 无效果，仅传递数据
-import NextIndicator from 'zero-element-boot/lib/components/indicator/NextIndicator';
+// import NextIndicator from '@/components/indicator/NextIndicator';
 
 /**
  * 

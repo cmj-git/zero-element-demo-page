@@ -1,10 +1,14 @@
 import React from 'react'
-import WXpage from '@/components/WXpage/Test'
+import WxPage from '@/components/WxPage'
 import ItemPlaceholder from '@/pages/ItemPlaceholder'
-
+import { ChakraProvider } from '@chakra-ui/react'
 
 export default function index(){
     return(
-       <WXpage />
+        <ChakraProvider>
+            <WxPage>
+                <ItemPlaceholder />
+            </WxPage>
+       </ChakraProvider>
     )
 }

@@ -3,65 +3,60 @@ import { ChakraProvider, Box, VStack, Spinner, Switch, FormControl, FormLabel } 
 
 import ConnectionPage from '@/pages/Connection'
 import Nagation from '@/pages/nagation'
-import ItemPlaceholder from '@/pages/ItemPlaceholder'
-// import Sandbox from '@/pages/TestCart/TestList/Sandbox'
-// import Sandbox from '@/pages/DomeCart/PatternCart/Pattern/Sandbox'
 
-// import Sandbox from '@/pages/DomeCart/ContentCart/ContentCart/Sandbox'
-// import Sandbox from '@/pages/DomeCart/ContentCart/ContentTest/Sandbox'
-// import Sandbox from '@/pages/DomeCart/DomeCartList/Sandbox'
 
+//---sandbox
+import TestList from '@/pages/TestCart/TestList/Sandbox'
+import PatternCart from '@/pages/DomeCart/PatternCart/Pattern/Sandbox'
+import ContentCart from '@/pages/DomeCart/ContentCart/ContentCart/Sandbox'
+import ContentTest from '@/pages/DomeCart/ContentCart/ContentTest/Sandbox'
+import DomeCartList from '@/pages/DomeCart/DomeCartList/Sandbox'
+import AutoCartSet from '@/auto/AutoCartSet/Sandbox';
+import AutoSelectSet from '@/auto/AutoSelectSet/Sandbox';
+import AutoWxAppList from '@/auto/AutoWxAppList/Sandbox';
+import AutoPageList from '@/auto/AutoPageList/Sandbox';
+import TestAutoLayout from '@/pages/Test/TestAutoLayout/Sandbox';
+import AutoComponentSet from '@/auto/AutoComponentSet/Sandbox';
+import AutoDome from '@/auto/AutoDome/Sandbox'
+// import AutoDome from '@/components/'
+
+
+
+
+//---Presenter
+// import Presenter from '@/auto/AutoSelectSet/Presenter';
+// import Presenter from '@/auto/AutoWxAppList/Presenter';
+// import Presenter from '@/auto/AutoPageList/Presenter';
+import AutoPageListPresenter from '@/auto/AutoPageList/Presenter'
 import AutoCartSetpresenter from '@/auto/AutoCartSet/Presenter'
-import TestWXpage from '@/pages/Test/TestWXpage'
-
-
-// import Sandbox from '@/auto/AutoCartSetDome/Sandbox';
-// import Sandbox from '@/auto/AutoCartSet/Sandbox';
-import Sandbox from '@/auto/AutoSelectSet/Sandbox';
 
 
 
-// import AutoCartSetSelector from '@/auto/AutoCartSetSelector/index';
+//-- selector
+import DefaultSelector from '@/components/selector/DefaultSelector'
+import AgreeSelector from '@/components/selector/AgreeSelector'
 
 
 
-import Container from '@/pages/AppletsContainer/index'
-import ContentCart from '@/pages/DomeCart/ContentCart/Content/index'
-import TestRight from '@/pages/DomeCart/TestRight'
-import IndicatorCollection from '@/composition/IndicatorCollection'
-import SelectorCollection from '@/composition/SelectorCollection'
-import TestShadowIndicator from '@/pages/Test/TestShadowlndicator'
 
-
-
-// import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder';
-
-// import TestAPI from './TestAPI';
-
-
-import TestCrudList from '@/pages/testCrudList/layout'
-
-// import TestPageCart from './TestCart/TestPageCart';
-import ManyCart from '@/pages/ManyCart';
-import Layout from '@/pages/layout';
-import CartItemPlaceholder from '@/pages/CartItemPlaceholder';
-import NamedCartItemPlaceholder from '@/pages/NamedCartItemPlaceholder';
-import CartList from '@/pages/TestCart/CartList';
-import TabsCart from '@/pages/DomeCart/TabsCart';
-// import PageCart from 'zero-element-boot/lib/components/cart/PageCart';
 
 // import CheckBoxIndicatorCart from '@/pages/DomeCart/indicator/CheckBoxIndicatorCart';
-
 import OutlineShaowSelector from '@/composition/SelectorCollection/OutlineShaowSelector'
 import Select from '@/composition/SelectorCollection/Select'
-
 import CartCollection from '@/components/collection/CartCollection'
 
-import CssCart from 'zero-element-boot/lib/components/css/CssCart'
+
+//  --Cart
+
+import CssCart from 'zero-element-boot/lib/components/cart/CssCart'
 import CssImage from '@/components/css/CssImage'
-
-
-
+import SimpleCart from '@/pages/DomeCart/SimpleCart'
+import Circle from 'zero-element-boot/lib/components/shape/Circle'
+import Round from 'zero-element-boot/lib/components/shape/Round'
+import Rectangle from 'zero-element-boot/lib/components/shape/Rectangle'
+import TabsCart from '@/pages/DomeCart/TabsCart';
+// import PageCart from 'zero-element-boot/lib/components/cart/PageCart';
+import { Page } from 'zero-element-boot/lib/components/cart'
 
 
 
@@ -69,25 +64,51 @@ import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequ
 import { history } from 'umi';
 import { AutoLayout, NamedCart } from 'zero-element-boot';
 import { Center,Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { Page } from 'zero-element-boot/lib/components/cart'
-import PageCart from '@/pages/PageCart'
 
-import Circle from 'zero-element-boot/lib/components/shape/Circle'
-import Round from 'zero-element-boot/lib/components/shape/Round'
-import Rectangle from 'zero-element-boot/lib/components/shape/Rectangle'
+import Hooks from '@/components/StydlyHooks'
 
 
 
-import SimpleCart from '@/pages/DomeCart/SimpleCart'
 
-import checkOff from '@/assets/check_off.svg';
 
+//---Test
+
+// import TestAPI from './TestAPI';
+// import TestPageCart from './TestCart/TestPageCart';
+import TestCrudList from '@/pages/testCrudList/layout'
 import TestOverlaySelector  from '@/pages/TestOverlaySelector'
-import TestNamedCart  from '@/pages/TestOverlaySelector'
+import TestBingUnderBarSelected  from '@/pages/Test/TestIndicator/TestBingUnderBarSelected'
+import TestBorderStyleSelected  from '@/pages/Test/TestIndicator/TestBorderStyleSelected'
+import TestTitledBarContaner  from '@/components/TitledBarContainer'
+import TestTagIndicator from '@/pages/Test/TestIndicator/TestTagIndicator'
+import TestWXpage from '@/pages/Test/TestWXpage'
+import TestShadowIndicator from '@/pages/Test/TestIndicator/TestShadowlndicator'
+import TestRight from '@/pages/DomeCart/TestRight'
+import TestVStack from '@/pages/Test/TestVStack'
+import TestPreviewAutoLayoutSelected from '@/pages/Test/TestIndicator/TestPreviewAutoLayoutSelected'
+import TestSelector from '@/auto/TestSelector'
+import TestHCenter from '@/pages/Test/TestHCenter'
+import TestOnDeleteIndicator from '@/pages/Test/TestIndicator/TestOnDeleteIndicator'
+import TestOnDefaultNewItemIndicator from '@/pages/Test/TestButton'
+// import TestOnDefaultNewItemIndicator from '@/pages/Test/TestIndicator/TestOnDefaultNewItemIndicator'
+import TestDotDashButton from '@/pages/Test/TestPresenter/TestDotDashButton'
+import TestCounter from '@/pages/Test/TestCounter'
+import TestCounterPage from '@/pages/Test/TestCounterPage'
+import TestShowHideIndicator from '@/pages/Test/TestIndicator/TestShowHideIndicator'
 
-import TestBingUnderBarSelected  from '@/pages/Test/TestBingUnderBarSelected'
-import TestBorderStyleSelected  from '@/pages/Test/TestBorderStyleSelected'
 
+
+
+// import TestHCart from '@/components/hooks/useSize'
+
+
+import Logo from '@/components/Logo'
+// import ItemPlaceholder from 'zero-element-boot/lib/components/presenter/ItemPlaceholder';
+import ManyCart from '@/pages/ManyCart';
+import Layout from '@/pages/layout';
+import CartItemPlaceholder from '@/pages/CartItemPlaceholder';
+import NamedCartItemPlaceholder from '@/pages/NamedCartItemPlaceholder';
+import CartList from '@/pages/TestCart/CartList';
 
 
 const promiseAjax = require('zero-element-boot/lib/components/utils/request');
@@ -97,46 +118,23 @@ export default function index (props) {
 
 
   return (
-
-  
-//  <Select />
-//  <SimpleCart width='400px'  height='400px' fill='#f4f4f7'padding='20px'>
-  /* <Circle /> */
- /* <Round /> */
-/* <Rectangle /> */
-//  </SimpleCart> 
-
-
-//  <PageCart >
-//    <CartCollection />
-//          {/* <SelectorCollection />  */}
-// </PageCart>
-
-// <CssCart  width='200px' height='200px'background='#f4f4f2' margin='100px auto' color='#ff0000'>
-//   <h1>111</h1>
-//   222
-// </CssCart>
-
-/* <CssImage  src={checkOff} width='800px' height='800px'/> */
-//  <Sandbox /> 
-
-//  <AutoCartSetpresenter />   
-
-  //  <SimpleCart  width='1200px'  height='540px' fill='#f4f4f7'padding='30px'>
-  //       <ItemPlaceholder />
-  //   </SimpleCart> 
-//  <SimpleCart  width='500px'  height='800px' fill='#f4f4f7'padding='10px'>
-//       <TestOverlaySelector />
-// </SimpleCart> 
-
-// /* <TestShadowIndicator /> */
-
-// <ItemPlaceholder /> 
-<TestWXpage /> 
-
-    // <TestBingUnderBarSelected />
-    // <TestBorderStyleSelected />
-  )
+      // <ItemPlaceholder /> 
+      //  <TestSelector />    
+      //  <TestCircularCheckboxIndicator />
+      //  <TestOverlaySelector />    
+          // <TestBingUnderBarSelected />
+          // <TestBorderStyleSelected />
+      // <TestTitledBarContaner>
+      //   <ItemPlaceholder />  
+      // <TestVStack />
+      // <AutoDome />
+      // <AutoWxAppList />
+    //   <TestShowHideIndicator />
+      // <AutoCartSet />
+      // <AgreeSelector />
+      <TestCounterPage />
+      // <AutoCartSet />
+    )
 
 
 

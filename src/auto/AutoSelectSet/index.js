@@ -6,15 +6,14 @@ import useTokenRequest from 'zero-element-boot/lib/components/hooks/useTokenRequ
 import Presenter from './Presenter';
 
 
-export default function Index (props) {
+export default function index (props) {
 
    
-  const { onItemClick,endpoint,...rest}=props;
+  const { ...rest}=props;
 
-  const api =endpoint +'/lc/components/cart'
+  let api='/api/AutoSelectSet'
 
   const [data] = useTokenRequest({ api });
-
     
   /**
    * 页面配置
@@ -32,11 +31,9 @@ export default function Index (props) {
   };
   
       return (
-          <Center bg='#ffffff'>
-                  <AutoLayout {...config} data={data} onItemClick={onItemClick} >
+                  <AutoLayout {...config} data={data} >
                         <Presenter />
                   </AutoLayout>
-            </Center>
 
   )
 }

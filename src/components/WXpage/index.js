@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useBoolean } from 'react';
 import Cart from 'zero-element-boot/lib/components/cart/Cart';
 import { Radio, RadioGroup, Button,Flex,Stack,ChakraProvider } from '@chakra-ui/react'
-import CssCart from 'zero-element-boot/lib/components/css/CssCart';
+import CssCart from 'zero-element-boot/lib/components/cart/CssCart';
 import {
     Popover,
     PopoverTrigger,
@@ -48,7 +48,7 @@ let stylePropsData={
 
 export default  function Index(props) {
 
-  const { children,title='小程序' ,deviceModel='iPhoneSE'} = props;
+  const { children,title='' ,deviceModel='iPhoneSE', ...rest} = props;
   const [modelName, setModelName] = useState(deviceModel)
   const [styleProps, setStyleProps] = useState(stylePropsData)
 
@@ -79,7 +79,6 @@ function modelNameChange(value){
     <div style={styleProps}>
         <Cart  fill='#ffffff' linewidth='0' corner ='10px 10px 0 0' padding='auto auto 60px auto' margin='0' >
             <Flex justify='end'>
-              <ChakraProvider>
                     <Popover>
                         <PopoverTrigger>
                             <div>
@@ -103,8 +102,7 @@ function modelNameChange(value){
                             </PopoverBody>
                         </PopoverContent>
                       </Popover>
-                </ChakraProvider>
-                <div style={ { margin: 'auto', padding:'auto', color:'',fontSize:'24px',fontWeight:'', }}>
+                <div style={ { margin: 'auto', padding:'auto', color:'',fontSize:'24px',fontWeight:'bold', }}>
                        {title}
                 </div>
                 <CssCart borderWidth='1px ' borderStyle ='solid' borderColor ='#e1e1e1' borderRadius='62px' padding='0'margin='10px' width='120px'height='40px' >
@@ -120,9 +118,11 @@ function modelNameChange(value){
             </Flex>
        </Cart>
       {
-        React.Children.map(children, child =>(
-          child
-        ))
+       React.Children.map(children, child => {
+        return React.cloneElement(child, {
+        ...rest
+        })
+    })
       }
   </div>
   )

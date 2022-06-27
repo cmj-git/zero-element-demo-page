@@ -23,7 +23,7 @@ export default  function Index(props) {
     position: 'relative',
     boxShadow: '0 0px 6px rgba(0, 0, 0, 0.2)',
     borderRadius:'4PX',
-    margin:'10px',
+    // margin:'10px',
     width:'100%',
     height:'100%',
   }

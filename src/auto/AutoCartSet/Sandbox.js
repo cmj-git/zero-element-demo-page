@@ -6,7 +6,7 @@ import AutoCartSet from './index';
 
 export default function (props) {
 
-    let endpoint='http://app1.console.smallsaas.cn:8001/openapi'
+    // let endpoint='http://app1.console.smallsaas.cn:8001/openapi'
 
     const onHandleItemClick = (item) => {
         console.log(item, ' === item')
@@ -14,7 +14,7 @@ export default function (props) {
     
     return (
         <ChakraProvider>
-            <AutoCartSet onItemClick={onHandleItemClick} endpoint={endpoint} />
+            <AutoCartSet onItemClick={onHandleItemClick}/>
         </ChakraProvider>
     )
 }

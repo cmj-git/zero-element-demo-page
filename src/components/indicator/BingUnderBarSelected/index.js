@@ -4,7 +4,7 @@ import React from 'react';
 
 export default  function Index(props) {
 
-  const { children,title='222', src,alt, ...style } = props;
+  const { children, ...style } = props;
 
 
   const styles = {
@@ -24,8 +24,7 @@ export default  function Index(props) {
         ))
       }
       
-      <img  style={{ ...style}} src={src} alt={alt} />
-      {title}
+      {/* {title} */}
   </div>
   )
 }

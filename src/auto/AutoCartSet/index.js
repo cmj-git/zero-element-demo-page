@@ -11,7 +11,10 @@ export default function Index (props) {
    
   const { onItemClick,endpoint,...rest}=props;
 
-  const api =endpoint +'/lc/components/cart'
+  // const api =endpoint +'/lc/components/cart'
+
+  //  let api ='/api/DomeCartListData'
+   const api = '/api/DomeCartListData';
 
   const [data] = useTokenRequest({ api });
 
@@ -26,17 +29,21 @@ export default function Index (props) {
       props: {
         columns: 2
       },
-      container: 'SelectList'
+      // container: 'PlainList'
+      // container: 'SelectList',
+      container: 'GroupedList',
+      presenter: 'AutoCartSet',
+
+      
     }
    
   };
   
       return (
           <Center bg='#ffffff'>
-                  <AutoLayout {...config} data={data} onItemClick={onItemClick} >
-                        <Presenter />
-                  </AutoLayout>
-            </Center>
+                  <AutoLayout {...config} data={data} onItemClick={onItemClick}  />
+                        
+          </Center>
 
   )
 }
